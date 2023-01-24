@@ -21,42 +21,10 @@ struct MyButtonStyle: ButtonStyle {
 
 struct PaletteView: View {
     @State private var name: String = "Yoo"
-    @State private var selectedButton: String = "Yoo"
-    private var buttonSize: CGFloat = 80
     
     var body: some View {
         VStack {
             GameView()
-            
-            Spacer()
-            
-            HStack {
-                Button(action: {
-                    selectedButton = "peg-blue"
-                }) {
-                    Image("peg-blue")
-                      .resizable()
-                      .frame(width: buttonSize, height: buttonSize, alignment: .bottomLeading)
-                }
-                
-                Button(action: {
-                    selectedButton = "peg-orange"
-                }) {
-                    Image("peg-orange")
-                      .resizable()
-                      .frame(width: buttonSize, height: buttonSize, alignment: .bottomLeading)
-                }
-                Spacer()
-                Button(action: {
-                    selectedButton = "delete"
-                }) {
-                    Image("delete")
-                      .resizable()
-                      .frame(width: buttonSize, height: buttonSize, alignment: .bottomLeading)
-                }
-                
-            }
-            
             HStack {
                 Button("LOAD") {
                     print("LOAD")

@@ -8,5 +8,4 @@
 import Foundation
 
 struct Vaccum {
-    var size: Int
 }

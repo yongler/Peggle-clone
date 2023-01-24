@@ -2,7 +2,7 @@
 
 **Name:** Lee Yong Ler
 
-**Matric No:** Your matric no
+**Matric No:** A0219859J
 
 ## Tips
 1. CS3217's docs is at https://cs3217.github.io/cs3217-docs. Do visit the docs often, as

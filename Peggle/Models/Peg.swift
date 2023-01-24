@@ -7,7 +7,6 @@
 
 import Foundation
 
-struct Peg {
+struct Peg: Hashable {
     var color: String
-
 }
