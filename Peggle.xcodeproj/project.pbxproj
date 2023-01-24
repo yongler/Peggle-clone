@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		127EFD3E297F8AD9008915C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC2297F86450080DFC1 /* ContentView.swift */; };
 		12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC0297F86450080DFC1 /* PeggleApp.swift */; };
-		12A26FC3297F86450080DFC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC2297F86450080DFC1 /* ContentView.swift */; };
-		12A26FC5297F86450080DFC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A26FC4297F86450080DFC1 /* Assets.xcassets */; };
 		12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */; };
 		12A26FD3297F86460080DFC1 /* PeggleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FD2297F86460080DFC1 /* PeggleTests.swift */; };
 		12A26FDD297F86460080DFC1 /* PeggleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FDC297F86460080DFC1 /* PeggleUITests.swift */; };
@@ -37,7 +36,6 @@
 		12A26FBD297F86450080DFC1 /* Peggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A26FC0297F86450080DFC1 /* PeggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleApp.swift; sourceTree = "<group>"; };
 		12A26FC2297F86450080DFC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		12A26FC4297F86450080DFC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12A26FC6297F86450080DFC1 /* Peggle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Peggle.entitlements; sourceTree = "<group>"; };
 		12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		12A26FCE297F86460080DFC1 /* PeggleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeggleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +70,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1215D5A7297F8B9D0086F526 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		12A26FB4297F86450080DFC1 = {
 			isa = PBXGroup;
 			children = (
@@ -95,9 +100,9 @@
 		12A26FBF297F86450080DFC1 /* Peggle */ = {
 			isa = PBXGroup;
 			children = (
+				1215D5A7297F8B9D0086F526 /* Models */,
 				12A26FC0297F86450080DFC1 /* PeggleApp.swift */,
 				12A26FC2297F86450080DFC1 /* ContentView.swift */,
-				12A26FC4297F86450080DFC1 /* Assets.xcassets */,
 				12A26FC6297F86450080DFC1 /* Peggle.entitlements */,
 				12A26FC7297F86450080DFC1 /* Preview Content */,
 			);
@@ -139,6 +144,7 @@
 				12A26FB9297F86450080DFC1 /* Sources */,
 				12A26FBA297F86450080DFC1 /* Frameworks */,
 				12A26FBB297F86450080DFC1 /* Resources */,
+				12A26FEB297F884B0080DFC1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -234,7 +240,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */,
-				12A26FC5297F86450080DFC1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,12 +259,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		12A26FEB297F884B0080DFC1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		12A26FB9297F86450080DFC1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12A26FC3297F86450080DFC1 /* ContentView.swift in Sources */,
+				127EFD3E297F8AD9008915C0 /* ContentView.swift in Sources */,
 				12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
