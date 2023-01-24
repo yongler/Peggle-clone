@@ -1,6 +1,6 @@
 # CS3217 Problem Set 2
 
-**Name:** Your name
+**Name:** Lee Yong Ler
 
 **Matric No:** Your matric no
 

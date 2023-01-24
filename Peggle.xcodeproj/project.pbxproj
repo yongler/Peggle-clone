@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1215D62F298009E90086F526 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1215D62E298009E90086F526 /* README.md */; };
 		127EFD3E297F8AD9008915C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC2297F86450080DFC1 /* ContentView.swift */; };
 		12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC0297F86450080DFC1 /* PeggleApp.swift */; };
 		12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1215D62E298009E90086F526 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		12A26FBD297F86450080DFC1 /* Peggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A26FC0297F86450080DFC1 /* PeggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleApp.swift; sourceTree = "<group>"; };
 		12A26FC2297F86450080DFC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		12A26FB4297F86450080DFC1 = {
 			isa = PBXGroup;
 			children = (
+				1215D62E298009E90086F526 /* README.md */,
 				12A26FBF297F86450080DFC1 /* Peggle */,
 				12A26FD1297F86460080DFC1 /* PeggleTests */,
 				12A26FDB297F86460080DFC1 /* PeggleUITests */,
@@ -239,6 +242,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1215D62F298009E90086F526 /* README.md in Resources */,
 				12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
