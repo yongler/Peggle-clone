@@ -11,12 +11,11 @@ class Board: ObservableObject {
     @Published var pegs: [Peg]
     var gameArea: CGRect
     var vaccum: Vaccum
-    
+
     init(pegs: [Peg], gameArea: CGRect, vaccum: Vaccum) {
         self.pegs = pegs
         self.gameArea = gameArea
         self.vaccum = vaccum
     }
-    
-    
+
 }

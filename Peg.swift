@@ -9,5 +9,5 @@ import Foundation
 
 struct Peg {
     var color: String
-    
+
 }
