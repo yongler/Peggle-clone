@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1215D62F298009E90086F526 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1215D62E298009E90086F526 /* README.md */; };
+		1215D63129800AE60086F526 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D63029800AE60086F526 /* Board.swift */; };
+		1215D63329800AEE0086F526 /* Peg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D63229800AEE0086F526 /* Peg.swift */; };
+		1215D63529800B660086F526 /* Vaccum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D63429800B660086F526 /* Vaccum.swift */; };
+		1215D67029800BFC0086F526 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1215D66F29800BFC0086F526 /* Assets.xcassets */; };
+		1215D67229800CFD0086F526 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D67129800CFD0086F526 /* PaletteView.swift */; };
 		127EFD3E297F8AD9008915C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC2297F86450080DFC1 /* ContentView.swift */; };
 		12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC0297F86450080DFC1 /* PeggleApp.swift */; };
 		12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */; };
@@ -35,6 +40,11 @@
 
 /* Begin PBXFileReference section */
 		1215D62E298009E90086F526 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1215D63029800AE60086F526 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = SOURCE_ROOT; };
+		1215D63229800AEE0086F526 /* Peg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peg.swift; sourceTree = SOURCE_ROOT; };
+		1215D63429800B660086F526 /* Vaccum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vaccum.swift; sourceTree = SOURCE_ROOT; };
+		1215D66F29800BFC0086F526 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../test/test/Assets.xcassets; sourceTree = "<group>"; };
+		1215D67129800CFD0086F526 /* PaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
 		12A26FBD297F86450080DFC1 /* Peggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A26FC0297F86450080DFC1 /* PeggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleApp.swift; sourceTree = "<group>"; };
 		12A26FC2297F86450080DFC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,6 +85,9 @@
 		1215D5A7297F8B9D0086F526 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1215D63029800AE60086F526 /* Board.swift */,
+				1215D63229800AEE0086F526 /* Peg.swift */,
+				1215D63429800B660086F526 /* Vaccum.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -103,11 +116,13 @@
 		12A26FBF297F86450080DFC1 /* Peggle */ = {
 			isa = PBXGroup;
 			children = (
+				1215D66F29800BFC0086F526 /* Assets.xcassets */,
 				1215D5A7297F8B9D0086F526 /* Models */,
 				12A26FC0297F86450080DFC1 /* PeggleApp.swift */,
 				12A26FC2297F86450080DFC1 /* ContentView.swift */,
 				12A26FC6297F86450080DFC1 /* Peggle.entitlements */,
 				12A26FC7297F86450080DFC1 /* Preview Content */,
+				1215D67129800CFD0086F526 /* PaletteView.swift */,
 			);
 			path = Peggle;
 			sourceTree = "<group>";
@@ -243,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1215D62F298009E90086F526 /* README.md in Resources */,
+				1215D67029800BFC0086F526 /* Assets.xcassets in Resources */,
 				12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,7 +295,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -288,8 +304,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1215D63329800AEE0086F526 /* Peg.swift in Sources */,
 				127EFD3E297F8AD9008915C0 /* ContentView.swift in Sources */,
+				1215D63529800B660086F526 /* Vaccum.swift in Sources */,
 				12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */,
+				1215D67229800CFD0086F526 /* PaletteView.swift in Sources */,
+				1215D63129800AE60086F526 /* Board.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
