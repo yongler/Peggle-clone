@@ -43,9 +43,9 @@
 
 /* Begin PBXFileReference section */
 		1215D62E298009E90086F526 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		1215D63029800AE60086F526 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = SOURCE_ROOT; };
-		1215D63229800AEE0086F526 /* Peg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peg.swift; sourceTree = SOURCE_ROOT; };
-		1215D63429800B660086F526 /* Vaccum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vaccum.swift; sourceTree = SOURCE_ROOT; };
+		1215D63029800AE60086F526 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Board.swift; path = Peggle/Models/Board.swift; sourceTree = SOURCE_ROOT; };
+		1215D63229800AEE0086F526 /* Peg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Peg.swift; path = Peggle/Models/Peg.swift; sourceTree = SOURCE_ROOT; };
+		1215D63429800B660086F526 /* Vaccum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Vaccum.swift; path = Peggle/Models/Vaccum.swift; sourceTree = SOURCE_ROOT; };
 		1215D66F29800BFC0086F526 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../test/test/Assets.xcassets; sourceTree = "<group>"; };
 		1215D67129800CFD0086F526 /* PaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
 		1215D67329800E5A0086F526 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1215D5A7297F8B9D0086F526 /* Models */ = {
+		1215D67B2980212D0086F526 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				1215D63029800AE60086F526 /* Board.swift */,
@@ -122,9 +122,9 @@
 		12A26FBF297F86450080DFC1 /* Peggle */ = {
 			isa = PBXGroup;
 			children = (
+				1215D67B2980212D0086F526 /* Models */,
 				1215D67329800E5A0086F526 /* assets */,
 				1215D66F29800BFC0086F526 /* Assets.xcassets */,
-				1215D5A7297F8B9D0086F526 /* Models */,
 				12A26FC0297F86450080DFC1 /* PeggleApp.swift */,
 				12A26FC2297F86450080DFC1 /* ContentView.swift */,
 				12A26FC6297F86450080DFC1 /* Peggle.entitlements */,
