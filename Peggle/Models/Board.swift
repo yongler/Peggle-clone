@@ -7,9 +7,9 @@
 
 import Foundation
 
-class Board: ObservableObject {
-    @Published var pegs: [Peg] = []
-    private var vaccum: Vaccum = Vaccum()
+class Board: ObservableObject, Codable {
+    var pegs: [Peg] = []
+//    private var vaccum: Vaccum = Vaccum()
     
     init() {
         

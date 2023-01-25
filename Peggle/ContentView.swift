@@ -1,26 +1,21 @@
+////
+////  ContentView.swift
+////  Peggle
+////
+////  Created by Lee Yong Ler on 24/1/23.
+////
 //
-//  ContentView.swift
-//  Peggle
+//import SwiftUI
 //
-//  Created by Lee Yong Ler on 24/1/23.
+//struct ContentView: App {
 //
-
-import SwiftUI
-
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//    var body: some Scene {
+//  
+//    }
+//}
+//
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}

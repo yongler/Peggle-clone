@@ -9,8 +9,9 @@ import SwiftUI
 
 struct GameView: View {
     @Binding var board: Board
-    @State var selectedButton: String = "Level name"
     @State private var dragOffset = CGSize.zero
+    @State private var selectedButton = ""
+    
     var buttonSize: CGFloat = 80
     var pegSize: CGFloat = 50
 
@@ -48,6 +49,15 @@ struct GameView: View {
                                         dragOffset = .zero
                                     }
                             )
+                            .gesture(
+                                 TapGesture()
+                                     .onEnded { _ in
+                                         if selectedButton == "delete" {
+                                             board.removePeg(peg)
+                                             print("hi")
+                                         }
+                                     }
+                             )
                     }
             }
             
@@ -72,6 +82,7 @@ struct GameView: View {
                 Spacer()
                 Button(action: {
                     selectedButton = "delete"
+                    print("hiiii")
                 }) {
                     Image("delete")
                       .resizable()
@@ -86,6 +97,6 @@ struct GameView: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView()
+        GameView(board: .constant(Board.sampleBoard))
     }
 }

@@ -7,5 +7,5 @@
 
 import Foundation
 
-struct Vaccum {
+struct Vaccum: Codable  {
 }

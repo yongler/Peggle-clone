@@ -22,6 +22,7 @@
 		12A26FD3297F86460080DFC1 /* PeggleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FD2297F86460080DFC1 /* PeggleTests.swift */; };
 		12A26FDD297F86460080DFC1 /* PeggleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FDC297F86460080DFC1 /* PeggleUITests.swift */; };
 		12A26FDF297F86460080DFC1 /* PeggleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FDE297F86460080DFC1 /* PeggleUITestsLaunchTests.swift */; };
+		12EEE6AC298142D200E2FFEA /* BoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEE6AB298142D200E2FFEA /* BoardStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		12A26FD8297F86460080DFC1 /* PeggleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeggleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A26FDC297F86460080DFC1 /* PeggleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleUITests.swift; sourceTree = "<group>"; };
 		12A26FDE297F86460080DFC1 /* PeggleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		12EEE6AB298142D200E2FFEA /* BoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				12A26FC7297F86450080DFC1 /* Preview Content */,
 				1215D67129800CFD0086F526 /* PaletteView.swift */,
 				1215D675298011200086F526 /* GameView.swift */,
+				12EEE6AB298142D200E2FFEA /* BoardStore.swift */,
 				1215D6772980204D0086F526 /* LoadView.swift */,
 			);
 			path = Peggle;
@@ -300,6 +303,7 @@
 				1215D6782980204D0086F526 /* LoadView.swift in Sources */,
 				1215D67229800CFD0086F526 /* PaletteView.swift in Sources */,
 				1215D63129800AE60086F526 /* Board.swift in Sources */,
+				12EEE6AC298142D200E2FFEA /* BoardStore.swift in Sources */,
 				1215D676298011200086F526 /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

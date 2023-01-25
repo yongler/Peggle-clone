@@ -7,35 +7,38 @@
 
 import SwiftUI
 
-struct MyButtonStyle: ButtonStyle {
-
-  func makeBody(configuration: Self.Configuration) -> some View {
-    configuration.label
-      .padding()
-      .foregroundColor(.white)
-      .background(configuration.isPressed ? Color.red : Color.blue)
-      .cornerRadius(8.0)
-  }
-
-}
-
 struct PaletteView: View {
-    @StateObject var board: Board
+    
+    @Binding var board: Board
     @State private var name: String = "Level name"
     
     var body: some View {
         VStack {
-//            GameView()
-            GameView(board: board)
+            GameView(board: $board)
             HStack {
                 Button("LOAD") {
-                    print("LOAD")
+                    Task {
+                        do {
+                            board = try await BoardStore.load(name: "peggle.data")
+                        } catch {
+                            
+                        }
+                        print("LOAD")
+                    }
                 }
                 Button("SAVE") {
+                    Task {
+                        do {
+                            try await BoardStore.save(board: board, name: "peggle.data")
+                        } catch {
+                            
+                        }
+                    }
                     print("SAVE")
                 }
+                
                 Button("RESET") {
-                    print("RESET")
+                    board.clearBoard()
                 }
                 TextField("Level name", text: $name)
                     .border(.secondary)
@@ -51,6 +54,7 @@ struct PaletteView: View {
 
 struct PaletteView_Previews: PreviewProvider {
     static var previews: some View {
+//        PaletteView()
         PaletteView(board: .constant(Board.sampleBoard))
     }
 }

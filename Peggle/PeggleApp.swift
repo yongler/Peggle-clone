@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct PeggleApp: App {
+    @StateObject private var boardStore = BoardStore()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                PaletteView(board: .constant(Board.sampleBoard))
+            }
         }
     }
 }
