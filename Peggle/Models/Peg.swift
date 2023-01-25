@@ -9,4 +9,6 @@ import Foundation
 
 struct Peg: Hashable {
     var color: String
+    var x: Float
+    var y: Float
 }

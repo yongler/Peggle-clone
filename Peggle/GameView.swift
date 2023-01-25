@@ -8,15 +8,48 @@
 import SwiftUI
 
 struct GameView: View {
-//    @State var board: Board
+    @Binding var board: Board
     @State var selectedButton: String = "Level name"
+    @State private var dragOffset = CGSize.zero
     var buttonSize: CGFloat = 80
+    var pegSize: CGFloat = 50
 
     var body: some View {
         VStack {
-            Image("background")
-              .resizable()
-              .aspectRatio(contentMode: .fill)
+            ZStack {
+                    Image("background")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .gesture(
+                             TapGesture()
+                                 .onEnded { _ in
+                                 }
+                         )
+                    
+                    ForEach($board.pegs, id: \.self) { $peg in
+                        Image(peg.color)
+                            .resizable()
+                            .frame(width: pegSize, height: pegSize)
+                            .position(x: CGFloat(peg.x), y: CGFloat(peg.y))
+                            .gesture(
+                                LongPressGesture(minimumDuration: 0.5)
+                                    .onEnded { _ in
+                                        board.removePeg(peg)
+                                    }
+                            )
+                            .gesture(
+                                DragGesture(minimumDistance: 50)
+                                    .onChanged { gesture in
+                                        dragOffset = gesture.translation
+                                    }
+                                    .onEnded { gesture in
+                                        peg.x += Float(gesture.translation.width)
+                                        peg.y += Float(gesture.translation.height)
+                                        dragOffset = .zero
+                                    }
+                            )
+                    }
+            }
             
             Spacer()
             

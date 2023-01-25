@@ -8,30 +8,49 @@
 import Foundation
 
 class Board: ObservableObject {
-    @Published var pegs: [Peg: [[Int]]] = [:]
+    @Published var pegs: [Peg] = []
     private var vaccum: Vaccum = Vaccum()
     
     init() {
         
     }
     
-    init(pegs: [Peg: [[Int]]]) {
+    init(pegs: [Peg]) {
         self.pegs = pegs
     }
     
-    func addPeg(_ peg: Peg, x: Int, y: Int) {
-        self.pegs[peg] = pegs[peg] ?? [[Int]]()
-        self.pegs[peg]?.append([x,y])
+    func addPeg(_ peg: Peg) {
+        self.pegs.append(peg)
     }
     
-    func removePeg(_ peg: Peg, x: Int, y: Int) {
-        self.pegs[peg]?.removeAll(where: {
-            $0[0] == x && $0[1] == y
+    func addPeg(color: String, x: Float, y: Float) {
+        let peg = Peg(color: color, x: x, y: y)
+        self.pegs.append(peg)
+    }
+    
+    func removePeg(_ peg: Peg) {
+        self.pegs.removeAll(where: {
+            $0 == peg
         })
     }
     
+    func clearBoard() {
+        self.pegs = []
+    }
+    
+//    func removePeg(x: Int, y: Int) {
+//        self.pegs.removeAll(where: {
+//            $0 == peg
+//        })
+//    }
+//
 }
 
 extension Board {
-    static var sampleBoard = Board(pegs: [Peg(color: "blue"): [[50, 50], [500, 500]], Peg(color: "orange"): [[50, 50], [500, 500]]])
+    static var bluePeg1 = Peg(color: "peg-blue", x: 500, y: 500)
+    static var bluePeg2 = Peg(color: "peg-blue", x: 600, y: 600)
+    static var orangePeg1 = Peg(color: "peg-orange", x: 700, y: 700)
+    static var orangePeg2 = Peg(color: "peg-orange", x: 800, y: 800)
+    
+    static var sampleBoard = Board(pegs: [bluePeg1, bluePeg2, orangePeg1, orangePeg2])
 }

@@ -20,11 +20,13 @@ struct MyButtonStyle: ButtonStyle {
 }
 
 struct PaletteView: View {
-    @State private var name: String = "Yoo"
+    @StateObject var board: Board
+    @State private var name: String = "Level name"
     
     var body: some View {
         VStack {
-            GameView()
+//            GameView()
+            GameView(board: board)
             HStack {
                 Button("LOAD") {
                     print("LOAD")
@@ -49,6 +51,6 @@ struct PaletteView: View {
 
 struct PaletteView_Previews: PreviewProvider {
     static var previews: some View {
-        PaletteView()
+        PaletteView(board: .constant(Board.sampleBoard))
     }
 }
