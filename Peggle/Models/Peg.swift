@@ -11,4 +11,7 @@ struct Peg: Hashable, Codable  {
     var color: String
     var x: Float
     var y: Float
+    var size: Float
+    
+    
 }

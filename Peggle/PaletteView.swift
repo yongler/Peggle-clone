@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PaletteView: View {
-    
     @Binding var board: Board
     @State private var name: String = "Level name"
     

@@ -13,52 +13,60 @@ struct GameView: View {
     @State private var selectedButton = ""
     
     var buttonSize: CGFloat = 80
-    var pegSize: CGFloat = 50
+    var pegSize: Float = 50
 
     var body: some View {
         VStack {
             ZStack {
-                    Image("background")
+                Image("background")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .gesture(
+                        DragGesture(minimumDistance: 0)
+                            .onEnded { value in
+                                guard selectedButton != "delete" else {
+                                    return
+                                }
+                                board.addPeg(color: selectedButton, x: Float(value.location.x), y: Float(value.location.y), size: pegSize)
+                            }
+                     )
+                
+                Text(selectedButton)
+                Spacer()
+                Text(board.checkNotColliding(x: 900, y: 900, size: pegSize) ? "True" : "false")
+                
+                ForEach($board.pegs, id: \.self) { $peg in
+                    Image(peg.color)
                         .resizable()
-                        .aspectRatio(contentMode: .fill)
+                        .frame(width: CGFloat(pegSize), height: CGFloat(pegSize))
+                        .position(x: CGFloat(peg.x), y: CGFloat(peg.y))
+                        .gesture(
+                            LongPressGesture(minimumDuration: 0.5)
+                                .onEnded { _ in
+                                    board.removePeg(peg)
+                                }
+                        )
+                        .gesture(
+                            DragGesture(minimumDistance: 50)
+                                .onChanged { gesture in
+                                    dragOffset = gesture.translation
+                                }
+                                .onEnded { gesture in
+                                    peg.x += Float(gesture.translation.width)
+                                    peg.y += Float(gesture.translation.height)
+                                    dragOffset = .zero
+                                }
+                        )
                         .gesture(
                              TapGesture()
                                  .onEnded { _ in
+                                     if selectedButton == "delete" {
+                                         board.removePeg(peg)
+                                         print("hi")
+                                     }
                                  }
                          )
-                    
-                    ForEach($board.pegs, id: \.self) { $peg in
-                        Image(peg.color)
-                            .resizable()
-                            .frame(width: pegSize, height: pegSize)
-                            .position(x: CGFloat(peg.x), y: CGFloat(peg.y))
-                            .gesture(
-                                LongPressGesture(minimumDuration: 0.5)
-                                    .onEnded { _ in
-                                        board.removePeg(peg)
-                                    }
-                            )
-                            .gesture(
-                                DragGesture(minimumDistance: 50)
-                                    .onChanged { gesture in
-                                        dragOffset = gesture.translation
-                                    }
-                                    .onEnded { gesture in
-                                        peg.x += Float(gesture.translation.width)
-                                        peg.y += Float(gesture.translation.height)
-                                        dragOffset = .zero
-                                    }
-                            )
-                            .gesture(
-                                 TapGesture()
-                                     .onEnded { _ in
-                                         if selectedButton == "delete" {
-                                             board.removePeg(peg)
-                                             print("hi")
-                                         }
-                                     }
-                             )
-                    }
+                }
             }
             
             Spacer()

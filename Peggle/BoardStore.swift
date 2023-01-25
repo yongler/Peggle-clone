@@ -15,15 +15,6 @@ class BoardStore: ObservableObject {
         return directory.appendingPathComponent(name).appendingPathExtension(".data")
     }
     
-    
-//    private static func fileURL() throws -> URL {
-//        try FileManager.default.url(for: .documentDirectory,
-//                                       in: .userDomainMask,
-//                                       appropriateFor: nil,
-//                                       create: false)
-//            .appendingPathComponent("peggle.data")
-//    }
-    
     static func load(name: String) async throws -> Board {
         try await withCheckedThrowingContinuation { continuation in
             load(name: name) { result in

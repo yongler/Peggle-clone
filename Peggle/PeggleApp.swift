@@ -14,7 +14,7 @@ struct PeggleApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                PaletteView(board: .constant(Board.sampleBoard))
+//                PaletteView(board: .constant(Board.sampleBoard))
             }
         }
     }
