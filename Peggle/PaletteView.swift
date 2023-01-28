@@ -20,14 +20,14 @@ struct PaletteView: View {
             HStack {
                 Button("LOAD") {
                     Task {
-                        board = try await BoardStore.load(name: "peggle.data")
+                        board = try await BoardStore.load(name: name)
                         print("LOAD")
                     }
                 }
                 Button("SAVE") {
                     Task {
                         do {
-                            try await BoardStore.save(board: board, name: "peggle.data")
+                            try await BoardStore.save(board: board, name: name)
                         } catch {
 
                         }

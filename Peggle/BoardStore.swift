@@ -8,14 +8,6 @@
 import Foundation
 
 class BoardStore: ObservableObject {
-//    @Published var board: Board = Board()
-//    @Published var pegs: [Peg]
-    
-//    init() {
-//        self.board = Board()
-//        self.pegs = self.board.pegs
-//    }
-
     private static func getFileURL(from name: String) throws -> URL {
         let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         return directory.appendingPathComponent(name).appendingPathExtension(".data")

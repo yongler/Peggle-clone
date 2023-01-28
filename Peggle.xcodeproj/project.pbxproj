@@ -16,7 +16,8 @@
 		1215D67429800E5A0086F526 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 1215D67329800E5A0086F526 /* assets */; };
 		1215D676298011200086F526 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D675298011200086F526 /* GameView.swift */; };
 		1215D6782980204D0086F526 /* LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D6772980204D0086F526 /* LoadView.swift */; };
-		12633C192984C9700057AF14 /* PublishedExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C182984C9700057AF14 /* PublishedExtension.swift */; };
+		12633C1B2984DA880057AF14 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1A2984DA880057AF14 /* BoardTests.swift */; };
+		12633C1D2984DD370057AF14 /* PegTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1C2984DD370057AF14 /* PegTests.swift */; };
 		127EFD3E297F8AD9008915C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC2297F86450080DFC1 /* ContentView.swift */; };
 		12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC0297F86450080DFC1 /* PeggleApp.swift */; };
 		12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */; };
@@ -53,7 +54,8 @@
 		1215D67329800E5A0086F526 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		1215D675298011200086F526 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		1215D6772980204D0086F526 /* LoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadView.swift; sourceTree = "<group>"; };
-		12633C182984C9700057AF14 /* PublishedExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishedExtension.swift; sourceTree = "<group>"; };
+		12633C1A2984DA880057AF14 /* BoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTests.swift; sourceTree = "<group>"; };
+		12633C1C2984DD370057AF14 /* PegTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegTests.swift; sourceTree = "<group>"; };
 		12A26FBD297F86450080DFC1 /* Peggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A26FC0297F86450080DFC1 /* PeggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleApp.swift; sourceTree = "<group>"; };
 		12A26FC2297F86450080DFC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -137,7 +139,6 @@
 				1215D675298011200086F526 /* GameView.swift */,
 				12EEE6AB298142D200E2FFEA /* BoardStore.swift */,
 				1215D6772980204D0086F526 /* LoadView.swift */,
-				12633C182984C9700057AF14 /* PublishedExtension.swift */,
 			);
 			path = Peggle;
 			sourceTree = "<group>";
@@ -154,6 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				12A26FD2297F86460080DFC1 /* PeggleTests.swift */,
+				12633C1A2984DA880057AF14 /* BoardTests.swift */,
+				12633C1C2984DD370057AF14 /* PegTests.swift */,
 			);
 			path = PeggleTests;
 			sourceTree = "<group>";
@@ -303,7 +306,6 @@
 				127EFD3E297F8AD9008915C0 /* ContentView.swift in Sources */,
 				1215D63529800B660086F526 /* Vaccum.swift in Sources */,
 				12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */,
-				12633C192984C9700057AF14 /* PublishedExtension.swift in Sources */,
 				1215D6782980204D0086F526 /* LoadView.swift in Sources */,
 				1215D67229800CFD0086F526 /* PaletteView.swift in Sources */,
 				1215D63129800AE60086F526 /* Board.swift in Sources */,
@@ -316,6 +318,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12633C1B2984DA880057AF14 /* BoardTests.swift in Sources */,
+				12633C1D2984DD370057AF14 /* PegTests.swift in Sources */,
 				12A26FD3297F86460080DFC1 /* PeggleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,7 +481,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
@@ -515,7 +519,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.1;

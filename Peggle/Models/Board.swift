@@ -25,16 +25,6 @@ class Board: Codable, ObservableObject {
   
     @Published var pegs: [Peg] = []
     
-//class Board: ObservableObject, Codable {
-//    @Published var pegs: [Peg] = []
-//    private var vaccum: Vaccum = Vaccum()
-    
-    
-//    class Pegs: ObservableObject, Codable {
-//        var pegs: [Peg] = [
-//    }
-//
-    
     init() {
         
     }
@@ -53,12 +43,20 @@ class Board: Codable, ObservableObject {
         }
         
         let peg = Peg(color: color, x: x, y: y, size: size)
-        self.pegs.append(peg)
+        self.addPeg(peg)
     }
     
     func removePeg(_ peg: Peg) {
         self.pegs.removeAll(where: {
             $0 == peg
+        })
+    }
+    
+    func removePeg(x: Float, y: Float) {
+        self.pegs.removeAll(where: {
+            let radius = $0.size
+            let distanceBetweenCentres = sqrt(pow($0.x-x, 2) + pow($0.y-y, 2))
+            return distanceBetweenCentres <= radius
         })
     }
     
@@ -81,14 +79,9 @@ class Board: Codable, ObservableObject {
         return true
     }
     
-    func removePeg(x: Float, y: Float) {
-        self.pegs.removeAll(where: {
-            let radius = $0.size
-            let distanceBetweenCentres = sqrt(pow($0.x-x, 2) + pow($0.y-y, 2))
-            return distanceBetweenCentres <= radius
-        })
+    var pegCount: Int {
+        return pegs.count
     }
-
 }
 
 

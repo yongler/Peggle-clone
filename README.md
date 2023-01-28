@@ -5,10 +5,16 @@
 **Matric No:** A0219859J
 
 
-collide wall
 selected button
-pallete fit 
+
+collide wall
 cant put closer pegs 
+peg in game area only 
+
+pallete fit 
+CHECK ALL SIZE 
+
+
 
 ## Tips
 1. CS3217's docs is at https://cs3217.github.io/cs3217-docs. Do visit the docs often, as
@@ -32,6 +38,9 @@ You may put your dev guide either in this section, or in a new file entirely.
 You are encouraged to include diagrams where appropriate in order to enhance
 your guide.
 
+Observer pattern is used. Whenever the board model instance changes, views that observes it will be automatically rerendered to update. 
+
+
 ## Tests
 If you decide to write how you are going to do your tests instead of writing
 actual tests, please write in this section. If you decide to write all of your
@@ -50,11 +59,40 @@ tests in code, please delete this section.
 > `foo` instead of `bar`. Explain what are the advantages and disadvantages of
 > using `foo` and `bar`, and why you decided to go with `foo`.
 
-Your answer here
+
+1. Storing coordinates of peg in Peg ADT or Board ADT. 
+- Storing in Board ADT seems better encapsulation as only the board has coordinates, the pegs themselves only have color and size. 
+- Storing in Peg was chosen as it is more intuitive and is easier in terms of handling the Board 
+
+2. `TapGesture` in swiftui does not support obtaining the tap location unless using the `OnTapGesture` method which only builds for IOS16 and above. 
+- As mentioned, this limits the number of devices that the game can run on. 
+- Another workaround is to use `DragGesture` with 0 distance setting (simulate a tap). 
+- This workaround is selected as there are no potential downsides while having benefits of being playable in more devices. 
+
+3. Concurrency in loading and saving. 
+- Concurrency is only available in Swift5.5, which builds to IOS15 and above. 
+- The alternative is to not use concurrency when saving and loading, thus building to more ios versions. 
+- The alternative was chosen as the data being saved and loaded is not big, hence concurrency does not offer a big advantage. 
+
+4. MV pattern.
+- MVVM pattern is largely used as it is a very good design pattern with divisibility. 
+- When researching on SwiftUI, I came across the MV pattern, much supported by bindings in SwiftUI.
+- Summary is to embrace SwiftUI using the MV pattern, instead of creating more (or wrong) code to do MVVM pattern, which is also unecessary.
+- Many developers also mentioned the same support for MV pattern such as https://developer.apple.com/forums/thread/699003, https://medium.com/@karamage/stop-using-mvvm-with-swiftui-2c46eb2cc8dc and more. 
+- MV pattern was chosen.  
+
+
 
 ### Persistence Justification
 > Please justify your choice of persistence method in your `README.md`. In
 > other words, write your considerations in weighing the pros and cons of the
 > persistence methods you have considered.
 
-Your answer here
+
+Pros: 
+1. The encoding method was chosen as it offers simplicity while still offering the functionalities needed (i.e. basic persistent storage). 
+2. CoreData or realm should be used for bigger and more complex projects, but would be an overkill here as the level of complex object graph is not needed. 
+3. Data is small, so benefits of partial load from sqlite or core data is not a big advantage.   
+
+Cons: 
+1. Not as good memory management as the entire data is loaded into memory as compared to core data.
