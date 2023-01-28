@@ -12,6 +12,4 @@ struct Peg: Hashable, Codable  {
     var x: Float
     var y: Float
     var size: Float
-    
-    
 }

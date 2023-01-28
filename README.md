@@ -4,6 +4,12 @@
 
 **Matric No:** A0219859J
 
+
+collide wall
+selected button
+pallete fit 
+cant put closer pegs 
+
 ## Tips
 1. CS3217's docs is at https://cs3217.github.io/cs3217-docs. Do visit the docs often, as
    it contains all things relevant to CS3217.

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct GameView: View {
-    @Binding var board: Board
+//    @Binding var board: Board
+    @ObservedObject var board: Board
     @State private var dragOffset = CGSize.zero
     @State private var selectedButton = ""
     
@@ -20,7 +21,9 @@ struct GameView: View {
             ZStack {
                 Image("background")
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
+//                    .clipped()
+//                    .scaledToFit()
+//                    .aspectRatio(contentMode: .fill)
                     .gesture(
                         DragGesture(minimumDistance: 0)
                             .onEnded { value in
@@ -33,7 +36,6 @@ struct GameView: View {
                 
                 Text(selectedButton)
                 Spacer()
-                Text(board.checkNotColliding(x: 900, y: 900, size: pegSize) ? "True" : "false")
                 
                 ForEach($board.pegs, id: \.self) { $peg in
                     Image(peg.color)
@@ -58,13 +60,14 @@ struct GameView: View {
                                 }
                         )
                         .gesture(
-                             TapGesture()
-                                 .onEnded { _ in
-                                     if selectedButton == "delete" {
-                                         board.removePeg(peg)
-                                         print("hi")
-                                     }
-                                 }
+                            DragGesture(minimumDistance: 0)
+                                .onEnded { gesture in
+                                    guard selectedButton == "delete" else {
+                                        return
+                                    }
+                                    
+                                    board.removePeg(x: Float(gesture.location.x), y: Float(gesture.location.y))
+                                }
                          )
                 }
             }
@@ -105,6 +108,7 @@ struct GameView: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView(board: .constant(Board.sampleBoard))
+        GameView(board: Board.sampleBoard)
+//        GameView(board: .constant(Board.sampleBoard))
     }
 }

@@ -8,8 +8,14 @@
 import Foundation
 
 class BoardStore: ObservableObject {
-    @Published var board: Board = Board()
+//    @Published var board: Board = Board()
+//    @Published var pegs: [Peg]
     
+//    init() {
+//        self.board = Board()
+//        self.pegs = self.board.pegs
+//    }
+
     private static func getFileURL(from name: String) throws -> URL {
         let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         return directory.appendingPathComponent(name).appendingPathExtension(".data")
@@ -27,7 +33,7 @@ class BoardStore: ObservableObject {
             }
         }
     }
-    
+
     static func load(name: String, completion: @escaping (Result<Board, Error>)->Void) {
         DispatchQueue.global(qos: .background).async {
             do {
@@ -49,7 +55,7 @@ class BoardStore: ObservableObject {
             }
         }
     }
-    
+
     @discardableResult
     static func save(board: Board, name: String) async throws -> Int {
         try await withCheckedThrowingContinuation { continuation in
@@ -63,7 +69,7 @@ class BoardStore: ObservableObject {
             }
         }
     }
-    
+
     static func save(board: Board, name: String, completion: @escaping (Result<Int, Error>)->Void) {
         DispatchQueue.global(qos: .background).async {
             do {

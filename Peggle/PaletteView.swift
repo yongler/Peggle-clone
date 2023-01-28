@@ -8,20 +8,19 @@
 import SwiftUI
 
 struct PaletteView: View {
+//    @StateObject var board: Board = Board()
+//    @ObservedObject var board: Board
     @Binding var board: Board
     @State private var name: String = "Level name"
     
     var body: some View {
-        VStack {
-            GameView(board: $board)
+        VStack() {
+            GameView(board: board)
+//            GameView(board: board)
             HStack {
                 Button("LOAD") {
                     Task {
-                        do {
-                            board = try await BoardStore.load(name: "peggle.data")
-                        } catch {
-                            
-                        }
+                        board = try await BoardStore.load(name: "peggle.data")
                         print("LOAD")
                     }
                 }
@@ -30,7 +29,7 @@ struct PaletteView: View {
                         do {
                             try await BoardStore.save(board: board, name: "peggle.data")
                         } catch {
-                            
+
                         }
                     }
                     print("SAVE")
@@ -54,6 +53,7 @@ struct PaletteView: View {
 struct PaletteView_Previews: PreviewProvider {
     static var previews: some View {
 //        PaletteView()
+//        PaletteView(board: Board.sampleBoard)
         PaletteView(board: .constant(Board.sampleBoard))
     }
 }

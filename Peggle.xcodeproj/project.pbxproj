@@ -16,6 +16,7 @@
 		1215D67429800E5A0086F526 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 1215D67329800E5A0086F526 /* assets */; };
 		1215D676298011200086F526 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D675298011200086F526 /* GameView.swift */; };
 		1215D6782980204D0086F526 /* LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D6772980204D0086F526 /* LoadView.swift */; };
+		12633C192984C9700057AF14 /* PublishedExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C182984C9700057AF14 /* PublishedExtension.swift */; };
 		127EFD3E297F8AD9008915C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC2297F86450080DFC1 /* ContentView.swift */; };
 		12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC0297F86450080DFC1 /* PeggleApp.swift */; };
 		12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		1215D67329800E5A0086F526 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		1215D675298011200086F526 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		1215D6772980204D0086F526 /* LoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadView.swift; sourceTree = "<group>"; };
+		12633C182984C9700057AF14 /* PublishedExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishedExtension.swift; sourceTree = "<group>"; };
 		12A26FBD297F86450080DFC1 /* Peggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A26FC0297F86450080DFC1 /* PeggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleApp.swift; sourceTree = "<group>"; };
 		12A26FC2297F86450080DFC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				1215D675298011200086F526 /* GameView.swift */,
 				12EEE6AB298142D200E2FFEA /* BoardStore.swift */,
 				1215D6772980204D0086F526 /* LoadView.swift */,
+				12633C182984C9700057AF14 /* PublishedExtension.swift */,
 			);
 			path = Peggle;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				127EFD3E297F8AD9008915C0 /* ContentView.swift in Sources */,
 				1215D63529800B660086F526 /* Vaccum.swift in Sources */,
 				12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */,
+				12633C192984C9700057AF14 /* PublishedExtension.swift in Sources */,
 				1215D6782980204D0086F526 /* LoadView.swift in Sources */,
 				1215D67229800CFD0086F526 /* PaletteView.swift in Sources */,
 				1215D63129800AE60086F526 /* Board.swift in Sources */,
