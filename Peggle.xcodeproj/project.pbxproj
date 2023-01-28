@@ -103,9 +103,17 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		12633C202984FE720057AF14 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
 		12A26FB4297F86450080DFC1 = {
 			isa = PBXGroup;
 			children = (
+				12633C202984FE720057AF14 /* docs */,
 				1215D62E298009E90086F526 /* README.md */,
 				12A26FBF297F86450080DFC1 /* Peggle */,
 				12A26FD1297F86460080DFC1 /* PeggleTests */,

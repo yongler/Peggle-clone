@@ -89,7 +89,7 @@ extension Board {
     static var bluePeg1 = Peg(color: "peg-blue", x: 300, y: 300, size: 50)
     static var bluePeg2 = Peg(color: "peg-blue", x: 600, y: 600, size: 50)
     static var orangePeg1 = Peg(color: "peg-orange", x: 700, y: 700, size: 50)
-    static var orangePeg2 = Peg(color: "peg-orange", x: 800, y: 800, size: 50)
+    static var orangePeg2 = Peg(color: "peg-orange", x: 400, y: 400, size: 50)
     
     static var sampleBoard = Board(pegs: [bluePeg1, bluePeg2, orangePeg1, orangePeg2])
 }

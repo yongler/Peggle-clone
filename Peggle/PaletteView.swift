@@ -8,15 +8,42 @@
 import SwiftUI
 
 struct PaletteView: View {
-//    @StateObject var board: Board = Board()
-//    @ObservedObject var board: Board
     @Binding var board: Board
     @State private var name: String = "Level name"
-    
+    @State private var selectedButton = ""
+    var buttonSize: CGFloat = 80
+
     var body: some View {
         VStack() {
-            GameView(board: board)
-//            GameView(board: board)
+            GameView(board: board, selectedButton: $selectedButton, isDesigning: .constant(true))
+            
+            HStack {
+                Button(action: {
+                    selectedButton = "peg-blue"
+                }) {
+                    Image("peg-blue")
+                      .resizable()
+                      .frame(width: buttonSize, height: buttonSize, alignment: .bottomLeading)
+                }
+                
+                Button(action: {
+                    selectedButton = "peg-orange"
+                }) {
+                    Image("peg-orange")
+                      .resizable()
+                      .frame(width: buttonSize, height: buttonSize, alignment: .bottomLeading)
+                }
+                Spacer()
+                Button(action: {
+                    selectedButton = "delete"
+                }) {
+                    Image("delete")
+                      .resizable()
+                      .frame(width: buttonSize, height: buttonSize, alignment: .bottomLeading)
+                }
+                
+            }
+
             HStack {
                 Button("LOAD") {
                     Task {
@@ -52,8 +79,6 @@ struct PaletteView: View {
 
 struct PaletteView_Previews: PreviewProvider {
     static var previews: some View {
-//        PaletteView()
-//        PaletteView(board: Board.sampleBoard)
         PaletteView(board: .constant(Board.sampleBoard))
     }
 }

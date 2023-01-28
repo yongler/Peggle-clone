@@ -14,6 +14,8 @@ peg in game area only
 pallete fit 
 CHECK ALL SIZE 
 
+no async 
+
 
 
 ## Tips
@@ -38,7 +40,14 @@ You may put your dev guide either in this section, or in a new file entirely.
 You are encouraged to include diagrams where appropriate in order to enhance
 your guide.
 
-Observer pattern is used. Whenever the board model instance changes, views that observes it will be automatically rerendered to update. 
+Observer pattern is used. Whenever the board model instance changes, views that observes it will be automatically rerendered to update. (functionality of `@Published` and `ObservedObject` in SwiftUI) 
+
+
+### Class diagrams
+ 
+`PaletteView` is designed in such a way that it compose of `GameView`, which can be reused for the actual game. 
+
+### Sequence diagrams
 
 
 ## Tests
