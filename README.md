@@ -30,14 +30,24 @@ You may put your dev guide either in this section, or in a new file entirely.
 You are encouraged to include diagrams where appropriate in order to enhance
 your guide.
 
-Observer pattern is used. Whenever the board model instance changes, views that observes it will be automatically rerendered to update. (functionality of `@Published` and `ObservedObject` in SwiftUI) 
-
 
 ### Class diagrams
- 
+As MV pattern is used (discussed below), there are only Views and Models. 
+
+![image](https://user-images.githubusercontent.com/68801331/215267470-5051b475-b28e-49da-b937-6aa02e32d7d0.png)
+
 `PaletteView` is designed in such a way that it compose of `GameView`, where `GameView` can be reused for an actual game (not designing). 
 
 ### Sequence diagrams
+Observer pattern is used. Whenever the board model instance changes, views that observes it will be automatically rerendered to update. (functionality of `@Published` and `ObservedObject` in SwiftUI) 
+
+Load board sequence:
+![image](https://user-images.githubusercontent.com/68801331/215268141-67eb378a-4ec7-433e-b2e6-4b12e08334ae.png)
+
+
+Add peg sequence: 
+![image](https://user-images.githubusercontent.com/68801331/215268153-3affe90a-b39a-4e1a-98e8-23028c4a74ac.png)
+
 
 
 ## Tests
