@@ -4,8 +4,6 @@
 
 **Matric No:** A0219859J
 
-lint
-
 
 ## Tips
 1. CS3217's docs is at https://cs3217.github.io/cs3217-docs. Do visit the docs often, as
@@ -65,7 +63,7 @@ tests in code, please delete this section.
         - When button is tapped and a peg is tapped, peg should be removed
     - Pegs 
         - When long pressed, peg should be removed
-        - When dragged, peg should move to new location 
+        - When dragged, peg should move to new location unless it collides with other pegs or it is not within game area, if so it should be removed 
         
 - Test storage 
     - Level name field 
@@ -74,7 +72,7 @@ tests in code, please delete this section.
         - When load button is tapped with level name indicated, it should load the associated level 
         - When load button is tapped with level name not indicated, it should load the default "peggle.data"
     - Save button
-        - When save button is tapped with level name indicated, it should save the level with the level name as "levelname.data"
+        - When save button is tapped with level name ("levelname") indicated, it should save the level with the level name as "levelname.data"
         - When save button is tapped with level name not indicated, it should save with the default name "peggle.data"
     - Reset button 
         - When reset button is tapped, game area is cleared. 
@@ -98,19 +96,14 @@ tests in code, please delete this section.
 
 1. Storing coordinates of peg in Peg ADT or Board ADT. 
 - Storing in Board ADT seems better encapsulation as only the board has coordinates, the pegs themselves only have color and size. 
-- Storing in Peg was chosen as it is more intuitive and is easier in terms of handling the Board 
+- Storing in Peg was chosen as it is more intuitive and is easier in terms of handling the Board (Board only needs to know the Pegs, the Pegs themselves will store their own information). 
 
 2. `TapGesture` in swiftui does not support obtaining the tap location unless using the `OnTapGesture` method which only builds for IOS16 and above. 
 - As mentioned, this limits the number of devices that the game can run on. 
 - Another workaround is to use `DragGesture` with 0 distance setting (simulate a tap). 
 - This workaround is selected as there are no potential downsides while having benefits of being playable in more devices. 
 
-3. Concurrency in loading and saving. 
-- Concurrency is only available in Swift5.5, which builds to IOS15 and above. 
-- The alternative is to not use concurrency when saving and loading, thus building to more ios versions. 
-- The alternative was chosen as the data being saved and loaded is not big, hence concurrency does not offer a big advantage. 
-
-4. MV pattern.
+3. MV pattern.
 - MVVM pattern is largely used as it is a very good design pattern with divisibility. 
 - When researching on SwiftUI, I came across the MV pattern, much supported by bindings in SwiftUI.
 - Summary is to embrace SwiftUI using the MV pattern, instead of creating more (or wrong) code to do MVVM pattern, which is also unecessary.
