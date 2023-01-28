@@ -8,13 +8,13 @@
 import Foundation
 
 class BoardStore: ObservableObject {
-    
+
     /// Get file URL from specified file name.
     private static func getFileURL(from name: String) throws -> URL {
         let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         return directory.appendingPathComponent(name).appendingPathExtension(".data")
     }
-    
+
     static func load(name: String) async throws -> Board {
         try await withCheckedThrowingContinuation { continuation in
             load(name: name) { result in
@@ -28,7 +28,7 @@ class BoardStore: ObservableObject {
         }
     }
 
-    static func load(name: String, completion: @escaping (Result<Board, Error>)->Void) {
+    static func load(name: String, completion: @escaping (Result<Board, Error>) -> Void) {
         DispatchQueue.global(qos: .background).async {
             do {
                 let fileURL = try getFileURL(from: name)
@@ -64,7 +64,7 @@ class BoardStore: ObservableObject {
         }
     }
 
-    static func save(board: Board, name: String, completion: @escaping (Result<Int, Error>)->Void) {
+    static func save(board: Board, name: String, completion: @escaping (Result<Int, Error>) -> Void) {
         DispatchQueue.global(qos: .background).async {
             do {
                 let data = try JSONEncoder().encode(board)

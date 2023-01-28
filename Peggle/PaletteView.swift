@@ -13,10 +13,10 @@ struct PaletteView: View {
     @State private var selectedButton = ""
 
     var body: some View {
-        VStack() {
+        VStack {
             // Game board with pegs
             GameView(board: board, selectedButton: $selectedButton, isDesigning: .constant(true))
-            
+
             // 2 peg buttons and 1 delete button.
             HStack {
                 Button(action: {
@@ -24,31 +24,34 @@ struct PaletteView: View {
                 }) {
                     Image("peg-blue")
                       .resizable()
-                      .frame(width: K.Palette.buttonRadius, height: K.Palette.buttonRadius, alignment: .bottomLeading)
+                      .frame(width: Constants.Palette.buttonRadius,
+                             height: Constants.Palette.buttonRadius, alignment: .bottomLeading)
                 }
                 .opacity(selectedButton == "peg-blue" ? 1 : 0.5)
-                
+
                 Button(action: {
                     selectedButton = "peg-orange"
                 }) {
                     Image("peg-orange")
                       .resizable()
-                      .frame(width: K.Palette.buttonRadius, height: K.Palette.buttonRadius, alignment: .bottomLeading)
+                      .frame(width: Constants.Palette.buttonRadius,
+                             height: Constants.Palette.buttonRadius, alignment: .bottomLeading)
                 }
                 .opacity(selectedButton == "peg-orange" ? 1 : 0.5)
-                
+
                 Spacer()
                 Button(action: {
                     selectedButton = "delete"
                 }) {
                     Image("delete")
                       .resizable()
-                      .frame(width: K.Palette.buttonRadius, height: K.Palette.buttonRadius, alignment: .bottomLeading)
+                      .frame(width: Constants.Palette.buttonRadius,
+                             height: Constants.Palette.buttonRadius, alignment: .bottomLeading)
                 }
                 .opacity(selectedButton == "delete" ? 1 : 0.5)
-                
+
             }
-            
+
             // Action buttons.
             HStack {
                 Button("LOAD") {
@@ -65,13 +68,13 @@ struct PaletteView: View {
                         }
                     }
                 }
-                
+
                 Button("RESET") {
                     board.clearBoard()
                 }
                 TextField("Level name", text: $name)
                     .border(.secondary)
-                
+
                 Button("START") {
                     print("START")
                 }

@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct K {
+struct Constants {
     struct Peg {
         static let pegRadius: Float = 25
     }
-    
+
     struct Palette {
         static let buttonRadius: CGFloat = 80
     }

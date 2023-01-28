@@ -21,7 +21,7 @@ struct PeggleApp: App {
                    } catch {
                        fatalError("Error loading scrums.")
                    }
-               }
+            }
         }
     }
 }

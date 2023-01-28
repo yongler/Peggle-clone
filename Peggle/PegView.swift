@@ -18,9 +18,9 @@ struct PegView: View {
     var body: some View {
         Image(peg.color)
             .resizable()
-            .frame(width: CGFloat(peg.radius*2), height: CGFloat(peg.radius*2))
+            .frame(width: CGFloat(peg.radius * 2), height: CGFloat(peg.radius * 2))
             .position(x: CGFloat(peg.x), y: CGFloat(peg.y))
-            
+
             .gesture(
                 LongPressGesture(minimumDuration: 0.5)
                     .onEnded { _ in
@@ -36,24 +36,25 @@ struct PegView: View {
                         guard isDesigning else {
                             return
                         }
-                        
+
                         dragOffset = gesture.translation
                     }
                     .onEnded { gesture in
                         guard isDesigning else {
                             return
                         }
-                        
+
                         peg.x += Float(gesture.translation.width)
                         peg.y += Float(gesture.translation.height)
                         dragOffset = .zero
-                        
+
                         guard board.checkValidPosition(peg: peg) else {
                             board.removePeg(peg)
                             return
                         }
-                        
-                        guard Utils.checkInArea(gameArea: gameArea, pegX: peg.x, pegY: peg.y, pegRadius: peg.radius) else {
+
+                        guard Utils.checkInArea(gameArea: gameArea, pegX: peg.x,
+                                                pegY: peg.y, pegRadius: peg.radius) else {
                             board.removePeg(peg)
                             return
                         }
@@ -66,14 +67,9 @@ struct PegView: View {
                         guard selectedButton == "delete" && isDesigning else {
                             return
                         }
-                        
+
                         board.removePeg(x: Float(gesture.location.x), y: Float(gesture.location.y))
                     }
              )
     }
 }
-
-   
-
-   
-

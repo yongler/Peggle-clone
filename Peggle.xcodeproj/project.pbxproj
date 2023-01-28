@@ -22,9 +22,6 @@
 		12633C2629854A9D0057AF14 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C2529854A9D0057AF14 /* Utils.swift */; };
 		12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC0297F86450080DFC1 /* PeggleApp.swift */; };
 		12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */; };
-		12A26FD3297F86460080DFC1 /* PeggleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FD2297F86460080DFC1 /* PeggleTests.swift */; };
-		12A26FDD297F86460080DFC1 /* PeggleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FDC297F86460080DFC1 /* PeggleUITests.swift */; };
-		12A26FDF297F86460080DFC1 /* PeggleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FDE297F86460080DFC1 /* PeggleUITestsLaunchTests.swift */; };
 		12EEE6AC298142D200E2FFEA /* BoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEE6AB298142D200E2FFEA /* BoardStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,10 +61,7 @@
 		12A26FC6297F86450080DFC1 /* Peggle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Peggle.entitlements; sourceTree = "<group>"; };
 		12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		12A26FCE297F86460080DFC1 /* PeggleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeggleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		12A26FD2297F86460080DFC1 /* PeggleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleTests.swift; sourceTree = "<group>"; };
 		12A26FD8297F86460080DFC1 /* PeggleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeggleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		12A26FDC297F86460080DFC1 /* PeggleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleUITests.swift; sourceTree = "<group>"; };
-		12A26FDE297F86460080DFC1 /* PeggleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		12EEE6AB298142D200E2FFEA /* BoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,7 +115,6 @@
 				1215D62E298009E90086F526 /* README.md */,
 				12A26FBF297F86450080DFC1 /* Peggle */,
 				12A26FD1297F86460080DFC1 /* PeggleTests */,
-				12A26FDB297F86460080DFC1 /* PeggleUITests */,
 				12A26FBE297F86450080DFC1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -165,20 +158,10 @@
 		12A26FD1297F86460080DFC1 /* PeggleTests */ = {
 			isa = PBXGroup;
 			children = (
-				12A26FD2297F86460080DFC1 /* PeggleTests.swift */,
 				12633C1A2984DA880057AF14 /* BoardTests.swift */,
 				12633C1C2984DD370057AF14 /* PegTests.swift */,
 			);
 			path = PeggleTests;
-			sourceTree = "<group>";
-		};
-		12A26FDB297F86460080DFC1 /* PeggleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				12A26FDC297F86460080DFC1 /* PeggleUITests.swift */,
-				12A26FDE297F86460080DFC1 /* PeggleUITestsLaunchTests.swift */,
-			);
-			path = PeggleUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +174,7 @@
 				12A26FB9297F86450080DFC1 /* Sources */,
 				12A26FBA297F86450080DFC1 /* Frameworks */,
 				12A26FBB297F86450080DFC1 /* Resources */,
+				12633C2729854F350057AF14 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -308,6 +292,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		12633C2729854F350057AF14 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		12A26FB9297F86450080DFC1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -332,7 +336,6 @@
 			files = (
 				12633C1B2984DA880057AF14 /* BoardTests.swift in Sources */,
 				12633C1D2984DD370057AF14 /* PegTests.swift in Sources */,
-				12A26FD3297F86460080DFC1 /* PeggleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,8 +343,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12A26FDF297F86460080DFC1 /* PeggleUITestsLaunchTests.swift in Sources */,
-				12A26FDD297F86460080DFC1 /* PeggleUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

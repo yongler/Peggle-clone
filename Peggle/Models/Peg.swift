@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Peg: Hashable, Codable  {
+struct Peg: Hashable, Codable {
     var color: String
     var x: Float
     var y: Float
