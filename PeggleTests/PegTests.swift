@@ -12,6 +12,6 @@ import XCTest
 final class PegTests: XCTestCase {
     
     func testConstruct() {
-        let peg = Peg(color: "peg-blue", x: 300, y: 300, size: 50)
+        let peg = Peg(color: "peg-blue", x: 300, y: 300, radius: 50)
     }
 }

@@ -4,18 +4,8 @@
 
 **Matric No:** A0219859J
 
-
-selected button
-
-collide wall
-cant put closer pegs 
-peg in game area only 
-
-pallete fit 
-CHECK ALL SIZE 
-
-no async 
-
+comments
+lint
 
 
 ## Tips
@@ -35,6 +25,9 @@ no async
 If you have changed the specifications in any way, please write your
 justification here. Otherwise, you may discard this section.
 
+Own behaviours added: 
+1. If pegs overlap or go out of game area, the peg will be automatically removed. 
+
 ## Dev Guide
 You may put your dev guide either in this section, or in a new file entirely.
 You are encouraged to include diagrams where appropriate in order to enhance
@@ -45,7 +38,7 @@ Observer pattern is used. Whenever the board model instance changes, views that 
 
 ### Class diagrams
  
-`PaletteView` is designed in such a way that it compose of `GameView`, which can be reused for the actual game. 
+`PaletteView` is designed in such a way that it compose of `GameView`, where `GameView` can be reused for an actual game (not designing). 
 
 ### Sequence diagrams
 

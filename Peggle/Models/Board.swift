@@ -33,17 +33,12 @@ class Board: Codable, ObservableObject {
         self.pegs = pegs
     }
     
+    /// Check if peg to add is a valid position, if yes add to board.
     func addPeg(_ peg: Peg) {
-        self.pegs.append(peg)
-    }
-    
-    func addPeg(color: String, x: Float, y: Float, size: Float) {
-        guard checkNotColliding(x: x, y: y, size: size) else {
+        guard checkValidPosition(peg: peg) else {
             return
         }
-        
-        let peg = Peg(color: color, x: x, y: y, size: size)
-        self.addPeg(peg)
+        self.pegs.append(peg)
     }
     
     func removePeg(_ peg: Peg) {
@@ -51,10 +46,11 @@ class Board: Codable, ObservableObject {
             $0 == peg
         })
     }
-    
+        
+    /// Removes peg occupying a certain coordinate.
     func removePeg(x: Float, y: Float) {
         self.pegs.removeAll(where: {
-            let radius = $0.size
+            let radius = $0.radius
             let distanceBetweenCentres = sqrt(pow($0.x-x, 2) + pow($0.y-y, 2))
             return distanceBetweenCentres <= radius
         })
@@ -64,20 +60,27 @@ class Board: Codable, ObservableObject {
         self.pegs = []
     }
     
-    private func checkNotColliding(x: Float, y: Float, size: Float) -> Bool {
-        for peg in self.pegs {
-            let sumOfTwoRadius = peg.size + size
-            let distanceBetweenCentres = sqrt(pow(peg.x-x, 2) + pow(peg.y-y, 2))
+    /// Compares distance between other peg and current peg with sum of
+    ///  their radii. If it is shorter, the pegs overlap.
+    private func checkNotOverlappingPeg(peg: Peg) -> Bool {
+        for otherPeg in self.pegs {
+            if otherPeg == peg {
+                continue
+            }
+            
+            let sumOfTwoRadius = otherPeg.radius + peg.radius
+            let distanceBetweenCentres = sqrt(pow(otherPeg.x-peg.x, 2) + pow(otherPeg.y-peg.y, 2))
             if distanceBetweenCentres < sumOfTwoRadius {
                 return false
             }
         }
-        
-        if x < size || y < size {
-            return false
-        }
         return true
     }
+    
+    func checkValidPosition(peg: Peg) -> Bool {
+        return checkNotOverlappingPeg(peg: peg)
+    }
+    
     
     var pegCount: Int {
         return pegs.count
@@ -86,10 +89,10 @@ class Board: Codable, ObservableObject {
 
 
 extension Board {
-    static var bluePeg1 = Peg(color: "peg-blue", x: 300, y: 300, size: 50)
-    static var bluePeg2 = Peg(color: "peg-blue", x: 600, y: 600, size: 50)
-    static var orangePeg1 = Peg(color: "peg-orange", x: 700, y: 700, size: 50)
-    static var orangePeg2 = Peg(color: "peg-orange", x: 400, y: 400, size: 50)
+    static var bluePeg1 = Peg(color: "peg-blue", x: 300, y: 300, radius: K.Peg.pegRadius)
+    static var bluePeg2 = Peg(color: "peg-blue", x: 600, y: 600, radius: K.Peg.pegRadius)
+    static var orangePeg1 = Peg(color: "peg-orange", x: 700, y: 700, radius: K.Peg.pegRadius)
+    static var orangePeg2 = Peg(color: "peg-orange", x: 500, y: 500, radius: K.Peg.pegRadius)
     
     static var sampleBoard = Board(pegs: [bluePeg1, bluePeg2, orangePeg1, orangePeg2])
 }

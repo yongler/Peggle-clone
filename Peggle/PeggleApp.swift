@@ -9,16 +9,15 @@ import SwiftUI
 
 @main
 struct PeggleApp: App {
-//    @StateObject private var boardStore = BoardStore()
     @State var board = Board()
 
     var body: some Scene {
         WindowGroup {
-//                PaletteView(board: .constant(Board.sampleBoard))
             PaletteView(board: $board)
+            // Automaticaly loads default saved level
             .task {
                    do {
-                       board = try await BoardStore.load(name: "peggle.data")
+                       board = try await BoardStore.load(name: "peggle")
                    } catch {
                        fatalError("Error loading scrums.")
                    }

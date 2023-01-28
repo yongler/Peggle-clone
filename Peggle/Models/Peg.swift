@@ -11,5 +11,9 @@ struct Peg: Hashable, Codable  {
     var color: String
     var x: Float
     var y: Float
-    var size: Float
+    var radius: Float
+}
+
+extension Peg {
+    static let samplePeg = Peg(color: "peg-blue", x: 300, y: 300, radius: 25)
 }

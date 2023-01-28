@@ -11,44 +11,49 @@ struct PaletteView: View {
     @Binding var board: Board
     @State private var name: String = "Level name"
     @State private var selectedButton = ""
-    var buttonSize: CGFloat = 80
 
     var body: some View {
         VStack() {
+            // Game board with pegs
             GameView(board: board, selectedButton: $selectedButton, isDesigning: .constant(true))
             
+            // 2 peg buttons and 1 delete button.
             HStack {
                 Button(action: {
                     selectedButton = "peg-blue"
                 }) {
                     Image("peg-blue")
                       .resizable()
-                      .frame(width: buttonSize, height: buttonSize, alignment: .bottomLeading)
+                      .frame(width: K.Palette.buttonRadius, height: K.Palette.buttonRadius, alignment: .bottomLeading)
                 }
+                .opacity(selectedButton == "peg-blue" ? 1 : 0.5)
                 
                 Button(action: {
                     selectedButton = "peg-orange"
                 }) {
                     Image("peg-orange")
                       .resizable()
-                      .frame(width: buttonSize, height: buttonSize, alignment: .bottomLeading)
+                      .frame(width: K.Palette.buttonRadius, height: K.Palette.buttonRadius, alignment: .bottomLeading)
                 }
+                .opacity(selectedButton == "peg-orange" ? 1 : 0.5)
+                
                 Spacer()
                 Button(action: {
                     selectedButton = "delete"
                 }) {
                     Image("delete")
                       .resizable()
-                      .frame(width: buttonSize, height: buttonSize, alignment: .bottomLeading)
+                      .frame(width: K.Palette.buttonRadius, height: K.Palette.buttonRadius, alignment: .bottomLeading)
                 }
+                .opacity(selectedButton == "delete" ? 1 : 0.5)
                 
             }
-
+            
+            // Action buttons.
             HStack {
                 Button("LOAD") {
                     Task {
                         board = try await BoardStore.load(name: name)
-                        print("LOAD")
                     }
                 }
                 Button("SAVE") {
@@ -56,10 +61,9 @@ struct PaletteView: View {
                         do {
                             try await BoardStore.save(board: board, name: name)
                         } catch {
-
+                            print("Fail save")
                         }
                     }
-                    print("SAVE")
                 }
                 
                 Button("RESET") {
