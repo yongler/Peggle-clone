@@ -15,10 +15,9 @@
 		1215D67229800CFD0086F526 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D67129800CFD0086F526 /* PaletteView.swift */; };
 		1215D67429800E5A0086F526 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 1215D67329800E5A0086F526 /* assets */; };
 		1215D676298011200086F526 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D675298011200086F526 /* GameView.swift */; };
-		1215D6782980204D0086F526 /* LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D6772980204D0086F526 /* LoadView.swift */; };
 		12633C1B2984DA880057AF14 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1A2984DA880057AF14 /* BoardTests.swift */; };
 		12633C1D2984DD370057AF14 /* PegTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1C2984DD370057AF14 /* PegTests.swift */; };
-		127EFD3E297F8AD9008915C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC2297F86450080DFC1 /* ContentView.swift */; };
+		12633C1F2984F6BE0057AF14 /* PegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1E2984F6BE0057AF14 /* PegView.swift */; };
 		12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC0297F86450080DFC1 /* PeggleApp.swift */; };
 		12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */; };
 		12A26FD3297F86460080DFC1 /* PeggleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FD2297F86460080DFC1 /* PeggleTests.swift */; };
@@ -53,12 +52,11 @@
 		1215D67129800CFD0086F526 /* PaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
 		1215D67329800E5A0086F526 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		1215D675298011200086F526 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
-		1215D6772980204D0086F526 /* LoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadView.swift; sourceTree = "<group>"; };
 		12633C1A2984DA880057AF14 /* BoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTests.swift; sourceTree = "<group>"; };
 		12633C1C2984DD370057AF14 /* PegTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegTests.swift; sourceTree = "<group>"; };
+		12633C1E2984F6BE0057AF14 /* PegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegView.swift; sourceTree = "<group>"; };
 		12A26FBD297F86450080DFC1 /* Peggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A26FC0297F86450080DFC1 /* PeggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleApp.swift; sourceTree = "<group>"; };
-		12A26FC2297F86450080DFC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		12A26FC6297F86450080DFC1 /* Peggle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Peggle.entitlements; sourceTree = "<group>"; };
 		12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		12A26FCE297F86460080DFC1 /* PeggleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeggleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				1215D63029800AE60086F526 /* Board.swift */,
+				12EEE6AB298142D200E2FFEA /* BoardStore.swift */,
 				1215D63229800AEE0086F526 /* Peg.swift */,
 				1215D63429800B660086F526 /* Vaccum.swift */,
 			);
@@ -132,13 +131,11 @@
 				1215D67329800E5A0086F526 /* assets */,
 				1215D66F29800BFC0086F526 /* Assets.xcassets */,
 				12A26FC0297F86450080DFC1 /* PeggleApp.swift */,
-				12A26FC2297F86450080DFC1 /* ContentView.swift */,
 				12A26FC6297F86450080DFC1 /* Peggle.entitlements */,
 				12A26FC7297F86450080DFC1 /* Preview Content */,
 				1215D67129800CFD0086F526 /* PaletteView.swift */,
+				12633C1E2984F6BE0057AF14 /* PegView.swift */,
 				1215D675298011200086F526 /* GameView.swift */,
-				12EEE6AB298142D200E2FFEA /* BoardStore.swift */,
-				1215D6772980204D0086F526 /* LoadView.swift */,
 			);
 			path = Peggle;
 			sourceTree = "<group>";
@@ -303,14 +300,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1215D63329800AEE0086F526 /* Peg.swift in Sources */,
-				127EFD3E297F8AD9008915C0 /* ContentView.swift in Sources */,
 				1215D63529800B660086F526 /* Vaccum.swift in Sources */,
 				12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */,
-				1215D6782980204D0086F526 /* LoadView.swift in Sources */,
 				1215D67229800CFD0086F526 /* PaletteView.swift in Sources */,
 				1215D63129800AE60086F526 /* Board.swift in Sources */,
 				12EEE6AC298142D200E2FFEA /* BoardStore.swift in Sources */,
 				1215D676298011200086F526 /* GameView.swift in Sources */,
+				12633C1F2984F6BE0057AF14 /* PegView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

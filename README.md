@@ -46,6 +46,41 @@ If you decide to write how you are going to do your tests instead of writing
 actual tests, please write in this section. If you decide to write all of your
 tests in code, please delete this section.
 
+- Unit tests for models are written in code. 
+
+### Level designer integration testing 
+
+- Test palette
+    - Blue button 
+        - When button is tapped, it should indicate that it is selected 
+        - When button is tapped and game area is tapped and there are no colliding pegs and it is within game area, it should add a blue peg 
+        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a blue peg 
+    - Orange button 
+        - When button is tapped, it should indicate that it is selected 
+        - When button is tapped and game area is tapped and there are no colliding pegs  and it is within game area, it should add a orange peg 
+        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a orange peg 
+    - Clear button 
+        - When button is tapped, it should indicate that it is selected
+        - When button is tapped and a peg is tapped, peg should be removed
+    - Pegs 
+        - When long pressed, peg should be removed
+        - When dragged, peg should move to new location 
+        
+- Test storage 
+    - Level name field 
+        - When field is tapped, it should allow user to type 
+    - Load button
+        - When load button is tapped with level name indicated, it should load the associated level 
+        - When load button is tapped with level name not indicated, it should load the default "peggle.data"
+    - Save button
+        - When save button is tapped with level name indicated, it should save the level with the level name as "levelname.data"
+        - When save button is tapped with level name not indicated, it should save with the default name "peggle.data"
+    - Reset button 
+        - When reset button is tapped, game area is cleared. 
+
+
+
+
 ## Written Answers
 
 ### Design Tradeoffs
@@ -79,7 +114,7 @@ tests in code, please delete this section.
 - When researching on SwiftUI, I came across the MV pattern, much supported by bindings in SwiftUI.
 - Summary is to embrace SwiftUI using the MV pattern, instead of creating more (or wrong) code to do MVVM pattern, which is also unecessary.
 - Many developers also mentioned the same support for MV pattern such as https://developer.apple.com/forums/thread/699003, https://medium.com/@karamage/stop-using-mvvm-with-swiftui-2c46eb2cc8dc and more. 
-- MV pattern was chosen.  
+- MV pattern was chosen instead of fighting SwiftUI to reduce uncessary obstacles.
 
 
 
