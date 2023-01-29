@@ -91,6 +91,9 @@ tests in code, please delete this section.
         - When reset button is tapped, game area is cleared. 
 
 
+Recording of test: 
+
+https://drive.google.com/file/d/1aa3bxTQl1EE2Sn8mfvshYUiqql9SrI06/view?usp=share_link
 
 
 ## Written Answers
