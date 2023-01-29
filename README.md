@@ -32,11 +32,11 @@ your guide.
 
 
 ### Class diagrams
-As MV pattern is used (discussed below), there are only Views and Models. 
+As MV pattern is used (discussed below in design trade off), there are only Views and Models. 
 
 ![image](https://user-images.githubusercontent.com/68801331/215267470-5051b475-b28e-49da-b937-6aa02e32d7d0.png)
 
-`PaletteView` is designed in such a way that it compose of `GameView`, where `GameView` can be reused for an actual game (not designing). 
+`PaletteView` is designed in such a way that it compose of `GameView`, where `GameView` can be reused for an actual game (i.e. when not designing). 
 
 ### Sequence diagrams
 Observer pattern is used. Whenever the board model instance changes, views that observes it will be automatically rerendered to update. (functionality of `@Published` and `ObservedObject` in SwiftUI) 
