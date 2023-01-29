@@ -42,10 +42,12 @@ As MV pattern is used (discussed below in design trade off), there are only View
 Observer pattern is used. Whenever the board model instance changes, views that observes it will be automatically rerendered to update. (functionality of `@Published` and `ObservedObject` in SwiftUI) 
 
 Load board sequence:
+
 ![image](https://user-images.githubusercontent.com/68801331/215268141-67eb378a-4ec7-433e-b2e6-4b12e08334ae.png)
 
 
 Add peg sequence: 
+
 ![image](https://user-images.githubusercontent.com/68801331/215268153-3affe90a-b39a-4e1a-98e8-23028c4a74ac.png)
 
 
