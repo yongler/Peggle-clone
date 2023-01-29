@@ -1,5 +1,5 @@
 //
-//  Peg.swift
+//  Peg.swift represents peggle pegs. 
 //  Peggle
 //
 //  Created by Lee Yong Ler on 24/1/23.

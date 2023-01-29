@@ -1,5 +1,5 @@
 //
-//  Board.swift
+//  Board.swift represents a game board.
 //  Peggle
 //
 //  Created by Lee Yong Ler on 24/1/23.
@@ -25,11 +25,7 @@ class Board: Codable, ObservableObject {
 
     @Published var pegs: [Peg] = []
 
-    init() {
-
-    }
-
-    init(pegs: [Peg]) {
+    init(pegs: [Peg] = []) {
         self.pegs = pegs
     }
 
@@ -47,7 +43,7 @@ class Board: Codable, ObservableObject {
         })
     }
 
-    /// Removes peg occupying a certain coordinate.
+    /// Removes peg occupying a certain coordinate (x, y).
     func removePeg(x: Float, y: Float) {
         self.pegs.removeAll(where: {
             let radius = $0.radius
@@ -61,7 +57,7 @@ class Board: Codable, ObservableObject {
     }
 
     /// Compares distance between other peg and current peg with sum of
-    ///  their radii. If it is shorter, the pegs overlap.
+    ///  their radii. If it is shorter, the pegs overlap and return false.
     private func checkNotOverlappingPeg(peg: Peg) -> Bool {
         for otherPeg in self.pegs {
             if otherPeg == peg {
@@ -77,6 +73,7 @@ class Board: Codable, ObservableObject {
         return true
     }
 
+    /// Checks if the current peg is in a valid position.
     func checkValidPosition(peg: Peg) -> Bool {
         checkNotOverlappingPeg(peg: peg)
     }

@@ -18,10 +18,11 @@
 		12633C1D2984DD370057AF14 /* PegTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1C2984DD370057AF14 /* PegTests.swift */; };
 		12633C1F2984F6BE0057AF14 /* PegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1E2984F6BE0057AF14 /* PegView.swift */; };
 		12633C2229852DA20057AF14 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C2129852DA20057AF14 /* Constants.swift */; };
-		12633C24298547750057AF14 /* PegColorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C23298547750057AF14 /* PegColorEnum.swift */; };
 		12633C2629854A9D0057AF14 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C2529854A9D0057AF14 /* Utils.swift */; };
 		12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC0297F86450080DFC1 /* PeggleApp.swift */; };
 		12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */; };
+		12CDFAE32986B854001BFE1E /* PaletteDesignButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CDFAE22986B853001BFE1E /* PaletteDesignButtonsView.swift */; };
+		12CDFAE52986B89E001BFE1E /* PaletteActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CDFAE42986B89E001BFE1E /* PaletteActionButtonsView.swift */; };
 		12EEE6AC298142D200E2FFEA /* BoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEE6AB298142D200E2FFEA /* BoardStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +55,6 @@
 		12633C1C2984DD370057AF14 /* PegTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegTests.swift; sourceTree = "<group>"; };
 		12633C1E2984F6BE0057AF14 /* PegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegView.swift; sourceTree = "<group>"; };
 		12633C2129852DA20057AF14 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		12633C23298547750057AF14 /* PegColorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegColorEnum.swift; sourceTree = "<group>"; };
 		12633C2529854A9D0057AF14 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		12A26FBD297F86450080DFC1 /* Peggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A26FC0297F86450080DFC1 /* PeggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleApp.swift; sourceTree = "<group>"; };
@@ -62,6 +62,8 @@
 		12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		12A26FCE297F86460080DFC1 /* PeggleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeggleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A26FD8297F86460080DFC1 /* PeggleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeggleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		12CDFAE22986B853001BFE1E /* PaletteDesignButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDesignButtonsView.swift; sourceTree = "<group>"; };
+		12CDFAE42986B89E001BFE1E /* PaletteActionButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteActionButtonsView.swift; sourceTree = "<group>"; };
 		12EEE6AB298142D200E2FFEA /* BoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,9 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				1215D63029800AE60086F526 /* Board.swift */,
-				12EEE6AB298142D200E2FFEA /* BoardStore.swift */,
 				1215D63229800AEE0086F526 /* Peg.swift */,
-				12633C23298547750057AF14 /* PegColorEnum.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -132,6 +132,7 @@
 		12A26FBF297F86450080DFC1 /* Peggle */ = {
 			isa = PBXGroup;
 			children = (
+				12CDFAE62986BA63001BFE1E /* Storage */,
 				1215D67B2980212D0086F526 /* Models */,
 				1215D67329800E5A0086F526 /* assets */,
 				1215D66F29800BFC0086F526 /* Assets.xcassets */,
@@ -140,6 +141,8 @@
 				12A26FC6297F86450080DFC1 /* Peggle.entitlements */,
 				12A26FC7297F86450080DFC1 /* Preview Content */,
 				1215D67129800CFD0086F526 /* PaletteView.swift */,
+				12CDFAE42986B89E001BFE1E /* PaletteActionButtonsView.swift */,
+				12CDFAE22986B853001BFE1E /* PaletteDesignButtonsView.swift */,
 				12633C2129852DA20057AF14 /* Constants.swift */,
 				12633C1E2984F6BE0057AF14 /* PegView.swift */,
 				1215D675298011200086F526 /* GameView.swift */,
@@ -162,6 +165,14 @@
 				12633C1C2984DD370057AF14 /* PegTests.swift */,
 			);
 			path = PeggleTests;
+			sourceTree = "<group>";
+		};
+		12CDFAE62986BA63001BFE1E /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				12EEE6AB298142D200E2FFEA /* BoardStore.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,8 +329,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1215D63329800AEE0086F526 /* Peg.swift in Sources */,
-				12633C24298547750057AF14 /* PegColorEnum.swift in Sources */,
+				12CDFAE32986B854001BFE1E /* PaletteDesignButtonsView.swift in Sources */,
 				12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */,
+				12CDFAE52986B89E001BFE1E /* PaletteActionButtonsView.swift in Sources */,
 				1215D67229800CFD0086F526 /* PaletteView.swift in Sources */,
 				1215D63129800AE60086F526 /* Board.swift in Sources */,
 				12EEE6AC298142D200E2FFEA /* BoardStore.swift in Sources */,

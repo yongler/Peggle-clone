@@ -17,9 +17,9 @@ struct PeggleApp: App {
             // Automaticaly loads default saved level
             .task {
                    do {
-                       board = try await BoardStore.load(name: "peggle")
+                       board = try BoardStore.load(name: "peggle")
                    } catch {
-                       fatalError("Error loading scrums.")
+                       fatalError("Error loading board.")
                    }
             }
         }

@@ -10,6 +10,17 @@ import XCTest
 
 final class BoardTests: XCTestCase {
 
+    func testConstruct() {
+        let board = Board()
+
+        let peg1 = Peg(color: "peg-blue", x: 300, y: 300, radius: 50)
+        let peg2 = Peg(color: "peg-blue", x: 600, y: 600, radius: 50)
+        let peg3 = Peg(color: "peg-orange", x: 700, y: 700, radius: 50)
+        let peg4 = Peg(color: "peg-orange", x: 800, y: 800, radius: 50)
+
+        let board1 = Board(pegs: [peg1, peg2, peg3, peg4])
+    }
+
     func testAddPeg_colliding_pegNotAdded() {
         let board = Board()
         board.addPeg(Peg.samplePeg)

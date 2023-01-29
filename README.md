@@ -23,7 +23,7 @@ If you have changed the specifications in any way, please write your
 justification here. Otherwise, you may discard this section.
 
 Own behaviours added: 
-1. If pegs overlap or go out of game area, the peg will be automatically removed. 
+1. If pegs overlap or go out of game area, the peg will be automatically removed. The user can then add a peg again if it was dragged on mistake. Alternative is to move the peg back to its initial position, but the first choice was chosen as removing it seems more intuitive to the users. 
 
 ## Dev Guide
 You may put your dev guide either in this section, or in a new file entirely.

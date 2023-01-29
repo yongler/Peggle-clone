@@ -1,5 +1,5 @@
 //
-//  GameView.swift
+//  GameView.swift represents Game board with pegs
 //  Peggle
 //
 //  Created by Lee Yong Ler on 24/1/23.
