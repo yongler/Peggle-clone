@@ -108,7 +108,6 @@ tests in code, please delete this section.
 
 
 1. MV pattern.
-- MVVM pattern is largely used as it is a very good design pattern with divisibility. 
 - When researching on SwiftUI, I came across the MV pattern, much supported by bindings in SwiftUI.
 - Summary is to embrace SwiftUI using the MV pattern, instead of creating more (or wrong) code to do MVVM pattern, which is also unecessary.
 - Many developers also mentioned the same support for MV pattern such as https://developer.apple.com/forums/thread/699003, https://medium.com/@karamage/stop-using-mvvm-with-swiftui-2c46eb2cc8dc and more. 
