@@ -30,6 +30,7 @@ You may put your dev guide either in this section, or in a new file entirely.
 You are encouraged to include diagrams where appropriate in order to enhance
 your guide.
 
+Util or constant class is omitted to show high level design. 
 
 ### Class diagrams
 As MV pattern is used (discussed below in design trade off), there are only Views and Models. 
