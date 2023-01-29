@@ -107,21 +107,21 @@ tests in code, please delete this section.
 > using `foo` and `bar`, and why you decided to go with `foo`.
 
 
-1. Storing coordinates of peg in Peg ADT or Board ADT. 
-- Storing in Board ADT seems better encapsulation as only the board has coordinates, the pegs themselves only have color and size. 
-- Storing in Peg was chosen as it is more intuitive and is easier in terms of handling the Board (Board only needs to know the Pegs, the Pegs themselves will store their own information). 
-
-2. `TapGesture` in swiftui does not support obtaining the tap location unless using the `OnTapGesture` method which only builds for IOS16 and above. 
-- As mentioned, this limits the number of devices that the game can run on. 
-- Another workaround is to use `DragGesture` with 0 distance setting (simulate a tap). 
-- This workaround is selected as there are no potential downsides while having benefits of being playable in more devices. 
-
-3. MV pattern.
+1. MV pattern.
 - MVVM pattern is largely used as it is a very good design pattern with divisibility. 
 - When researching on SwiftUI, I came across the MV pattern, much supported by bindings in SwiftUI.
 - Summary is to embrace SwiftUI using the MV pattern, instead of creating more (or wrong) code to do MVVM pattern, which is also unecessary.
 - Many developers also mentioned the same support for MV pattern such as https://developer.apple.com/forums/thread/699003, https://medium.com/@karamage/stop-using-mvvm-with-swiftui-2c46eb2cc8dc and more. 
 - MV pattern was chosen instead of fighting SwiftUI to reduce uncessary obstacles.
+
+2. `TapGesture` in swiftui does not support obtaining the tap location unless using the `OnTapGesture` method which only builds for IOS16 and above. 
+- As mentioned, this limits the number of devices that the game can run on. 
+- Another workaround is to use `DragGesture` with `minimumDistance` set to 0 (simulate a tap). 
+- This workaround is selected as there are no potential downsides while having benefits of being playable in more devices. 
+
+3. Storing coordinates of peg in Peg ADT or Board ADT. 
+- Storing in Board ADT seems better encapsulation as only the board has coordinates, the pegs themselves only have color and size. 
+- Storing in Peg was chosen as it is more intuitive and is easier in terms of handling the Board (Board only needs to know the Pegs, the Pegs themselves will store their own information). 
 
 
 
