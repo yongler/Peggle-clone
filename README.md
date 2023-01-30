@@ -110,7 +110,7 @@ tests in code, please delete this section.
 1. MV pattern.
 - When researching on SwiftUI, I came across the MV pattern, much supported by bindings in SwiftUI.
 - Summary is to embrace SwiftUI using the MV pattern, instead of creating more (or wrong) code to do MVVM pattern, which is also unecessary.
-- Many developers also mentioned the same support for MV pattern such as https://developer.apple.com/forums/thread/699003, https://medium.com/@karamage/stop-using-mvvm-with-swiftui-2c46eb2cc8dc and more. 
+- Many developers also mentioned the same support for MV pattern such as apple forums: https://developer.apple.com/forums/thread/699003, the official IOS developer guide: https://developer.apple.com/tutorials/app-dev-training, https://medium.com/@karamage/stop-using-mvvm-with-swiftui-2c46eb2cc8dc and more. 
 - MV pattern was chosen instead of fighting SwiftUI to reduce uncessary obstacles.
 
 2. `TapGesture` in swiftui does not support obtaining the tap location unless using the `OnTapGesture` method which only builds for IOS16 and above. 

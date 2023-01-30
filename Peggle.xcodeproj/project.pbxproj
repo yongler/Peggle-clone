@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1215D62F298009E90086F526 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1215D62E298009E90086F526 /* README.md */; };
-		1215D63129800AE60086F526 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D63029800AE60086F526 /* Board.swift */; };
-		1215D63329800AEE0086F526 /* Peg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D63229800AEE0086F526 /* Peg.swift */; };
 		1215D67229800CFD0086F526 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D67129800CFD0086F526 /* PaletteView.swift */; };
 		1215D67429800E5A0086F526 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 1215D67329800E5A0086F526 /* assets */; };
 		1215D676298011200086F526 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D675298011200086F526 /* GameView.swift */; };
@@ -22,7 +20,10 @@
 		12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */; };
 		12CDFAE32986B854001BFE1E /* PaletteDesignButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CDFAE22986B853001BFE1E /* PaletteDesignButtonsView.swift */; };
 		12CDFAE52986B89E001BFE1E /* PaletteActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CDFAE42986B89E001BFE1E /* PaletteActionButtonsView.swift */; };
+		12CF51052986D35E00D2D1C8 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF51032986D35E00D2D1C8 /* Board.swift */; };
+		12CF51062986D35E00D2D1C8 /* Peg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF51042986D35E00D2D1C8 /* Peg.swift */; };
 		12EEE6AC298142D200E2FFEA /* BoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEE6AB298142D200E2FFEA /* BoardStore.swift */; };
+		12F71548298764C400EE0042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12CDFAE82986C835001BFE1E /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,8 +45,6 @@
 
 /* Begin PBXFileReference section */
 		1215D62E298009E90086F526 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		1215D63029800AE60086F526 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Board.swift; path = Peggle/Models/Board.swift; sourceTree = SOURCE_ROOT; };
-		1215D63229800AEE0086F526 /* Peg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Peg.swift; path = Peggle/Models/Peg.swift; sourceTree = SOURCE_ROOT; };
 		1215D67129800CFD0086F526 /* PaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
 		1215D67329800E5A0086F526 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		1215D675298011200086F526 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -63,6 +62,8 @@
 		12CDFAE22986B853001BFE1E /* PaletteDesignButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDesignButtonsView.swift; sourceTree = "<group>"; };
 		12CDFAE42986B89E001BFE1E /* PaletteActionButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteActionButtonsView.swift; sourceTree = "<group>"; };
 		12CDFAE82986C835001BFE1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		12CF51032986D35E00D2D1C8 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		12CF51042986D35E00D2D1C8 /* Peg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peg.swift; sourceTree = "<group>"; };
 		12EEE6AB298142D200E2FFEA /* BoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,8 +95,8 @@
 		1215D67B2980212D0086F526 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1215D63029800AE60086F526 /* Board.swift */,
-				1215D63229800AEE0086F526 /* Peg.swift */,
+				12CF51032986D35E00D2D1C8 /* Board.swift */,
+				12CF51042986D35E00D2D1C8 /* Peg.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -271,6 +272,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12F71548298764C400EE0042 /* Assets.xcassets in Resources */,
 				1215D62F298009E90086F526 /* README.md in Resources */,
 				1215D67429800E5A0086F526 /* assets in Resources */,
 				12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */,
@@ -318,12 +320,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1215D63329800AEE0086F526 /* Peg.swift in Sources */,
 				12CDFAE32986B854001BFE1E /* PaletteDesignButtonsView.swift in Sources */,
 				12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */,
+				12CF51052986D35E00D2D1C8 /* Board.swift in Sources */,
+				12CF51062986D35E00D2D1C8 /* Peg.swift in Sources */,
 				12CDFAE52986B89E001BFE1E /* PaletteActionButtonsView.swift in Sources */,
 				1215D67229800CFD0086F526 /* PaletteView.swift in Sources */,
-				1215D63129800AE60086F526 /* Board.swift in Sources */,
 				12EEE6AC298142D200E2FFEA /* BoardStore.swift in Sources */,
 				12633C2629854A9D0057AF14 /* Utils.swift in Sources */,
 				1215D676298011200086F526 /* GameView.swift in Sources */,
