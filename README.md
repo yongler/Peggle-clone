@@ -115,6 +115,7 @@ https://drive.google.com/file/d/1aa3bxTQl1EE2Sn8mfvshYUiqql9SrI06/view?usp=share
 - Summary is to embrace SwiftUI using the MV pattern, instead of creating more (or wrong) code to do MVVM pattern, which is also unecessary.
 - Many developers also mentioned the same support for MV pattern such as apple forums: https://developer.apple.com/forums/thread/699003, the official IOS developer guide: https://developer.apple.com/tutorials/app-dev-training, https://medium.com/@karamage/stop-using-mvvm-with-swiftui-2c46eb2cc8dc and more. 
 - MV pattern was chosen instead of fighting SwiftUI to reduce uncessary obstacles.
+- To fix the issue of having bloated views/viewmodels, views were broken down into smaller views. 
 
 2. `TapGesture` in swiftui does not support obtaining the tap location unless using the `OnTapGesture` method which only builds for IOS16 and above. 
 - As mentioned, this limits the number of devices that the game can run on. 
