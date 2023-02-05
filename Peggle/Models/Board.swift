@@ -24,9 +24,23 @@ class Board: Codable, ObservableObject {
     }
 
     @Published var pegs: [Peg] = []
+    var gameArea: CGSize = CGSize(width: 1000, height: 1000)
+    var pegCount: Int {
+        pegs.count
+    }
 
-    init(pegs: [Peg] = []) {
+//        init(pegs: [Peg] = [], gameArea: CGSize) {
+//            self.pegs = pegs
+//            self.gameArea = gameArea
+//        }
+    
+    init(pegs: [Peg] = [], gameArea: CGSize) {
         self.pegs = pegs
+        self.gameArea = gameArea
+    }
+    
+    init(pegs: [Peg] = []) {
+        
     }
 
     /// Check if peg to add is a valid position, if yes add to board.
@@ -36,6 +50,12 @@ class Board: Codable, ObservableObject {
         }
         self.pegs.append(peg)
     }
+    
+    /// Check if peg to add is a valid position, if yes add to board.
+    func addPeg(color: String, centre: CGPoint, radius: CGFloat = Peg.defaultPegRadius) {
+        let peg = Peg(color: color, centre: centre, radius: radius)
+        addPeg(peg)
+    }
 
     func removePeg(_ peg: Peg) {
         self.pegs.removeAll(where: {
@@ -44,16 +64,34 @@ class Board: Codable, ObservableObject {
     }
 
     /// Removes peg occupying a certain coordinate (x, y).
-    func removePeg(x: Float, y: Float) {
+    func removePeg(at: CGPoint) {
         self.pegs.removeAll(where: {
             let radius = $0.radius
-            let distanceBetweenCentres = sqrt(pow($0.x - x, 2) + pow($0.y - y, 2))
+            let distanceBetweenCentres = sqrt(pow($0.centre.x - at.x, 2) + pow($0.centre.y - at.y, 2))
             return distanceBetweenCentres <= radius
         })
+    }
+    
+    func movePeg(_ peg: Peg, by: CGSize) {
+        for i in 0..<pegs.count {
+            if pegs[i] != peg {
+                continue
+            }
+            pegs[i].moveCentre(by: by)
+            
+            guard checkValidPosition(peg: pegs[i]) else {
+                removePeg(pegs[i])
+                return
+            }
+        }
     }
 
     func clearBoard() {
         self.pegs = []
+    }
+    
+    func updateGameArea(_ gameArea: CGSize) {
+        self.gameArea = gameArea
     }
 
     /// Compares distance between other peg and current peg with sum of
@@ -65,29 +103,36 @@ class Board: Codable, ObservableObject {
             }
 
             let sumOfTwoRadius = otherPeg.radius + peg.radius
-            let distanceBetweenCentres = sqrt(pow(otherPeg.x - peg.x, 2) + pow(otherPeg.y - peg.y, 2))
+            let distanceBetweenCentres = sqrt(pow(otherPeg.centre.x - peg.centre.x, 2) + pow(otherPeg.centre.y - peg.centre.y, 2))
             if distanceBetweenCentres < sumOfTwoRadius {
                 return false
             }
         }
+        
         return true
     }
 
     /// Checks if the current peg is in a valid position.
     func checkValidPosition(peg: Peg) -> Bool {
-        checkNotOverlappingPeg(peg: peg)
+        return checkNotOverlappingPeg(peg: peg) && checkInArea(peg: peg)
+//        return checkNotOverlappingPeg(peg: peg)
+    }
+    
+    /// Compares peg location with area boundary
+    func checkInArea(peg: Peg) -> Bool {
+        guard peg.centre.x - peg.radius > 0 && peg.centre.x + peg.radius < gameArea.width else {
+            return false
+        }
+        guard peg.centre.y - peg.radius > 0 && peg.centre.y + peg.radius < gameArea.height else {
+            return false
+        }
+        return true
     }
 
-    var pegCount: Int {
-        pegs.count
-    }
 }
 
 extension Board {
-    static var bluePeg1 = Peg(color: "peg-blue", x: 300, y: 300, radius: Constants.Peg.pegRadius)
-    static var bluePeg2 = Peg(color: "peg-blue", x: 600, y: 600, radius: Constants.Peg.pegRadius)
-    static var orangePeg1 = Peg(color: "peg-orange", x: 700, y: 700, radius: Constants.Peg.pegRadius)
-    static var orangePeg2 = Peg(color: "peg-orange", x: 500, y: 500, radius: Constants.Peg.pegRadius)
-
-    static var sampleBoard = Board(pegs: [bluePeg1, bluePeg2, orangePeg1, orangePeg2])
+    static var sampleBoard = Board(pegs: [Peg.sampleBluePeg1, Peg.sampleBluePeg2,
+                                          Peg.sampleOrangePeg1, Peg.sampleOrangePeg2])
+                                          
 }

@@ -11,7 +11,7 @@ struct GameView: View {
     @ObservedObject var board: Board
     @Binding var selectedButton: String
     @Binding var isDesigning: Bool
-
+    
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -25,29 +25,22 @@ struct GameView: View {
                                     guard selectedButton != "delete" && isDesigning else {
                                         return
                                     }
-                                    let tappedLocationX = Float(value.location.x)
-                                    let tappedLocationY = Float(value.location.y)
-                                    let radius = Constants.Peg.pegRadius
 
-                                    guard Utils.checkInArea(gameArea: geometry.size, pegX: tappedLocationX,
-                                                            pegY: tappedLocationY, pegRadius: radius) else {
-                                        return
-                                    }
-
-                                    let peg = Peg(color: selectedButton, x: tappedLocationX,
-                                                  y: tappedLocationY, radius: radius)
-                                    board.addPeg(peg)
+                                    board.addPeg(color: selectedButton, centre: value.location)
                                 }
                         )
 
                     Spacer()
-
+                    
                     ForEach($board.pegs, id: \.self) { peg in
                         PegView(board: board, peg: peg, selectedButton: $selectedButton,
                                 isDesigning: $isDesigning, gameArea: .constant(geometry.size))
                     }
                 }
 
+            }
+            .task {
+                board.updateGameArea(geometry.size)
             }
         }
     }

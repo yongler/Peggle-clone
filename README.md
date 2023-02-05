@@ -1,4 +1,4 @@
-# CS3217 Problem Set 2
+# CS3217 Problem Set 3
 
 **Name:** Lee Yong Ler
 
@@ -109,39 +109,4 @@ https://drive.google.com/file/d/1aa3bxTQl1EE2Sn8mfvshYUiqql9SrI06/view?usp=share
 > `foo` instead of `bar`. Explain what are the advantages and disadvantages of
 > using `foo` and `bar`, and why you decided to go with `foo`.
 
-
-1. MV pattern.
-- When researching on SwiftUI, I came across the MV pattern, much supported by bindings in SwiftUI.
-- Summary is to embrace SwiftUI using the MV pattern, instead of creating more (or wrong) code to do MVVM pattern, which is also unecessary.
-- Many developers also mentioned the same support for MV pattern such as apple forums: https://developer.apple.com/forums/thread/699003, the official IOS developer guide: https://developer.apple.com/tutorials/app-dev-training, https://medium.com/@karamage/stop-using-mvvm-with-swiftui-2c46eb2cc8dc and more.
-
-
-- SwiftUI.View contains ViewModel equivalent functions
-- MVVM is an extra complication and the declarative UI along with the previous point makes ViewModel unecessary. 
-- Instead of following 'standard' design patterns just for the sake of it, MV pattern was chosen instead of fighting SwiftUI to reduce uncessary obstacles.
-- To fix the issue of having bloated views/viewmodels, views were broken down into smaller views. 
-
-2. `TapGesture` in swiftui does not support obtaining the tap location unless using the `OnTapGesture` method which only builds for IOS16 and above. 
-- As mentioned, this limits the number of devices that the game can run on. 
-- Another workaround is to use `DragGesture` with `minimumDistance` set to 0 (simulate a tap). 
-- This workaround is selected as there are no potential downsides while having benefits of being playable in more devices. 
-
-3. Storing coordinates of peg in Peg ADT or Board ADT. 
-- Storing in Board ADT seems better encapsulation as only the board has coordinates, the pegs themselves only have color and size. 
-- Storing in Peg was chosen as it is more intuitive and is easier in terms of handling the Board (Board only needs to know the Pegs, the Pegs themselves will store their own information). 
-
-
-
-### Persistence Justification
-> Please justify your choice of persistence method in your `README.md`. In
-> other words, write your considerations in weighing the pros and cons of the
-> persistence methods you have considered.
-
-
-Pros: 
-1. The encoding method was chosen as it offers simplicity while still offering the functionalities needed (i.e. basic persistent storage). 
-2. CoreData or realm should be used for bigger and more complex projects, but would be an overkill here as the level of complex object graph is not needed. 
-3. Data is small, so benefits of partial load from sqlite or core data is not a big advantage.   
-
-Cons: 
-1. Not as good memory management as the entire data is loaded into memory as compared to core data.
+Your answer here

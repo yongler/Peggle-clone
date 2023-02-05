@@ -14,8 +14,17 @@
 		12633C1B2984DA880057AF14 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1A2984DA880057AF14 /* BoardTests.swift */; };
 		12633C1D2984DD370057AF14 /* PegTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1C2984DD370057AF14 /* PegTests.swift */; };
 		12633C1F2984F6BE0057AF14 /* PegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1E2984F6BE0057AF14 /* PegView.swift */; };
-		12633C2229852DA20057AF14 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C2129852DA20057AF14 /* Constants.swift */; };
-		12633C2629854A9D0057AF14 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C2529854A9D0057AF14 /* Utils.swift */; };
+		129A1FFD298FA17800C32F57 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A1FFC298FA17800C32F57 /* Object.swift */; };
+		129A1FFF298FA21C00C32F57 /* MoveableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A1FFE298FA21C00C32F57 /* MoveableObject.swift */; };
+		129A2001298FA25200C32F57 /* Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A2000298FA25200C32F57 /* Acceleration.swift */; };
+		129A2003298FA28300C32F57 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A2002298FA28300C32F57 /* Vector.swift */; };
+		129A2007298FA3FF00C32F57 /* CircleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A2006298FA3FF00C32F57 /* CircleObject.swift */; };
+		129A2009298FA43200C32F57 /* MoveableCircleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A2008298FA43200C32F57 /* MoveableCircleObject.swift */; };
+		129A200B298FA55C00C32F57 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A200A298FA55C00C32F57 /* CGPoint.swift */; };
+		129A200D298FA58C00C32F57 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A200C298FA58C00C32F57 /* Ball.swift */; };
+		129A200F298FA5FD00C32F57 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A200E298FA5FD00C32F57 /* GameEngine.swift */; };
+		129A2012298FA60F00C32F57 /* PeggleGameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A2011298FA60F00C32F57 /* PeggleGameEngine.swift */; };
+		129A2014298FA68700C32F57 /* RectangleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A2013298FA68700C32F57 /* RectangleObject.swift */; };
 		12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC0297F86450080DFC1 /* PeggleApp.swift */; };
 		12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */; };
 		12CDFAE32986B854001BFE1E /* PaletteDesignButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CDFAE22986B853001BFE1E /* PaletteDesignButtonsView.swift */; };
@@ -51,8 +60,17 @@
 		12633C1A2984DA880057AF14 /* BoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTests.swift; sourceTree = "<group>"; };
 		12633C1C2984DD370057AF14 /* PegTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegTests.swift; sourceTree = "<group>"; };
 		12633C1E2984F6BE0057AF14 /* PegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegView.swift; sourceTree = "<group>"; };
-		12633C2129852DA20057AF14 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		12633C2529854A9D0057AF14 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		129A1FFC298FA17800C32F57 /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
+		129A1FFE298FA21C00C32F57 /* MoveableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveableObject.swift; sourceTree = "<group>"; };
+		129A2000298FA25200C32F57 /* Acceleration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acceleration.swift; sourceTree = "<group>"; };
+		129A2002298FA28300C32F57 /* Vector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		129A2006298FA3FF00C32F57 /* CircleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleObject.swift; sourceTree = "<group>"; };
+		129A2008298FA43200C32F57 /* MoveableCircleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveableCircleObject.swift; sourceTree = "<group>"; };
+		129A200A298FA55C00C32F57 /* CGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
+		129A200C298FA58C00C32F57 /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
+		129A200E298FA5FD00C32F57 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
+		129A2011298FA60F00C32F57 /* PeggleGameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleGameEngine.swift; sourceTree = "<group>"; };
+		129A2013298FA68700C32F57 /* RectangleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleObject.swift; sourceTree = "<group>"; };
 		12A26FBD297F86450080DFC1 /* Peggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A26FC0297F86450080DFC1 /* PeggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleApp.swift; sourceTree = "<group>"; };
 		12A26FC6297F86450080DFC1 /* Peggle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Peggle.entitlements; sourceTree = "<group>"; };
@@ -97,8 +115,31 @@
 			children = (
 				12CF51032986D35E00D2D1C8 /* Board.swift */,
 				12CF51042986D35E00D2D1C8 /* Peg.swift */,
+				129A1FFC298FA17800C32F57 /* Object.swift */,
+				129A2006298FA3FF00C32F57 /* CircleObject.swift */,
+				129A1FFE298FA21C00C32F57 /* MoveableObject.swift */,
+				129A2013298FA68700C32F57 /* RectangleObject.swift */,
+				129A200A298FA55C00C32F57 /* CGPoint.swift */,
+				129A200C298FA58C00C32F57 /* Ball.swift */,
+				129A2000298FA25200C32F57 /* Acceleration.swift */,
+				129A2002298FA28300C32F57 /* Vector.swift */,
+				129A2011298FA60F00C32F57 /* PeggleGameEngine.swift */,
+				129A2008298FA43200C32F57 /* MoveableCircleObject.swift */,
+				129A200E298FA5FD00C32F57 /* GameEngine.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		129A2016298FABA300C32F57 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1215D67129800CFD0086F526 /* PaletteView.swift */,
+				12CDFAE42986B89E001BFE1E /* PaletteActionButtonsView.swift */,
+				12CDFAE22986B853001BFE1E /* PaletteDesignButtonsView.swift */,
+				12633C1E2984F6BE0057AF14 /* PegView.swift */,
+				1215D675298011200086F526 /* GameView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		12A26FB4297F86450080DFC1 = {
@@ -124,20 +165,14 @@
 		12A26FBF297F86450080DFC1 /* Peggle */ = {
 			isa = PBXGroup;
 			children = (
+				129A2016298FABA300C32F57 /* Views */,
 				12CDFAE82986C835001BFE1E /* Assets.xcassets */,
 				12CDFAE62986BA63001BFE1E /* Storage */,
 				1215D67B2980212D0086F526 /* Models */,
 				1215D67329800E5A0086F526 /* assets */,
 				12A26FC0297F86450080DFC1 /* PeggleApp.swift */,
-				12633C2529854A9D0057AF14 /* Utils.swift */,
 				12A26FC6297F86450080DFC1 /* Peggle.entitlements */,
 				12A26FC7297F86450080DFC1 /* Preview Content */,
-				1215D67129800CFD0086F526 /* PaletteView.swift */,
-				12CDFAE42986B89E001BFE1E /* PaletteActionButtonsView.swift */,
-				12CDFAE22986B853001BFE1E /* PaletteDesignButtonsView.swift */,
-				12633C2129852DA20057AF14 /* Constants.swift */,
-				12633C1E2984F6BE0057AF14 /* PegView.swift */,
-				1215D675298011200086F526 /* GameView.swift */,
 			);
 			path = Peggle;
 			sourceTree = "<group>";
@@ -177,7 +212,6 @@
 				12A26FB9297F86450080DFC1 /* Sources */,
 				12A26FBA297F86450080DFC1 /* Frameworks */,
 				12A26FBB297F86450080DFC1 /* Resources */,
-				12633C2729854F350057AF14 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -295,26 +329,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		12633C2729854F350057AF14 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		12A26FB9297F86450080DFC1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -324,13 +338,22 @@
 				12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */,
 				12CF51052986D35E00D2D1C8 /* Board.swift in Sources */,
 				12CF51062986D35E00D2D1C8 /* Peg.swift in Sources */,
+				129A200B298FA55C00C32F57 /* CGPoint.swift in Sources */,
 				12CDFAE52986B89E001BFE1E /* PaletteActionButtonsView.swift in Sources */,
+				129A2001298FA25200C32F57 /* Acceleration.swift in Sources */,
+				129A2007298FA3FF00C32F57 /* CircleObject.swift in Sources */,
 				1215D67229800CFD0086F526 /* PaletteView.swift in Sources */,
+				129A200D298FA58C00C32F57 /* Ball.swift in Sources */,
+				129A1FFF298FA21C00C32F57 /* MoveableObject.swift in Sources */,
+				129A2003298FA28300C32F57 /* Vector.swift in Sources */,
+				129A2009298FA43200C32F57 /* MoveableCircleObject.swift in Sources */,
 				12EEE6AC298142D200E2FFEA /* BoardStore.swift in Sources */,
-				12633C2629854A9D0057AF14 /* Utils.swift in Sources */,
+				129A200F298FA5FD00C32F57 /* GameEngine.swift in Sources */,
+				129A2012298FA60F00C32F57 /* PeggleGameEngine.swift in Sources */,
 				1215D676298011200086F526 /* GameView.swift in Sources */,
+				129A2014298FA68700C32F57 /* RectangleObject.swift in Sources */,
 				12633C1F2984F6BE0057AF14 /* PegView.swift in Sources */,
-				12633C2229852DA20057AF14 /* Constants.swift in Sources */,
+				129A1FFD298FA17800C32F57 /* Object.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,8 +18,9 @@ struct PegView: View {
     var body: some View {
         Image(peg.color)
             .resizable()
-            .frame(width: CGFloat(peg.radius * 2), height: CGFloat(peg.radius * 2))
-            .position(x: CGFloat(peg.x), y: CGFloat(peg.y))
+            .frame(width: peg.radius * 2, height: peg.radius * 2)
+            .position(peg.centre)
+            .offset(dragOffset)
 
             .gesture(
                 LongPressGesture(minimumDuration: 0.5)
@@ -43,21 +44,9 @@ struct PegView: View {
                         guard isDesigning else {
                             return
                         }
-
-                        peg.x += Float(gesture.translation.width)
-                        peg.y += Float(gesture.translation.height)
+                        
                         dragOffset = .zero
-
-                        guard board.checkValidPosition(peg: peg) else {
-                            board.removePeg(peg)
-                            return
-                        }
-
-                        guard Utils.checkInArea(gameArea: gameArea, pegX: peg.x,
-                                                pegY: peg.y, pegRadius: peg.radius) else {
-                            board.removePeg(peg)
-                            return
-                        }
+                        board.movePeg(peg, by: gesture.translation)
                     }
             )
             // Simulated Tap gesture
@@ -68,7 +57,7 @@ struct PegView: View {
                             return
                         }
 
-                        board.removePeg(x: Float(gesture.location.x), y: Float(gesture.location.y))
+                        board.removePeg(at: gesture.location)
                     }
              )
     }
