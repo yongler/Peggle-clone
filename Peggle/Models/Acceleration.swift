@@ -10,4 +10,7 @@ import Foundation
 struct Acceleration {
     static let gravityX: CGFloat = 0
     static let gravityY: CGFloat = 9.8
+    
+    var x: CGFloat
+    var y: CGFloat
 }

@@ -11,3 +11,10 @@ protocol MoveableObject: Object {
     var velocity: Vector { get set }
     var acceleration: Acceleration { get set }
 }
+
+extension MoveableObject {
+    mutating func move(time: Float) {
+        velocity.applyAcceleration(acceleration: acceleration, time: time)
+        centre = velocity.move(centre: centre, time: time)
+    }
+}

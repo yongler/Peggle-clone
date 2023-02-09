@@ -7,15 +7,16 @@
 
 import Foundation
 
-struct Peg: Hashable, Codable, CircleObject {
+struct Peg: Equatable, Codable, Identifiable, CircleObject {
     static let defaultPegRadius: CGFloat = 25
     
+    var id = UUID()
     var color: String
     var centre: CGPoint
     var radius: CGFloat
     var isLit = false
 
-    mutating func litUp() {
+    mutating func lightUp() {
         self.isLit = true
     }
     

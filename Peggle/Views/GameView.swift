@@ -32,7 +32,7 @@ struct GameView: View {
 
                     Spacer()
                     
-                    ForEach($board.pegs, id: \.self) { peg in
+                    ForEach($board.pegs) { peg in
                         PegView(board: board, peg: peg, selectedButton: $selectedButton,
                                 isDesigning: $isDesigning, gameArea: .constant(geometry.size))
                     }

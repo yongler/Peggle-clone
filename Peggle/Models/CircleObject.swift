@@ -11,8 +11,8 @@ protocol CircleObject {
     var radius: CGFloat { get set }
 }
 
-extension CircleObject {
-    func projectOnto(axis: Vector) {
-
-    }
-}
+//extension CircleObject {
+//    func projectOnto(axis: Vector) -> Vector {
+//        
+//    }
+//}

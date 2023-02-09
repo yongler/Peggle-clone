@@ -7,10 +7,10 @@
 
 import Foundation
 
-protocol Object {
+protocol Object: Equatable {
     var centre: CGPoint { get set }
 
-    func getNormalAt()
+//    func getNormalAt(_ point: CGPoint) -> Vector
 
-    func projectOnto(axis: Vector)
+//    func projectOnto(axis: Vector) -> Vector
 }

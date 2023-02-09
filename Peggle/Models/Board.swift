@@ -85,9 +85,24 @@ class Board: Codable, ObservableObject {
             }
         }
     }
-
+    
+    private func findPeg(peg: Peg) -> Int? {
+        return pegs.firstIndex(of: peg)
+    }
+    
+    func lightUp(peg: Peg) {
+        guard let index = findPeg(peg: peg) else {
+            return
+        }
+        pegs[index].lightUp()
+    }
+ 
     func clearBoard() {
         self.pegs = []
+    }
+    
+    func clearAllLitPeg() {
+        pegs.removeAll(where: {$0.isLit})
     }
     
     func updateGameArea(_ gameArea: CGSize) {

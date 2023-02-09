@@ -4,7 +4,7 @@
 //
 //  Created by Lee Yong Ler on 5/2/23.
 //
-
+//
 import Foundation
 
 struct Ball: MoveableCircleObject {
@@ -12,7 +12,4 @@ struct Ball: MoveableCircleObject {
     var radius: CGFloat
     var velocity: Vector
     var acceleration: Acceleration
-
-    func getNormalAt() {
-    }
 }
