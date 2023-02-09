@@ -24,7 +24,7 @@ class GameEngine {
     var objects: [Object] = []
     
     func move(object: Object) {
-        guard let object = object as? any MoveableObject else {
+        guard let object = object as? MoveableObject else {
             return
         }
         guard let index = objects.firstIndex(where: {$0 == object}) else {

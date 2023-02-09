@@ -7,9 +7,16 @@
 
 import Foundation
 
-protocol Object: Equatable {
-    var centre: CGPoint { get set }
+class Object: Equatable {
+    var centre: CGPoint
 
+    init(centre: CGPoint) {
+        self.centre = centre
+    }
+
+    static func ==(lhs: Object, rhs: Object) -> Bool {
+        return lhs.centre == rhs.centre
+    }
 //    func getNormalAt(_ point: CGPoint) -> Vector
 
 //    func projectOnto(axis: Vector) -> Vector

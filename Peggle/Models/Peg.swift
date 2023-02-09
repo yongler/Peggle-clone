@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Peg: Equatable, Codable, Identifiable, CircleObject {
+struct Peg: Equatable, Codable, Identifiable {
     static let defaultPegRadius: CGFloat = 25
     
     var id = UUID()

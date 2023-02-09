@@ -7,7 +7,7 @@
 //
 import Foundation
 
-struct Ball: MoveableCircleObject {
+struct Ball {
     var centre: CGPoint
     var radius: CGFloat
     var velocity: Vector

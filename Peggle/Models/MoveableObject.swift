@@ -7,13 +7,19 @@
 
 import Foundation
 
-protocol MoveableObject: Object {
-    var velocity: Vector { get set }
-    var acceleration: Acceleration { get set }
+class MoveableObject: Object {
+    var velocity: Vector
+    var acceleration: Acceleration
+    
+    init(centre: CGPoint, velocity: Vector, acceleration: Acceleration) {
+        self.velocity = velocity
+        self.acceleration = acceleration
+        super.init(centre: centre)
+    }
 }
 
 extension MoveableObject {
-    mutating func move(time: Float) {
+    func move(time: Float) {
         velocity.applyAcceleration(acceleration: acceleration, time: time)
         centre = velocity.move(centre: centre, time: time)
     }

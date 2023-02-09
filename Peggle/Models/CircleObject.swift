@@ -7,8 +7,13 @@
 
 import Foundation
 
-protocol CircleObject {
-    var radius: CGFloat { get set }
+class CircleObject: Object {
+    var radius: CGFloat
+    
+    init(centre: CGPoint, radius: CGFloat) {
+        self.radius = radius
+        super.init(centre: centre)
+    }
 }
 
 //extension CircleObject {
