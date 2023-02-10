@@ -9,19 +9,33 @@ import SwiftUI
 
 @main
 struct PeggleApp: App {
-    @State var board = Board()
-
+    @State var peggleGame = PeggleGameEngine()
+//    @ObservedObject var board = peggleGame.
+    
+//    init() {
+//        peggleGame.createDisplayLink()
+//        peggleGame.addBoardToGameEngine()
+//        board = peggleGame.board
+//    }
+    
     var body: some Scene {
         WindowGroup {
-            PaletteView(board: $board)
+                
             // Automaticaly loads default saved level
-            .task {
-                   do {
-                       board = try BoardStore.load(name: "peggle")
-                   } catch {
-                       fatalError("Error loading board.")
-                   }
-            }
+//                PaletteView(peggleGame: $peggleGame, board: $board)
+                GameView(peggleGame: peggleGame)
+//                GameView(peggleGame: $peggleGame, board: board)
+                .task {
+//                    board = Board.sampleBoard
+                    peggleGame.addBoardToGameEngine()
+//                    board = peggleGame.board
+                    peggleGame.createDisplayLink()
+//                    do {
+//                        board = try peggleGame.load(name: "peggle")
+//                    } catch {
+//                        fatalError("Error loading board.")
+//                    }
+                }
         }
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 class GameEngine {
     static let sharedInstance: GameEngine = GameEngine()
-    var frameDuration: Float = 0
+    var frameDuration: Double = 0
     
     func createDisplayLink() {
         let displaylink = CADisplayLink(target: self, selector: #selector(update))
@@ -17,25 +17,33 @@ class GameEngine {
     }
     
     @objc func update(displaylink: CADisplayLink) {
-        frameDuration = Float(displaylink.targetTimestamp - displaylink.timestamp)
-        moveAll()
+        frameDuration = Double(displaylink.targetTimestamp - displaylink.timestamp)
+        moveAll(time: frameDuration)
+   
     }
     
-    var objects: [Object] = []
+    var objects = [PhysicsObject]()
     
-    func move(object: Object) {
-        guard let object = object as? MoveableObject else {
-            return
-        }
+    func addPhysicsObject(object: PhysicsObject) {
+        objects.append(object)
+    }
+    
+    func removePhysicsObject(object: PhysicsObject) {
+        objects.removeAll(where: {$0 == object})
+    }
+    
+    func move(object: PhysicsObject, time: Double) {
         guard let index = objects.firstIndex(where: {$0 == object}) else {
             return
         }
-        objects[index].move(time: frameDuration)
+        print("yo")
+        objects[index].move(time: time)
     }
 
-    func moveAll() {
+    func moveAll(time: Double) {
+        
         for object in objects {
-            move(object: object)
+            move(object: object, time: time)
         }
     }
 

@@ -12,7 +12,6 @@ struct PegView: View {
     @Binding var peg: Peg
     @Binding var selectedButton: String
     @Binding var isDesigning: Bool
-    @Binding var gameArea: CGSize
     @State private var dragOffset = CGSize.zero
 
     var body: some View {
@@ -60,5 +59,12 @@ struct PegView: View {
                         board.removePeg(at: gesture.location)
                     }
              )
+    }
+}
+
+struct PegView_Previews: PreviewProvider {
+    static var previews: some View {
+//        PegView(board: .constant(Board.sampleBoard), peg: .constant(Peg.sampleBluePeg1), selectedButton: .constant(""), isDesigning: .constant(true))
+        PegView(board: (Board.sampleBoard), peg: .constant(Peg.sampleBluePeg1), selectedButton: .constant(""), isDesigning: .constant(true))
     }
 }

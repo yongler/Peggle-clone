@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PaletteDesignButtonsView: View {
+    @Binding var peggleGame: PeggleGameEngine
     @Binding var selectedButton: String
     var buttonRadius: CGFloat = 80
 
@@ -52,6 +53,6 @@ struct PaletteDesignButtonsView: View {
 
 struct PaletteDesignButtonsView_Previews: PreviewProvider {
     static var previews: some View {
-        PaletteDesignButtonsView(selectedButton: .constant(""))
+        PaletteDesignButtonsView(peggleGame: .constant(PeggleGameEngine()), selectedButton: .constant(""))
     }
 }

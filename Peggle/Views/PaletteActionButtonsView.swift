@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PaletteActionButtonsView: View {
+    @Binding var peggleGame: PeggleGameEngine
     @Binding var board: Board
     @State private var name: String = ""
     @State private var alertMessage: String = ""
@@ -17,7 +18,7 @@ struct PaletteActionButtonsView: View {
         HStack {
             Button("LOAD") {
                 do {
-                    board = try BoardStore.load(name: name)
+                    board = try peggleGame.load(name: name)
                 } catch {
                     alertMessage = "Failed to load board"
                     hasAlert = true
@@ -30,7 +31,7 @@ struct PaletteActionButtonsView: View {
                     return
                 }
                 do {
-                    try BoardStore.save(board: board, name: name)
+                    try peggleGame.save(name: name)
                 } catch {
                     alertMessage = "Failed to save"
                     hasAlert = true
@@ -45,14 +46,16 @@ struct PaletteActionButtonsView: View {
             Button("RESET") { board.clearBoard() }
 
             TextField("Level name", text: $name).border(.secondary)
-
-            Button("START") {}
+            
+//            NavigationLink(destination: GameView(peggleGame: $peggleGame, board: $board)) {
+//                Button("START") {}
+//            }
         }
     }
 }
 
 struct PaletteActionButtonsView_Previews: PreviewProvider {
     static var previews: some View {
-        PaletteActionButtonsView(board: .constant(Board.sampleBoard))
+        PaletteActionButtonsView(peggleGame: .constant(PeggleGameEngine()), board: .constant(Board.sampleBoard))
     }
 }

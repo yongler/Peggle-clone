@@ -24,6 +24,7 @@ class Board: Codable, ObservableObject {
     }
 
     @Published var pegs: [Peg] = []
+    @Published var ball: Ball?
     var gameArea: CGSize = CGSize(width: 1000, height: 1000)
     var pegCount: Int {
         pegs.count
@@ -34,13 +35,16 @@ class Board: Codable, ObservableObject {
 //            self.gameArea = gameArea
 //        }
     
+    
+    
     init(pegs: [Peg] = [], gameArea: CGSize) {
         self.pegs = pegs
         self.gameArea = gameArea
     }
     
-    init(pegs: [Peg] = []) {
-        
+    init(pegs: [Peg] = [], ball: Ball? = nil) {
+        self.pegs = pegs
+        self.ball = ball
     }
 
     /// Check if peg to add is a valid position, if yes add to board.
@@ -105,6 +109,10 @@ class Board: Codable, ObservableObject {
         pegs.removeAll(where: {$0.isLit})
     }
     
+    func addBall(_ ball: Ball) {
+        self.ball = ball
+    }
+    
     func updateGameArea(_ gameArea: CGSize) {
         self.gameArea = gameArea
     }
@@ -148,6 +156,6 @@ class Board: Codable, ObservableObject {
 
 extension Board {
     static var sampleBoard = Board(pegs: [Peg.sampleBluePeg1, Peg.sampleBluePeg2,
-                                          Peg.sampleOrangePeg1, Peg.sampleOrangePeg2])
+                                          Peg.sampleOrangePeg1, Peg.sampleOrangePeg2], ball: Ball.sampleBall)
                                           
 }

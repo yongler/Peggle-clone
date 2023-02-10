@@ -7,20 +7,13 @@
 
 import Foundation
 
-struct Vector {
+struct Vector: Equatable {
     var x: CGFloat
     var y: CGFloat
     
-    private func applyAccelerationHelper(initial: CGFloat, acceleration: CGFloat, time: Float) -> CGFloat {
-        return initial + acceleration * CGFloat(time)
-    }
+    static let zero = Vector(x: 0, y: 0)
     
-    mutating func applyAcceleration(acceleration: Acceleration, time: Float) {
-        x = applyAccelerationHelper(initial: x, acceleration: acceleration.x, time: time)
-        y = applyAccelerationHelper(initial: y, acceleration: acceleration.y, time: time)
-    }
-    
-    func move(centre: CGPoint, time: Float) -> CGPoint {
+    func update(centre: CGPoint, time: Double) -> CGPoint {
         let newCentreX = centre.x + self.x * CGFloat(time)
         let newCentreY = centre.y + self.y * CGFloat(time)
         

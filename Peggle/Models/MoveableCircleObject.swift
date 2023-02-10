@@ -1,12 +1,12 @@
+////
+////  MoveableCircleObject.swift
+////  Peggle
+////
+////  Created by Lee Yong Ler on 5/2/23.
+////
 //
-//  MoveableCircleObject.swift
-//  Peggle
+//import Foundation
 //
-//  Created by Lee Yong Ler on 5/2/23.
+//protocol MoveableCircleObject: MoveableObject, CircleObject {
 //
-
-import Foundation
-
-protocol MoveableCircleObject: MoveableObject, CircleObject {
-
-}
+//}

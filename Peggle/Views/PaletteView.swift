@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct PaletteView: View {
+    @ObservedObject var peggleGame: PeggleGameEngine
     @Binding var board: Board
     @State private var selectedButton = ""
 
     var body: some View {
         VStack {
-            GameView(board: board, selectedButton: $selectedButton, isDesigning: .constant(true))
-            PaletteDesignButtonsView(selectedButton: $selectedButton)
-            PaletteActionButtonsView(board: $board)
+            BoardView(peggleGame: peggleGame, board: board, selectedButton: $selectedButton, isDesigning: .constant(true))
+            PaletteDesignButtonsView(peggleGame: $peggleGame, selectedButton: $selectedButton)
+            PaletteActionButtonsView(peggleGame: $peggleGame, board: $board)
 
         }
         .padding()
@@ -24,6 +25,6 @@ struct PaletteView: View {
 
 struct PaletteView_Previews: PreviewProvider {
     static var previews: some View {
-        PaletteView(board: .constant(Board.sampleBoard))
+        PaletteView(peggleGame: (PeggleGameEngine()), board: .constant(Board.sampleBoard))
     }
 }

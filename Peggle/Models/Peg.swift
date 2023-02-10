@@ -27,8 +27,8 @@ struct Peg: Equatable, Codable, Identifiable {
 }
 
 extension Peg {
-    static let sampleBluePeg1 = Peg(color: "peg-blue", centre: CGPoint(x: 300, y: 300), radius: 25)
-    static let sampleBluePeg2 = Peg(color: "peg-blue", centre: CGPoint(x: 500, y: 500), radius: 25)
-    static let sampleOrangePeg1 = Peg(color: "peg-orange", centre: CGPoint(x: 600, y: 600), radius: 25)
+    static let sampleBluePeg1 = Peg(color: "peg-blue", centre: CGPoint(x: 350, y: 350), radius: 25)
+    static let sampleBluePeg2 = Peg(color: "peg-blue", centre: CGPoint(x: 400, y: 400), radius: 25)
+    static let sampleOrangePeg1 = Peg(color: "peg-orange", centre: CGPoint(x: 450, y: 450), radius: 25)
     static let sampleOrangePeg2 = Peg(color: "peg-orange", centre: CGPoint(x: 700, y: 700), radius: 25)
 }
