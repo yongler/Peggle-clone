@@ -28,7 +28,6 @@ struct PeggleApp: App {
                 .task {
 //                    board = Board.sampleBoard
                     peggleGame.addBoardToGameEngine()
-//                    board = peggleGame.board
                     peggleGame.createDisplayLink()
 //                    do {
 //                        board = try peggleGame.load(name: "peggle")

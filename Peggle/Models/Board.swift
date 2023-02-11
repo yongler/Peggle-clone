@@ -113,6 +113,36 @@ class Board: Codable, ObservableObject {
         self.ball = ball
     }
     
+    func addBall() {
+        addBall(Ball.sampleBall)
+    }
+    
+    func removeBall() {
+        self.ball = nil
+    }
+    
+    private var ballIsOutOfBounds: Bool {
+        guard let ball = ball else {
+            return false
+        }
+        return ball.centre.x > gameArea.height
+    }
+    
+    func removeBallIfOutOfBounds() -> Bool {
+        if ballIsOutOfBounds {
+            removeBall()
+            return true
+        }
+        return false
+    }
+    
+    func moveBall(by: CGSize) {
+        guard let ball = ball else {
+            return
+        }
+        ball.moveCentre(by: by)
+    }
+    
     func updateGameArea(_ gameArea: CGSize) {
         self.gameArea = gameArea
     }

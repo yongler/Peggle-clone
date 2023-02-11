@@ -33,7 +33,7 @@ struct BoardView: View {
 
                     Spacer()
                     
-                    BallView(ball: $board.ball, isDesigning: $isDesigning)
+                    BallView(peggleGame: peggleGame, ball: $board.ball, isDesigning: $isDesigning)
                     
                     ForEach($board.pegs) { peg in
                         PegView(board: board, peg: peg, selectedButton: $selectedButton,
@@ -43,7 +43,7 @@ struct BoardView: View {
 
             }
             .task {
-                board.updateGameArea(geometry.size)
+                peggleGame.updateGameArea(geometry.size)
             }
         }
     }

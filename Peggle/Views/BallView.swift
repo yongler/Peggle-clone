@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BallView: View {
+    @ObservedObject var peggleGame: PeggleGameEngine
     @Binding var ball: Ball?
     @Binding var isDesigning: Bool
     @State private var dragOffset = CGSize.zero
@@ -34,8 +35,15 @@ struct BallView: View {
                             }
                             
                             dragOffset = .zero
+                            peggleGame.moveBall(by: gesture.translation)
                         }
                 )
+//                .gesture(
+//                    DragGesture(minimumDistance: 0)
+//                        .onEnded {
+//                            peggleGame.launchBall()
+//                        }
+//                 )
         }
             
     }
@@ -43,6 +51,6 @@ struct BallView: View {
 
 struct BallView_Previews: PreviewProvider {
     static var previews: some View {
-        BallView(ball: .constant(Ball.sampleBall), isDesigning: .constant(false))
+        BallView(peggleGame: (PeggleGameEngine()), ball: .constant(Ball.sampleBall), isDesigning: .constant(false))
     }
 }

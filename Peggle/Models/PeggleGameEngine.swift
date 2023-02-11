@@ -26,18 +26,18 @@ class PeggleGameEngine: ObservableObject {
         updateBoardWithGameEngine()
     }
     
-    func getBoard() -> Board {
-        return board
-    }
+//    func getBoard() -> Board {
+//        return board
+//    }
     
-    func launchBall(centre: CGPoint) {
-        guard board.ball == nil else {
+    func launchBall() {
+        guard var ball = board.ball else {
             return
         }
-        let ballVelocity = Vector(x: centre.x - board.gameArea.width / 2, y: centre.y)
-        let ball = Ball(centre: centre, velocity: ballVelocity, acceleration: Acceleration.gravity)
+        let ballVelocity = Vector(x: ball.centre.x - board.gameArea.width / 2, y: ball.centre.y)
+        let newBall = Ball(centre: ball.centre, velocity: ballVelocity, acceleration: Acceleration.gravity)
+        ball = newBall
         
-//        board.ball = ball
         gameEngine.addPhysicsObject(object: ball)
     }
     
@@ -62,9 +62,14 @@ class PeggleGameEngine: ObservableObject {
             if let obj = object as? Ball {
                 print("helo")
                 newBoard.addBall(obj)
+                
+                if self.board.removeBallIfOutOfBounds() {
+                    gameEngine.removePhysicsObject(object: object)
+                    board.addBall()
+                }
             }
-            
         }
+        
         self.board = newBoard
         print(self.board.pegs.count)
         print(self.board.ball?.centre ?? "")
@@ -97,6 +102,14 @@ class PeggleGameEngine: ObservableObject {
     
     func addPeg(color: String, centre: CGPoint, radius: CGFloat = Peg.defaultPegRadius) {
         board.addPeg(color: color, centre: centre, radius: radius)
+    }
+    
+    func moveBall(by: CGSize) {
+        board.moveBall(by: by)
+    }
+    
+    func updateGameArea(_ gameArea: CGSize) {
+        board.updateGameArea(gameArea)
     }
     
 }
