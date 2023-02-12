@@ -76,7 +76,38 @@ tests in code, please delete this section.
    - `removeBallIfOutOfBounds()` should remove ball if is out of bounds
    - ` moveBall(by: CGSize)` should move the ball by specified size, ignore if if ball does not exist or if ball is moving (`ball.velocity != Vector.zero && ball.acceleration != Acceleration.zero`
    - `updateGameArea(_ gameArea: CGSize)` should updates self.gameArea with input
-   
+- CircleObject 
+    - Should be able to initialise with `centre: CGPoint, velocity: Vector,
+                  acceleration: Acceleration, radius: CGFloat` without fail 
+   - `vertices` Should be able to access computed vertices (treat circle as polygon) 
+   - Should be able to be equatable with another physicsObject
+- GameEngine 
+   -  `addPhysicsObject(object: PhysicsObject) ` Should be able to add input to self.objects
+   -  `removePhysicsObject(object: PhysicsObject)` should remove input from self.objects
+   -  `resolveCollision` should resolve collision of object1 to object2 by changing object1.velocity depending on object2's shape
+   -  `collidedObjects(object: PhysicsObject) -> [PhysicsObject]` should return list of physics objects from self.objects that collided by input object 
+   -  `move(object: PhysicsObject, time: Double) -> [PhysicsObject]` should move a physics object based on its velocity and avcceleration as well as resolve any collision and return a list of physics objects that is collided 
+   -  `moveAll(time: Double) -> [PhysicsObject]` should call `move` on self.objects and return a list of physics objects that is collided 
+   -  `clearObjects()` should set self.objects = []
+
+- PegPhysicsObject
+   - Should be able to initialise with `centre: CGPoint, velocity: Vector,
+                  acceleration: Acceleration, radius: CGFloat` without fail 
+   - Should be able to initialise with `peg: Peg` without fail 
+   - ` getPeg() -> Peg` should return self.peg
+
+- PeggleGameEngine
+   - Should initialise and set  `board = Board.sampleGameBoard
+        lastBallPosition = CGPoint(x: 0, y: 0)
+        timeAtLastBallPosition = Double(Calendar.current.component(.second, from: Date()))`
+   - `setupWalls()` should setup up left, right, top walls that are rectangleObjects dependant on gameArea and add to gameEngine objects. 
+   - `createDisplayLink()` should initialise CADisplayLink and automatically call `update` at every frame change. 
+   - `update(displaylink: CADisplayLink)` should call `let collidedObjects = gameEngine.moveAll(time: frameDuration)
+        updateBoardWithGameEngine(collidedObjects: collidedObjects)` without fail 
+   - `launchBall()` should set self.launcedBall to true, and set the board.ball to a ball with velocity dependant on position of ball and also add it into gameengine.objects. ignore if self.launchedBall is false
+   - setBoardToGameEngine() 
+   - `updateBoardWithGameEngine` should getPeg from each pegphysicsobject and add into board, and if ball is not out of bounds add into board. If premature removal is needed, call board.clearAllLitPegs()
+
 
 ### Integration testing 
 
@@ -94,7 +125,6 @@ tests in code, please delete this section.
     - When peg is hit by ball, it should light up 
     - When a peg is light up, it should remain lit 
     - When lit pegs are removed and ball exits the stage, new ball should be provided at the top 
-    
 
 
 ## Written Answers
