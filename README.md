@@ -132,7 +132,8 @@ tests in code, please delete this section.
     - When ball collides with a peg, it should bounce away 
     - When ball collids with wall, it should bounce away 
     - When ball exits the stage, lit pegs will be removed with animation. New ball will appear at top center of screen
-    - When ball is stuck with no way of reaching bottom of screen, lit pegs will be prematurely removed (pegs will not be prematurely removed in any other case)  
+    - When ball is stuck with no way of reaching bottom of screen, lit pegs will be prematurely removed (pegs will not be prematurely removed in any other case)
+    - When ball does not collide with any objects, it should move normally (like how balls move in real life)
 - Peg 
     - When peg is hit by ball, it should light up 
     - When a peg is light up, it should remain lit 
