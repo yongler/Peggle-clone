@@ -46,7 +46,7 @@ Util or constant class is omitted to show high level design.
 ### Sequence diagrams
 Observer pattern is used. Whenever the board model instance changes, views that observes it will be automatically rerendered to update. (functionality of `@Published` and `ObservedObject` in SwiftUI) 
 
-
+Helooooooo
 
 
 ## Tests
