@@ -60,8 +60,7 @@ Observer pattern is used. Whenever the board model instance changes, views that 
 4. If the ball is stuck in place for too long (`timeForPrematureRemoval`), `board.clearAllLitPegs()` is called to do premature removal. 
 5. If the ball falls out of gameArea, it is removed in `removeBallIfOutOfBounds()`
 
-- Detecting collisions 
-1. calls to `PhysicsBbject.isOverlapping(with: PhysicsoBbject)`
+
 
 ## Tests
 If you decide to write how you are going to do your tests instead of writing
