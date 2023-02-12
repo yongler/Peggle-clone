@@ -11,7 +11,7 @@ class PhysicsObject: Equatable {
     var centre: CGPoint
     var velocity: Vector
     var acceleration: Acceleration
-
+    
     var axes: [Vector] {
         var axes = [Vector]()
 
@@ -38,7 +38,8 @@ class PhysicsObject: Equatable {
         self.velocity = velocity
         self.acceleration = acceleration
     }
-
+    
+    /// Update position, velocity of object
     func move(time: Double) {
         centre = velocity.update(centre: centre, time: time)
         velocity = acceleration.update(velocity: velocity, time: time)
@@ -48,7 +49,8 @@ class PhysicsObject: Equatable {
         lhs.centre == rhs.centre && lhs.velocity == rhs.velocity
         && lhs.acceleration == rhs.acceleration
     }
-
+    
+    /// Project this shape onto an axis
     func project(onto axis: Vector) -> Projection {
         var start: CGFloat = axis.dotProduct(point: vertices[0])
         var end: CGFloat = start

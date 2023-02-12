@@ -21,7 +21,7 @@ class GameEngine {
         objects.removeAll(where: { $0 == object })
     }
 
-    func resolveCollision(_ object1: PhysicsObject, _ object2: PhysicsObject) {
+    func resolveCollision(_ object1: inout PhysicsObject, _ object2: PhysicsObject) -> PhysicsObject {
         if object2 is PegPhysicsObject {
             object1.velocity.directionX *= -1 * normalForceCoefficient
             object1.velocity.directionY *= -1 * normalForceCoefficient
@@ -30,11 +30,13 @@ class GameEngine {
             let top: CGFloat = 100
             if object2.centre.y < top {
                 object1.velocity.directionY *= -1 * normalForceCoefficient
+                print("hit top wall")
             } else {
                 object1.velocity.directionX *= -1 * normalForceCoefficient
+                print("hit side wall")
             }
-
         }
+        return object1
     }
 
     func collidedObjects(object: PhysicsObject) -> [PhysicsObject] {
@@ -64,16 +66,14 @@ class GameEngine {
         let collidedObjects = collidedObjects(object: objects[index])
         for obj in collidedObjects {
             print("\(object) collided with \(obj)")
-            resolveCollision(objects[index], obj)
+            objects[index] = resolveCollision(&objects[index], obj)
         }
         return collidedObjects
     }
 
     func moveAll(time: Double) -> [PhysicsObject] {
         var collidedObjects: [PhysicsObject] = []
-//        print("----------------")
         for object in objects {
-//            print(object)
             let collidedObj = move(object: object, time: time)
             collidedObjects.append(contentsOf: collidedObj)
         }

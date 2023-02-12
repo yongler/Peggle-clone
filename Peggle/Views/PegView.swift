@@ -62,9 +62,6 @@ struct PegView: View {
 
 struct PegView_Previews: PreviewProvider {
     static var previews: some View {
-//        PegView(board: .constant(Board.sampleBoard),
-//    peg: .constant(Peg.sampleBluePeg1), selectedButton: .constant(""), isDesigning: .constant(true))
-
         PegView(peggleGame: (PeggleGameEngine()), board: (Board.sampleBoard),
                 peg: .constant(Peg.sampleBluePeg1), selectedButton: .constant(""), isDesigning: .constant(true))
     }

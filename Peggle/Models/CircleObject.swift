@@ -10,13 +10,14 @@ import Foundation
 class CircleObject: PhysicsObject {
     var radius: CGFloat
     static let defaultBallRadius = CGFloat(25)
-    static let numberOfCircumferencePoints: Int = 4
+    static let numberOfCircumferencePoints: Int = 16
 
     init(centre: CGPoint,
          velocity: Vector, acceleration: Acceleration, radius: CGFloat = defaultBallRadius) {
         self.radius = radius
         super.init(centre: centre, velocity: velocity, acceleration: acceleration)
     }
+    
     override var vertices: [CGPoint] {
         var vertices: [CGPoint] = []
 

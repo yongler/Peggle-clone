@@ -10,23 +10,40 @@ import Foundation
 class PeggleGameEngine: ObservableObject {
     @Published var board: Board
     private var gameEngine = GameEngine()
+    let timeForPrematureRemoval: Double = 1
+    
     var frameDuration: Double = 0
-
-    init() {
-        print("init")
-        board = Board.sampleGameBoard
+    var launchedBall = false
+    var lastBallPosition: CGPoint
+    var timeAtLastBallPosition: Double
+    
+    var currentTime: Double {
+        return Double(Calendar.current.component(.second, from: Date()))
     }
 
+    init() {
+        board = Board.sampleGameBoard
+        lastBallPosition = CGPoint(x: 0, y: 0)
+        timeAtLastBallPosition = Double(Calendar.current.component(.second, from: Date()))
+    }
+
+    /// Adds walls
     func setupWalls() {
-        let wallWidth: CGFloat = 5
-        let leftWall = RectangleObject(centre: CGPoint(x: wallWidth / 2, y: board.gameArea.height / 2),
+        let wallWidth: CGFloat = 50
+        let wallDisplacement: CGFloat = 100
+        let leftWall = RectangleObject(centre: CGPoint(x: -wallDisplacement, y: board.gameArea.height / 2),
                                        width: wallWidth, height: board.gameArea.height)
-        let rightWall = RectangleObject(centre: CGPoint(x: board.gameArea.width - wallWidth / 2,
+        
+        let rightWall = RectangleObject(centre: CGPoint(x: board.gameArea.width + wallDisplacement,
                                                         y: board.gameArea.height / 2),
                                         width: wallWidth, height: board.gameArea.height)
-
+        
+        let topWall = RectangleObject(centre: CGPoint(x: board.gameArea.width / 2, y: -wallDisplacement),
+                                     width: board.gameArea.width, height: wallWidth)
+        
         gameEngine.addPhysicsObject(object: leftWall)
         gameEngine.addPhysicsObject(object: rightWall)
+        gameEngine.addPhysicsObject(object: topWall)
     }
 
     func createDisplayLink() {
@@ -41,12 +58,17 @@ class PeggleGameEngine: ObservableObject {
     }
 
     func launchBall() {
+        guard launchedBall == false else {
+            return
+        }
+        
+        launchedBall = true
         guard let ball = board.ball else {
             return
         }
         let ballVelocity = Vector(origin: ball.centre,
-                                  directionX: (ball.centre.x - board.gameArea.width / 2) * 2,
-                                  directionY: ball.centre.y * 2)
+                                  directionX: (ball.centre.x - board.gameArea.width / 2) * 5,
+                                  directionY: ball.centre.y * 5)
         let newBall = Ball(centre: ball.centre, velocity: ballVelocity, acceleration: Acceleration.gravity)
 
         board.setBall(newBall)
@@ -65,6 +87,7 @@ class PeggleGameEngine: ObservableObject {
             return
         }
         gameEngine.addPhysicsObject(object: ball)
+        setupWalls()
     }
 
     func updateBoardWithGameEngine(collidedObjects: [PhysicsObject]) {
@@ -79,11 +102,21 @@ class PeggleGameEngine: ObservableObject {
             }
             if let obj = object as? Ball {
                 newBoard.setBall(obj)
-
+                
+                if currentTime - timeAtLastBallPosition > timeForPrematureRemoval && abs(lastBallPosition.x - obj.centre.x + lastBallPosition.y - obj.centre.y) < 1 {
+                    newBoard.clearAllLitPegs()
+                }
+                
+                if abs(lastBallPosition.x - obj.centre.x + lastBallPosition.y - obj.centre.y) > 1 {
+                    timeAtLastBallPosition = currentTime
+                }
+                
+                lastBallPosition = obj.centre
+                
                 if newBoard.removeBallIfOutOfBounds() {
                     newBoard.setBall()
                     newBoard.clearAllLitPegs()
-
+                    launchedBall = false
                 }
             }
         }

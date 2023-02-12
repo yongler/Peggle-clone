@@ -35,6 +35,6 @@ class RectangleObject: PhysicsObject {
 
 extension RectangleObject: CustomStringConvertible {
     var description: String {
-        "wall \(centre) \(width) \(height)"
+        "wall \(centre) \(width) \(height) \(vertices)"
     }
 }

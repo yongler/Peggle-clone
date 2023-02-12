@@ -33,17 +33,6 @@ struct BoardView: View {
 
                     Spacer()
 
-                    Text(String(board.gameArea.width / 2))
-                        .position(x: board.gameArea.width / 2, y: 100)
-
-                    Text("bro")
-                        .position(x: geometry.size.width, y: geometry.size.height)
-//                    Image("delete")
-////                        .position(x)
-//                        .resizable()
-//                        .frame(width: board.gameArea.width/2,
-//                               height: board.gameArea.height/2)
-
                     BallView(peggleGame: peggleGame, ball: $board.ball, isDesigning: $isDesigning)
 
                     ForEach($board.pegs) { peg in
@@ -64,8 +53,5 @@ struct BoardView_Previews: PreviewProvider {
     static var previews: some View {
         BoardView(peggleGame: (PeggleGameEngine()), board: .constant(Board.sampleBoard),
                   selectedButton: .constant(""), isDesigning: .constant(true))
-
-//        BoardView(peggleGame: .constant(PeggleGameEngine()), board:
-//            .constant(Board.sampleBoard), selectedButton: .constant(""), isDesigning: .constant(true))
     }
 }

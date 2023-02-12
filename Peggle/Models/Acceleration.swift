@@ -9,7 +9,7 @@ import Foundation
 
 struct Acceleration: Equatable {
     static let zero = Acceleration(x: 0, y: 0)
-    static let gravity = Acceleration(x: 0, y: 9.8 * 10)
+    static let gravity = Acceleration(x: 0, y: 9.8 * 15)
 
     var x: CGFloat
     var y: CGFloat

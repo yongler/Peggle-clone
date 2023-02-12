@@ -8,7 +8,6 @@
 import Foundation
 
 class Board: Codable, ObservableObject {
-
     enum CodingKeys: CodingKey {
         case pegs
     }
@@ -29,11 +28,6 @@ class Board: Codable, ObservableObject {
     var pegCount: Int {
         pegs.count
     }
-
-//        init(pegs: [Peg] = [], gameArea: CGSize) {
-//            self.pegs = pegs
-//            self.gameArea = gameArea
-//        }
 
     init(gameArea: CGSize, pegs: [Peg] = []) {
         self.pegs = pegs
@@ -73,7 +67,8 @@ class Board: Codable, ObservableObject {
             return distanceBetweenCentres <= radius
         })
     }
-
+    
+    /// Move peg by the specifiied size
     func movePeg(_ peg: Peg, by: CGSize) {
         for i in 0..<pegs.count {
             if pegs[i] != peg {
@@ -87,11 +82,12 @@ class Board: Codable, ObservableObject {
             }
         }
     }
-
+    
+    /// Find peg
     private func findPeg(peg: Peg) -> Int? {
         pegs.firstIndex(of: peg)
     }
-
+    
     func lightUp(peg: Peg) {
         guard let index = findPeg(peg: peg) else {
             return
@@ -104,25 +100,22 @@ class Board: Codable, ObservableObject {
     }
 
     func clearAllLitPegs() {
-        print("before clearing \(pegs.count)")
         var newPegs: [Peg] = []
         
         for peg in pegs {
-            print(peg)
             if peg.isLit {
                 continue
             }
             newPegs.append(peg)
         }
-//        pegs.removeAll(where: { $0.isLit == true })
         self.pegs = newPegs
-        print("after clearing \(pegs.count)")
     }
 
     func setBall(_ ball: Ball) {
         self.ball = ball
     }
-
+    
+    /// Convenience function to reset ball to top
     func setBall() {
         setBall(Ball(centre: CGPoint(x: gameArea.width / 2, y: 100),
                      velocity: Vector.zero, acceleration: Acceleration.zero))
@@ -151,11 +144,22 @@ class Board: Codable, ObservableObject {
         guard let ball = ball else {
             return
         }
+        guard ball.velocity == Vector.zero && ball.acceleration == Acceleration.zero else {
+            return
+        }
+//        let oldBallPosition = ball.centre
         ball.moveCentre(by: by)
+//
+//        let restriction: CGFloat = 300
+//
+//
+//        guard ball.centre.y < restriction && ball.centre.x < gameArea.width/2 + restriction && ball.centre.x < gameArea.width/2 - restriction else {
+//            ball.centre = oldBallPosition
+//            return
+//        }
     }
 
     func updateGameArea(_ gameArea: CGSize) {
-        print("updating \(gameArea.width) \(gameArea.height)")
         self.gameArea = gameArea
     }
 
@@ -181,7 +185,6 @@ class Board: Codable, ObservableObject {
     /// Checks if the current peg is in a valid position.
     func checkValidPosition(peg: Peg) -> Bool {
         checkNotOverlappingPeg(peg: peg) && checkInArea(peg: peg)
-//        return checkNotOverlappingPeg(peg: peg)
     }
 
     /// Compares peg location with area boundary

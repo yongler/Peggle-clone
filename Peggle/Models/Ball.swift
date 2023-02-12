@@ -8,11 +8,11 @@
 import Foundation
 
 class Ball: CircleObject {
-    var defaultBallRadius = CGFloat(25)
+    var defaultBallRadius = CGFloat(40)
 
     override init(centre: CGPoint, velocity: Vector,
                   acceleration: Acceleration = Acceleration.gravity, radius: CGFloat = defaultBallRadius) {
-        super.init(centre: centre, velocity: velocity, acceleration: acceleration)
+        super.init(centre: centre, velocity: velocity, acceleration: acceleration, radius: radius)
     }
 
     func moveCentre(by: CGSize) {

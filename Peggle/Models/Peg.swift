@@ -22,7 +22,6 @@ struct Peg: Equatable, Codable, Identifiable {
         }
 
         isLit = true
-//        color += "-glow"
         if color == "peg-blue" {
             color = "peg-blue-glow"
         } else {
