@@ -46,7 +46,7 @@ Util or constant class is omitted to show high level design.
 ### Sequence diagrams
 Observer pattern is used. Whenever the board model instance changes, views that observes it will be automatically rerendered to update. (functionality of `@Published` and `ObservedObject` in SwiftUI) 
 
-Helooooooo
+
 
 
 ## Tests
@@ -57,6 +57,26 @@ tests in code, please delete this section.
 - PS2 tests are omitted 
 - Unit tests for models are written in code. 
 
+### Unit Testing 
+
+- Acceleration 
+   - Instance should be initialised with x and y inputs without fail
+   - Should be able to call `update(velocity: Vector, time: Double)` and returns the new velocity that is acted upon acceleration self instance
+- Ball 
+   - Should be able to initialise with `centre: CGPoint, velocity: Vector,
+                  acceleration: Acceleration, radius: CGFloat` without fail 
+   - Should be able to call `moveCentre(by: CGSize)` and mutates own centre 
+- Board 
+   - Should be able to call lightUp(peg: Peg) and set peg.isLit to true if it is false. if already true, ignore and return 
+   - `clearAllLitPegs()` should remove all pegs in self.pegs that has isLit = true
+   - `setBall(_ ball: Ball)` should be able to set the ball input as the board's ball
+   - `setBall()` should set a ball instance at the top centre of the gamearea with `Vector.zero` and `Acceleration.zero`
+   - `removeBall()` should set self.ball = nil
+   - `ballIsOutOfBounds` should return whether the ball.centre is out of bounds (i.e.  ball.centre.y > gameArea.height)
+   - `removeBallIfOutOfBounds()` should remove ball if is out of bounds
+   - ` moveBall(by: CGSize)` should move the ball by specified size, ignore if if ball does not exist or if ball is moving (`ball.velocity != Vector.zero && ball.acceleration != Acceleration.zero`
+   - `updateGameArea(_ gameArea: CGSize)` should updates self.gameArea with input
+   
 
 ### Integration testing 
 
