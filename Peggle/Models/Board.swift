@@ -105,16 +105,16 @@ class Board: Codable, ObservableObject {
         self.pegs = []
     }
     
-    func clearAllLitPeg() {
+    func clearAllLitPegs() {
         pegs.removeAll(where: {$0.isLit})
     }
     
-    func addBall(_ ball: Ball) {
+    func setBall(_ ball: Ball) {
         self.ball = ball
     }
     
-    func addBall() {
-        addBall(Ball.sampleBall)
+    func setBall() {
+        setBall(Ball.sampleBall)
     }
     
     func removeBall() {
@@ -125,7 +125,7 @@ class Board: Codable, ObservableObject {
         guard let ball = ball else {
             return false
         }
-        return ball.centre.x > gameArea.height
+        return ball.centre.y > gameArea.height
     }
     
     func removeBallIfOutOfBounds() -> Bool {

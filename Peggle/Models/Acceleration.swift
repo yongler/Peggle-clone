@@ -9,7 +9,7 @@ import Foundation
 
 struct Acceleration: Equatable {
     static let zero = Acceleration(x: 0, y: 0)
-    static let gravity = Acceleration(x: 0, y: 9.8)
+    static let gravity = Acceleration(x: 0, y: 9.8*10)
     
     var x: CGFloat
     var y: CGFloat
@@ -19,8 +19,8 @@ struct Acceleration: Equatable {
     }
     
     func update(velocity: Vector, time: Double) -> Vector {
-        let velocityX = updateVelocityHelper(initial: velocity.x, acceleration: x, time: time)
-        let velocityY = updateVelocityHelper(initial: velocity.y, acceleration: y, time: time)
-        return Vector(x: velocityX, y: velocityY)
+        let velocityX = updateVelocityHelper(initial: velocity.directionX, acceleration: x, time: time)
+        let velocityY = updateVelocityHelper(initial: velocity.directionY, acceleration: y, time: time)
+        return Vector(origin: velocity.origin, directionX: velocityX, directionY: velocityY)
     }
 }

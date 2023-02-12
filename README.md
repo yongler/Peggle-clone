@@ -23,33 +23,26 @@ If you have changed the specifications in any way, please write your
 justification here. Otherwise, you may discard this section.
 
 Own behaviours added: 
-1. If pegs overlap or go out of game area, the peg will be automatically removed. The user can then add a peg again if it was dragged on mistake. Alternative is to move the peg back to its initial position, but the first choice was chosen as removing it seems more intuitive to the users. 
+1. Player can drag the ball around and tap it to launch the ball. 
 
 ## Dev Guide
 You may put your dev guide either in this section, or in a new file entirely.
 You are encouraged to include diagrams where appropriate in order to enhance
 your guide.
 
+
+Model objects and physics objects that represent them are seperated to provide an abstraction and seperation of code. i.e. the model does not need to know about the physics object representation. 
+
+
 Util or constant class is omitted to show high level design. 
 
 ### Class diagrams
-As MV pattern is used (discussed below in design trade off), there are only Views and Models. 
 
-![image](https://user-images.githubusercontent.com/68801331/215267470-5051b475-b28e-49da-b937-6aa02e32d7d0.png)
 
-`PaletteView` is designed in such a way that it compose of `BoardView`, where `BoardView` can be reused for an actual game (i.e. when not designing). 
 
 ### Sequence diagrams
 Observer pattern is used. Whenever the board model instance changes, views that observes it will be automatically rerendered to update. (functionality of `@Published` and `ObservedObject` in SwiftUI) 
 
-Load board sequence:
-
-![image](https://user-images.githubusercontent.com/68801331/215268141-67eb378a-4ec7-433e-b2e6-4b12e08334ae.png)
-
-
-Add peg sequence: 
-
-![image](https://user-images.githubusercontent.com/68801331/215268153-3affe90a-b39a-4e1a-98e8-23028c4a74ac.png)
 
 
 
@@ -61,8 +54,23 @@ tests in code, please delete this section.
 - PS2 tests are omitted 
 - Unit tests for models are written in code. 
 
+### Integration testing 
 
-Recording of test: 
+- Game 
+    - When game is tested on potrait screen, it should work as below sections 
+    - When game is tested on different ipad screen size, it should work as below sections
+- Ball 
+    - When ball is dragged, ball should move to new location 
+    - When ball is tapped, ball should be launched from top center of screen (downwards, never upwards), ball should be launched in the direction from top center of screen to its position before tapped 
+    - When ball collides with a peg, it should bounce away 
+    - When ball exits the stage, lit pegs will be removed with animation 
+    - When ball is stuck with no way of reaching bottom of screen, lit pegs will be prematurely removed (pegs will not be prematurely removed in any other case)  
+- Peg 
+    - When peg is hit by ball, it should light up 
+    - When a peg is light up, it should remain lit 
+    - When lit pegs are removed and ball exits the stage, new ball should be provided at the top 
+    
+
 
 
 ## Written Answers

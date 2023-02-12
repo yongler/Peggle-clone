@@ -18,6 +18,10 @@ struct Peg: Equatable, Codable, Identifiable {
 
     mutating func lightUp() {
         self.isLit = true
+        color += "-glow"
+//        if color == "peg-blue" {
+//            color =
+//        }
     }
     
     mutating func moveCentre(by: CGSize) {

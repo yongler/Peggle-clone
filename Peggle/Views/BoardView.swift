@@ -27,7 +27,7 @@ struct BoardView: View {
                                         return
                                     }
 
-                                    board.addPeg(color: selectedButton, centre: value.location)
+                                    peggleGame.addPeg(color: selectedButton, centre: value.location)
                                 }
                         )
 
@@ -36,7 +36,7 @@ struct BoardView: View {
                     BallView(peggleGame: peggleGame, ball: $board.ball, isDesigning: $isDesigning)
                     
                     ForEach($board.pegs) { peg in
-                        PegView(board: board, peg: peg, selectedButton: $selectedButton,
+                        PegView(peggleGame: peggleGame, board: board, peg: peg, selectedButton: $selectedButton,
                                 isDesigning: $isDesigning)
                     }
                 }

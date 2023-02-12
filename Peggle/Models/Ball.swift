@@ -7,12 +7,10 @@
 //
 import Foundation
 
-class Ball: PhysicsObject {
-    var radius: CGFloat
-    static let defaultBallRadius = CGFloat(25)
+class Ball: CircleObject {
+    var defaultBallRadius = CGFloat(25)
     
-    init(centre: CGPoint, radius: CGFloat = defaultBallRadius, velocity: Vector, acceleration: Acceleration = Acceleration.gravity) {
-        self.radius = radius
+    override init(centre: CGPoint, radius: CGFloat = defaultBallRadius, velocity: Vector, acceleration: Acceleration = Acceleration.gravity) {
         super.init(centre: centre, velocity: velocity, acceleration: acceleration)
     }
     
@@ -20,9 +18,16 @@ class Ball: PhysicsObject {
         centre.x += by.width
         centre.y += by.height
     }
+
 }
 
 extension Ball {
-    static let sampleBall = Ball(centre: CGPoint(x: 400, y: 100), velocity: Vector(x: 0, y: 0), acceleration: Acceleration.zero)
+    static let sampleBall = Ball(centre: CGPoint(x: 400, y: 100), velocity: Vector.zero, acceleration: Acceleration.zero)
     static let image = "ball"
+}
+
+extension Ball: CustomStringConvertible {
+    var description: String {
+        return "ball \(centre)"
+    }
 }

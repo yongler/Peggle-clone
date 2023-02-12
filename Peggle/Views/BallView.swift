@@ -23,27 +23,19 @@ struct BallView: View {
                 .gesture(
                     DragGesture(minimumDistance: 50)
                         .onChanged { gesture in
-                            guard isDesigning else {
-                                return
-                            }
-                            
                             dragOffset = gesture.translation
                         }
                         .onEnded { gesture in
-                            guard isDesigning else {
-                                return
-                            }
-                            
                             dragOffset = .zero
                             peggleGame.moveBall(by: gesture.translation)
                         }
                 )
-//                .gesture(
-//                    DragGesture(minimumDistance: 0)
-//                        .onEnded {
-//                            peggleGame.launchBall()
-//                        }
-//                 )
+                .gesture(
+                    DragGesture(minimumDistance: 0)
+                        .onEnded { gesture in
+                            peggleGame.launchBall()
+                        }
+                 )
         }
             
     }

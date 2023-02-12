@@ -24,7 +24,9 @@ struct PeggleApp: App {
             // Automaticaly loads default saved level
 //                PaletteView(peggleGame: $peggleGame, board: $board)
                 GameView(peggleGame: peggleGame)
+            
 //                GameView(peggleGame: $peggleGame, board: board)
+//                TestView()
                 .task {
 //                    board = Board.sampleBoard
                     peggleGame.addBoardToGameEngine()

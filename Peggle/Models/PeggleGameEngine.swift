@@ -10,20 +10,21 @@ import Foundation
 class PeggleGameEngine: ObservableObject {
     @Published var board: Board = Board.sampleBoard
     private var gameEngine: GameEngine = GameEngine()
+    var frameDuration: Double = 0
     
 //    init(board: Board) {
 //        self.board = board
 //    }
     
     func createDisplayLink() {
-        gameEngine.createDisplayLink()
-        
         let displaylink = CADisplayLink(target: self, selector: #selector(update))
         displaylink.add(to: .current, forMode: RunLoop.Mode.default)
     }
 
     @objc func update(displaylink: CADisplayLink) {
-        updateBoardWithGameEngine()
+        frameDuration = Double(displaylink.targetTimestamp - displaylink.timestamp)
+        let collidedObjects = gameEngine.moveAll(time: frameDuration)
+        updateBoardWithGameEngine(collidedObjects: collidedObjects)
     }
     
 //    func getBoard() -> Board {
@@ -34,7 +35,7 @@ class PeggleGameEngine: ObservableObject {
         guard var ball = board.ball else {
             return
         }
-        let ballVelocity = Vector(x: ball.centre.x - board.gameArea.width / 2, y: ball.centre.y)
+        let ballVelocity = Vector(origin: ball.centre, directionX: ball.centre.x - board.gameArea.width/2, directionY: ball.centre.y)
         let newBall = Ball(centre: ball.centre, velocity: ballVelocity, acceleration: Acceleration.gravity)
         ball = newBall
         
@@ -50,29 +51,35 @@ class PeggleGameEngine: ObservableObject {
             return
         }
         gameEngine.addPhysicsObject(object: ball)
-        print(gameEngine.objects.count)
+//        print(gameEngine.objects.count)
     }
     
-    func updateBoardWithGameEngine() {
+    func updateBoardWithGameEngine(collidedObjects: [PhysicsObject]) {
         let newBoard = Board()
         for object in gameEngine.objects {
             if let obj = object as? PegPhysicsObject {
-                newBoard.addPeg(obj.getPeg())
+                var peg = obj.getPeg()
+                if collidedObjects.contains(object) {
+                    peg.lightUp()
+                }
+                newBoard.addPeg(peg)
             }
             if let obj = object as? Ball {
-                print("helo")
-                newBoard.addBall(obj)
+//                print("helo")
+                newBoard.setBall(obj)
                 
-                if self.board.removeBallIfOutOfBounds() {
+                if newBoard.removeBallIfOutOfBounds() {
                     gameEngine.removePhysicsObject(object: object)
-                    board.addBall()
+                    newBoard.setBall()
                 }
             }
         }
         
+        newBoard.clearAllLitPegs()
         self.board = newBoard
-        print(self.board.pegs.count)
-        print(self.board.ball?.centre ?? "")
+        
+//        print(self.board.pegs.count)
+//        print(self.board.ball?.centre ?? "")
     }
     
     
@@ -82,7 +89,7 @@ class PeggleGameEngine: ObservableObject {
     }
     
     func load(name: String) throws -> Board {
-        print("hello")
+//        print("hello")
         board = try BoardStore.load(name: name)
         return board
     }
