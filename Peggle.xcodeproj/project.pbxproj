@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1215D62F298009E90086F526 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1215D62E298009E90086F526 /* README.md */; };
-		1215D67229800CFD0086F526 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D67129800CFD0086F526 /* PaletteView.swift */; };
 		1215D67429800E5A0086F526 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 1215D67329800E5A0086F526 /* assets */; };
 		1215D676298011200086F526 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215D675298011200086F526 /* BoardView.swift */; };
 		12633C1B2984DA880057AF14 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1A2984DA880057AF14 /* BoardTests.swift */; };
@@ -28,8 +27,6 @@
 		129DE90F29967D2100EB08CC /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129DE90E29967D2100EB08CC /* BallView.swift */; };
 		12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A26FC0297F86450080DFC1 /* PeggleApp.swift */; };
 		12A26FC9297F86450080DFC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */; };
-		12CDFAE32986B854001BFE1E /* PaletteDesignButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CDFAE22986B853001BFE1E /* PaletteDesignButtonsView.swift */; };
-		12CDFAE52986B89E001BFE1E /* PaletteActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CDFAE42986B89E001BFE1E /* PaletteActionButtonsView.swift */; };
 		12CF51052986D35E00D2D1C8 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF51032986D35E00D2D1C8 /* Board.swift */; };
 		12CF51062986D35E00D2D1C8 /* Peg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF51042986D35E00D2D1C8 /* Peg.swift */; };
 		12EEE6AC298142D200E2FFEA /* BoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EEE6AB298142D200E2FFEA /* BoardStore.swift */; };
@@ -55,7 +52,6 @@
 
 /* Begin PBXFileReference section */
 		1215D62E298009E90086F526 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		1215D67129800CFD0086F526 /* PaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
 		1215D67329800E5A0086F526 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		1215D675298011200086F526 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		12633C1A2984DA880057AF14 /* BoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTests.swift; sourceTree = "<group>"; };
@@ -79,8 +75,6 @@
 		12A26FC8297F86450080DFC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		12A26FCE297F86460080DFC1 /* PeggleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeggleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		12A26FD8297F86460080DFC1 /* PeggleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeggleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		12CDFAE22986B853001BFE1E /* PaletteDesignButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDesignButtonsView.swift; sourceTree = "<group>"; };
-		12CDFAE42986B89E001BFE1E /* PaletteActionButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteActionButtonsView.swift; sourceTree = "<group>"; };
 		12CDFAE82986C835001BFE1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12CF51032986D35E00D2D1C8 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		12CF51042986D35E00D2D1C8 /* Peg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peg.swift; sourceTree = "<group>"; };
@@ -134,9 +128,6 @@
 		129A2016298FABA300C32F57 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1215D67129800CFD0086F526 /* PaletteView.swift */,
-				12CDFAE42986B89E001BFE1E /* PaletteActionButtonsView.swift */,
-				12CDFAE22986B853001BFE1E /* PaletteDesignButtonsView.swift */,
 				12633C1E2984F6BE0057AF14 /* PegView.swift */,
 				1215D675298011200086F526 /* BoardView.swift */,
 				129DE90E29967D2100EB08CC /* BallView.swift */,
@@ -358,14 +349,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12CDFAE32986B854001BFE1E /* PaletteDesignButtonsView.swift in Sources */,
 				12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */,
 				12CF51052986D35E00D2D1C8 /* Board.swift in Sources */,
 				12CF51062986D35E00D2D1C8 /* Peg.swift in Sources */,
-				12CDFAE52986B89E001BFE1E /* PaletteActionButtonsView.swift in Sources */,
 				129A2001298FA25200C32F57 /* Acceleration.swift in Sources */,
 				129A2007298FA3FF00C32F57 /* CircleObject.swift in Sources */,
-				1215D67229800CFD0086F526 /* PaletteView.swift in Sources */,
 				129DE90F29967D2100EB08CC /* BallView.swift in Sources */,
 				129DE9012993DF9D00EB08CC /* Ball.swift in Sources */,
 				129A2003298FA28300C32F57 /* Vector.swift in Sources */,

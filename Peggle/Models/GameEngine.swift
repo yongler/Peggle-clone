@@ -30,10 +30,8 @@ class GameEngine {
             let top: CGFloat = 100
             if object2.centre.y < top {
                 object1.velocity.directionY *= -1 * normalForceCoefficient
-                print("hit top wall")
             } else {
                 object1.velocity.directionX *= -1 * normalForceCoefficient
-                print("hit side wall")
             }
         }
         return object1
@@ -65,7 +63,6 @@ class GameEngine {
         objects[index].move(time: time)
         let collidedObjects = collidedObjects(object: objects[index])
         for obj in collidedObjects {
-            print("\(object) collided with \(obj)")
             objects[index] = resolveCollision(&objects[index], obj)
         }
         return collidedObjects

@@ -43,7 +43,7 @@ struct BoardView: View {
 
             }
             .task {
-                peggleGame.updateGameArea(geometry.size)
+                peggleGame.setup(geometry.size)
             }
         }
     }

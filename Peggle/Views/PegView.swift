@@ -17,8 +17,6 @@ struct PegView: View {
     @State var isVisible = true
 
     var body: some View {
-//        ZStack {
-//            if isVisible {
                 Image(peg.color)
                     .resizable()
                     .frame(width: peg.radius * 2, height: peg.radius * 2)
@@ -56,8 +54,6 @@ struct PegView: View {
                         board.removePeg(at: location)
                     }
             }
-//        }
-//    }
 }
 
 struct PegView_Previews: PreviewProvider {

@@ -151,7 +151,7 @@ class PeggleGameEngine: ObservableObject {
         board.moveBall(by: by)
     }
 
-    func updateGameArea(_ gameArea: CGSize) {
+    func setup(_ gameArea: CGSize) {
         board.updateGameArea(gameArea)
         setupWalls()
         board.setBall()
