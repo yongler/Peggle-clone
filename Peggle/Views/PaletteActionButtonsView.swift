@@ -5,9 +5,9 @@
 ////  Created by Lee Yong Ler on 29/1/23.
 ////
 //
-//import SwiftUI
+// import SwiftUI
 //
-//struct PaletteActionButtonsView: View {
+// struct PaletteActionButtonsView: View {
 //    @Binding var peggleGame: PeggleGameEngine
 //    @Binding var board: Board
 //    @State private var name: String = ""
@@ -52,10 +52,10 @@
 ////            }
 //        }
 //    }
-//}
+// }
 //
-//struct PaletteActionButtonsView_Previews: PreviewProvider {
+// struct PaletteActionButtonsView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        PaletteActionButtonsView(peggleGame: .constant(PeggleGameEngine()), board: .constant(Board.sampleBoard))
 //    }
-//}
+// }

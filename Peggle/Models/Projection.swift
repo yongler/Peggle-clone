@@ -10,7 +10,7 @@ import Foundation
 struct Projection {
     var start: CGFloat
     var end: CGFloat
-    
+
     func isOverlapping(projection: Projection) -> Bool {
         if projection.end < self.start || self.end < projection.start {
             return false

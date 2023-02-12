@@ -12,9 +12,10 @@ struct BallView: View {
     @Binding var ball: Ball?
     @Binding var isDesigning: Bool
     @State private var dragOffset = CGSize.zero
-    
+
     var body: some View {
         if !isDesigning && ball != nil {
+
             Image(Ball.image)
                 .resizable()
                 .frame(width: ball!.radius * 2, height: ball!.radius * 2)
@@ -32,12 +33,12 @@ struct BallView: View {
                 )
                 .gesture(
                     DragGesture(minimumDistance: 0)
-                        .onEnded { gesture in
+                        .onEnded { _ in
                             peggleGame.launchBall()
                         }
                  )
         }
-            
+
     }
 }
 

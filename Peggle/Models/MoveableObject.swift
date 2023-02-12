@@ -5,9 +5,9 @@
 ////  Created by Lee Yong Ler on 5/2/23.
 ////
 //
-//import Foundation
+// import Foundation
 //
-//class MoveableObject: Object {
+// class MoveableObject: Object {
 //    var velocity: Vector
 //    var acceleration: Acceleration
 //    
@@ -16,11 +16,11 @@
 //        self.acceleration = acceleration
 //        super.init(centre: centre)
 //    }
-//}
+// }
 //
-//extension MoveableObject {
+// extension MoveableObject {
 //    func move(time: Float) {
 //        velocity.applyAcceleration(acceleration: acceleration, time: time)
 //        centre = velocity.move(centre: centre, time: time)
 //    }
-//}
+// }

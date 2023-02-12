@@ -8,35 +8,38 @@ import SwiftUI
 import Foundation
 
 class GameEngine {
-    static let sharedInstance: GameEngine = GameEngine()
-//    var frameDuration: Double = 0
-    
-//    func createDisplayLink() {
-//        let displaylink = CADisplayLink(target: self, selector: #selector(update))
-//        displaylink.add(to: .current, forMode: RunLoop.Mode.default)
-//    }
-//
-//    @objc func update(displaylink: CADisplayLink) {
-//        frameDuration = Double(displaylink.targetTimestamp - displaylink.timestamp)
-//        moveAll(time: frameDuration)
-//    }
-    
+    static let sharedInstance = GameEngine()
+    let normalForceCoefficient = 0.6
+
     var objects = [PhysicsObject]()
-    
+
     func addPhysicsObject(object: PhysicsObject) {
         objects.append(object)
     }
-    
+
     func removePhysicsObject(object: PhysicsObject) {
-        objects.removeAll(where: {$0 == object})
+        objects.removeAll(where: { $0 == object })
     }
+
     func resolveCollision(_ object1: PhysicsObject, _ object2: PhysicsObject) {
-        
+        if object2 is PegPhysicsObject {
+            object1.velocity.directionX *= -1 * normalForceCoefficient
+            object1.velocity.directionY *= -1 * normalForceCoefficient
+        }
+        if object2 is RectangleObject {
+            let top: CGFloat = 100
+            if object2.centre.y < top {
+                object1.velocity.directionY *= -1 * normalForceCoefficient
+            } else {
+                object1.velocity.directionX *= -1 * normalForceCoefficient
+            }
+
+        }
     }
-    
+
     func collidedObjects(object: PhysicsObject) -> [PhysicsObject] {
         var collidedObjects = [PhysicsObject]()
-        
+
         for obj in self.objects {
             if object == obj {
                 continue
@@ -45,18 +48,18 @@ class GameEngine {
                 collidedObjects.append(obj)
             }
         }
-        
+
         return collidedObjects
     }
-    
+
     func move(object: PhysicsObject, time: Double) -> [PhysicsObject] {
-        guard let index = objects.firstIndex(where: {$0 == object}) else {
+        guard let index = objects.firstIndex(where: { $0 == object }) else {
             return []
         }
         if objects[index].isStatic {
             return []
         }
-        
+
         objects[index].move(time: time)
         let collidedObjects = collidedObjects(object: objects[index])
         for obj in collidedObjects {
@@ -68,13 +71,17 @@ class GameEngine {
 
     func moveAll(time: Double) -> [PhysicsObject] {
         var collidedObjects: [PhysicsObject] = []
-        print("----------------")
+//        print("----------------")
         for object in objects {
 //            print(object)
             let collidedObj = move(object: object, time: time)
             collidedObjects.append(contentsOf: collidedObj)
         }
         return collidedObjects
+    }
+
+    func clearObjects() {
+        objects = []
     }
 
 }

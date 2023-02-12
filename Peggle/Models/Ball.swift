@@ -9,11 +9,12 @@ import Foundation
 
 class Ball: CircleObject {
     var defaultBallRadius = CGFloat(25)
-    
-    override init(centre: CGPoint, radius: CGFloat = defaultBallRadius, velocity: Vector, acceleration: Acceleration = Acceleration.gravity) {
+
+    override init(centre: CGPoint, velocity: Vector,
+                  acceleration: Acceleration = Acceleration.gravity, radius: CGFloat = defaultBallRadius) {
         super.init(centre: centre, velocity: velocity, acceleration: acceleration)
     }
-    
+
     func moveCentre(by: CGSize) {
         centre.x += by.width
         centre.y += by.height
@@ -22,12 +23,13 @@ class Ball: CircleObject {
 }
 
 extension Ball {
-    static let sampleBall = Ball(centre: CGPoint(x: 400, y: 100), velocity: Vector.zero, acceleration: Acceleration.zero)
+    static let sampleBall = Ball(centre: CGPoint(x: 400, y: 100),
+                                 velocity: Vector.zero, acceleration: Acceleration.zero)
     static let image = "ball"
 }
 
 extension Ball: CustomStringConvertible {
     var description: String {
-        return "ball \(centre)"
+        "ball \(centre) \(velocity)"
     }
 }

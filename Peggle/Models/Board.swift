@@ -25,7 +25,7 @@ class Board: Codable, ObservableObject {
 
     @Published var pegs: [Peg] = []
     @Published var ball: Ball?
-    var gameArea: CGSize = CGSize(width: 1000, height: 1000)
+    var gameArea = CGSize(width: 1_000, height: 1_000)
     var pegCount: Int {
         pegs.count
     }
@@ -34,14 +34,12 @@ class Board: Codable, ObservableObject {
 //            self.pegs = pegs
 //            self.gameArea = gameArea
 //        }
-    
-    
-    
-    init(pegs: [Peg] = [], gameArea: CGSize) {
+
+    init(gameArea: CGSize, pegs: [Peg] = []) {
         self.pegs = pegs
         self.gameArea = gameArea
     }
-    
+
     init(pegs: [Peg] = [], ball: Ball? = nil) {
         self.pegs = pegs
         self.ball = ball
@@ -54,7 +52,7 @@ class Board: Codable, ObservableObject {
         }
         self.pegs.append(peg)
     }
-    
+
     /// Check if peg to add is a valid position, if yes add to board.
     func addPeg(color: String, centre: CGPoint, radius: CGFloat = Peg.defaultPegRadius) {
         let peg = Peg(color: color, centre: centre, radius: radius)
@@ -75,59 +73,72 @@ class Board: Codable, ObservableObject {
             return distanceBetweenCentres <= radius
         })
     }
-    
+
     func movePeg(_ peg: Peg, by: CGSize) {
         for i in 0..<pegs.count {
             if pegs[i] != peg {
                 continue
             }
             pegs[i].moveCentre(by: by)
-            
+
             guard checkValidPosition(peg: pegs[i]) else {
                 removePeg(pegs[i])
                 return
             }
         }
     }
-    
+
     private func findPeg(peg: Peg) -> Int? {
-        return pegs.firstIndex(of: peg)
+        pegs.firstIndex(of: peg)
     }
-    
+
     func lightUp(peg: Peg) {
         guard let index = findPeg(peg: peg) else {
             return
         }
         pegs[index].lightUp()
     }
- 
+
     func clearBoard() {
         self.pegs = []
     }
-    
+
     func clearAllLitPegs() {
-        pegs.removeAll(where: {$0.isLit})
+        print("before clearing \(pegs.count)")
+        var newPegs: [Peg] = []
+        
+        for peg in pegs {
+            print(peg)
+            if peg.isLit {
+                continue
+            }
+            newPegs.append(peg)
+        }
+//        pegs.removeAll(where: { $0.isLit == true })
+        self.pegs = newPegs
+        print("after clearing \(pegs.count)")
     }
-    
+
     func setBall(_ ball: Ball) {
         self.ball = ball
     }
-    
+
     func setBall() {
-        setBall(Ball.sampleBall)
+        setBall(Ball(centre: CGPoint(x: gameArea.width / 2, y: 100),
+                     velocity: Vector.zero, acceleration: Acceleration.zero))
     }
-    
+
     func removeBall() {
         self.ball = nil
     }
-    
+
     private var ballIsOutOfBounds: Bool {
         guard let ball = ball else {
             return false
         }
         return ball.centre.y > gameArea.height
     }
-    
+
     func removeBallIfOutOfBounds() -> Bool {
         if ballIsOutOfBounds {
             removeBall()
@@ -135,15 +146,16 @@ class Board: Codable, ObservableObject {
         }
         return false
     }
-    
+
     func moveBall(by: CGSize) {
         guard let ball = ball else {
             return
         }
         ball.moveCentre(by: by)
     }
-    
+
     func updateGameArea(_ gameArea: CGSize) {
+        print("updating \(gameArea.width) \(gameArea.height)")
         self.gameArea = gameArea
     }
 
@@ -156,21 +168,22 @@ class Board: Codable, ObservableObject {
             }
 
             let sumOfTwoRadius = otherPeg.radius + peg.radius
-            let distanceBetweenCentres = sqrt(pow(otherPeg.centre.x - peg.centre.x, 2) + pow(otherPeg.centre.y - peg.centre.y, 2))
+            let distanceBetweenCentres = sqrt(pow(otherPeg.centre.x - peg.centre.x, 2) +
+                                              pow(otherPeg.centre.y - peg.centre.y, 2))
             if distanceBetweenCentres < sumOfTwoRadius {
                 return false
             }
         }
-        
+
         return true
     }
 
     /// Checks if the current peg is in a valid position.
     func checkValidPosition(peg: Peg) -> Bool {
-        return checkNotOverlappingPeg(peg: peg) && checkInArea(peg: peg)
+        checkNotOverlappingPeg(peg: peg) && checkInArea(peg: peg)
 //        return checkNotOverlappingPeg(peg: peg)
     }
-    
+
     /// Compares peg location with area boundary
     func checkInArea(peg: Peg) -> Bool {
         guard peg.centre.x - peg.radius > 0 && peg.centre.x + peg.radius < gameArea.width else {
@@ -187,5 +200,17 @@ class Board: Codable, ObservableObject {
 extension Board {
     static var sampleBoard = Board(pegs: [Peg.sampleBluePeg1, Peg.sampleBluePeg2,
                                           Peg.sampleOrangePeg1, Peg.sampleOrangePeg2], ball: Ball.sampleBall)
-                                          
+
+    static var sampleGameBoard = Board(pegs: [
+        Peg.sampleBluePeg1,
+        Peg.sampleBluePeg2,
+        Peg.sampleBluePeg3,
+        Peg.sampleBluePeg4,
+        Peg.sampleBluePeg5,
+        Peg.sampleOrangePeg1,
+        Peg.sampleOrangePeg2,
+        Peg.sampleOrangePeg3,
+        Peg.sampleOrangePeg4,
+        Peg.sampleOrangePeg5
+    ], ball: Ball.sampleBall)
 }

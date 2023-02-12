@@ -9,9 +9,9 @@ import SwiftUI
 
 struct TestView: View {
     @State var isVisible = true
-        
+
     var body: some View {
-        
+
         ZStack {
             Rectangle()
                 .zIndex(1)
@@ -26,8 +26,7 @@ struct TestView: View {
                     .zIndex(2)
             }
         }
-        
-        
+
 //        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
 //
 //            .transition(.scale)
