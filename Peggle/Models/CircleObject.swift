@@ -17,7 +17,7 @@ class CircleObject: PhysicsObject {
         self.radius = radius
         super.init(centre: centre, velocity: velocity, acceleration: acceleration)
     }
-    
+
     override var vertices: [CGPoint] {
         var vertices: [CGPoint] = []
 

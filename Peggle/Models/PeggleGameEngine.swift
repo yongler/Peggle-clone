@@ -11,14 +11,14 @@ class PeggleGameEngine: ObservableObject {
     @Published var board: Board
     private var gameEngine = GameEngine()
     let timeForPrematureRemoval: Double = 1
-    
+
     var frameDuration: Double = 0
     var launchedBall = false
     var lastBallPosition: CGPoint
     var timeAtLastBallPosition: Double
-    
+
     var currentTime: Double {
-        return Double(Calendar.current.component(.second, from: Date()))
+        Double(Calendar.current.component(.second, from: Date()))
     }
 
     init() {
@@ -33,14 +33,14 @@ class PeggleGameEngine: ObservableObject {
         let wallDisplacement: CGFloat = 100
         let leftWall = RectangleObject(centre: CGPoint(x: -wallDisplacement, y: board.gameArea.height / 2),
                                        width: wallWidth, height: board.gameArea.height)
-        
+
         let rightWall = RectangleObject(centre: CGPoint(x: board.gameArea.width + wallDisplacement,
                                                         y: board.gameArea.height / 2),
                                         width: wallWidth, height: board.gameArea.height)
-        
+
         let topWall = RectangleObject(centre: CGPoint(x: board.gameArea.width / 2, y: -wallDisplacement),
-                                     width: board.gameArea.width, height: wallWidth)
-        
+                                      width: board.gameArea.width, height: wallWidth)
+
         gameEngine.addPhysicsObject(object: leftWall)
         gameEngine.addPhysicsObject(object: rightWall)
         gameEngine.addPhysicsObject(object: topWall)
@@ -61,7 +61,7 @@ class PeggleGameEngine: ObservableObject {
         guard launchedBall == false else {
             return
         }
-        
+
         launchedBall = true
         guard let ball = board.ball else {
             return
@@ -78,7 +78,7 @@ class PeggleGameEngine: ObservableObject {
 
     func setBoardToGameEngine() {
         gameEngine.clearObjects()
-        
+
         for peg in board.pegs {
             let pegToAdd = PegPhysicsObject(peg: peg)
             gameEngine.addPhysicsObject(object: pegToAdd)
@@ -102,17 +102,18 @@ class PeggleGameEngine: ObservableObject {
             }
             if let obj = object as? Ball {
                 newBoard.setBall(obj)
-                
-                if currentTime - timeAtLastBallPosition > timeForPrematureRemoval && abs(lastBallPosition.x - obj.centre.x + lastBallPosition.y - obj.centre.y) < 1 {
+
+                if currentTime - timeAtLastBallPosition > timeForPrematureRemoval &&
+                    abs(lastBallPosition.x - obj.centre.x + lastBallPosition.y - obj.centre.y) < 1 {
                     newBoard.clearAllLitPegs()
                 }
-                
+
                 if abs(lastBallPosition.x - obj.centre.x + lastBallPosition.y - obj.centre.y) > 1 {
                     timeAtLastBallPosition = currentTime
                 }
-                
+
                 lastBallPosition = obj.centre
-                
+
                 if newBoard.removeBallIfOutOfBounds() {
                     newBoard.setBall()
                     newBoard.clearAllLitPegs()
@@ -120,7 +121,7 @@ class PeggleGameEngine: ObservableObject {
                 }
             }
         }
-        
+
         self.board = newBoard
         setBoardToGameEngine()
     }

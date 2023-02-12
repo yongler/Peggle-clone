@@ -36,7 +36,7 @@ struct Vector: Equatable {
         Vector(origin: self.origin, directionX: self.directionX - vector.directionX,
                directionY: self.directionY - vector.directionY)
     }
-    
+
     /// Gets normalized vector perpendicular to this vector
     func getNormalizedPerpendicular() -> Vector {
         let perpendicularDirectionX: CGFloat = 1
@@ -51,7 +51,7 @@ struct Vector: Equatable {
         let norm = sqrt(pow(self.directionX, 2) + pow(self.directionY, 2))
         return Vector(origin: self.origin, directionX: self.directionX / norm, directionY: self.directionY / norm)
     }
-    
+
     /// Update position that has this velocity
     func update(centre: CGPoint, time: Double) -> CGPoint {
         let newCentreX = centre.x + self.directionX * CGFloat(time)

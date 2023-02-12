@@ -16,7 +16,7 @@ class PegPhysicsObject: CircleObject {
     }
 
     func getPeg() -> Peg {
-        return peg
+        peg
     }
 }
 

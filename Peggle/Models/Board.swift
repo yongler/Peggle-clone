@@ -67,7 +67,7 @@ class Board: Codable, ObservableObject {
             return distanceBetweenCentres <= radius
         })
     }
-    
+
     /// Move peg by the specifiied size
     func movePeg(_ peg: Peg, by: CGSize) {
         for i in 0..<pegs.count {
@@ -82,12 +82,12 @@ class Board: Codable, ObservableObject {
             }
         }
     }
-    
+
     /// Find peg
     private func findPeg(peg: Peg) -> Int? {
         pegs.firstIndex(of: peg)
     }
-    
+
     func lightUp(peg: Peg) {
         guard let index = findPeg(peg: peg) else {
             return
@@ -101,7 +101,7 @@ class Board: Codable, ObservableObject {
 
     func clearAllLitPegs() {
         var newPegs: [Peg] = []
-        
+
         for peg in pegs {
             if peg.isLit {
                 continue
@@ -114,7 +114,7 @@ class Board: Codable, ObservableObject {
     func setBall(_ ball: Ball) {
         self.ball = ball
     }
-    
+
     /// Convenience function to reset ball to top
     func setBall() {
         setBall(Ball(centre: CGPoint(x: gameArea.width / 2, y: 100),
@@ -147,16 +147,7 @@ class Board: Codable, ObservableObject {
         guard ball.velocity == Vector.zero && ball.acceleration == Acceleration.zero else {
             return
         }
-//        let oldBallPosition = ball.centre
         ball.moveCentre(by: by)
-//
-//        let restriction: CGFloat = 300
-//
-//
-//        guard ball.centre.y < restriction && ball.centre.x < gameArea.width/2 + restriction && ball.centre.x < gameArea.width/2 - restriction else {
-//            ball.centre = oldBallPosition
-//            return
-//        }
     }
 
     func updateGameArea(_ gameArea: CGSize) {
