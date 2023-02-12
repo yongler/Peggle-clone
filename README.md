@@ -31,22 +31,34 @@ You are encouraged to include diagrams where appropriate in order to enhance
 your guide.
 
 
-Model objects and physics objects that represent them are seperated to provide an abstraction and seperation of code. i.e. the model does not need to know about the physics object representation. 
+### Class diagrams
+![image](https://user-images.githubusercontent.com/68801331/218320230-46683487-d5a6-420a-b7f7-118e69d29075.png)
 
-Models basically represent what the objects are and what they can do, while views handle the rendering to the screen. 
+Model objects and physics objects that represent them are seperated to provide an abstraction and seperation of code. i.e. the model does not need to know about the physics object representation. Example would be peg object in board has a corresponding pegphysics object belonging in gameengine. This introduces loose coupling. 
+
+Models basically represent what the objects are and what they can do, while views handle the rendering to the screen. Models are split into 3 main category, game engine, board and board store. Game engine category consists of `GameEngine` and `PeggleGameEngine`, which is in charge of all the kinematics. 
 
 The design is of a facade, where `PeggleGameEngine` acts as the facade of the models and communicates with the views. 
 
 Util or constant class is omitted to show high level design. 
-
-### Class diagrams
-
 
 
 ### Sequence diagrams
 Observer pattern is used. Whenever the board model instance changes, views that observes it will be automatically rerendered to update. (functionality of `@Published` and `ObservedObject` in SwiftUI) 
 
 
+- Game loop
+1. When a board is rendered, it autmotically calls `PeggleGameEngine.updateGameArea` which updates gameArea of the board, set ball to initial position, set board objects into phsyics objects into game engine and also calls `createDisplayLink()`
+2. `createDisplayLink()` then sets up a CADisplayLink that is tied to device screen and calls `update` every frame. 
+3. `update` gets the frame duration and calls `gameEngine.moveAll(time: frameDuration)` to simulate kinematics of all game objects. 
+4. The returned list of collided physics objects is taken as input for `updateBoardWithGameEngine(collidedObjects: collidedObjects)`, which updates the board instance with the latest positions of all physics objects. 
+
+- Launch ball 
+1. When the ball is tapped, `PeggleGameEngine.launchBall()` is called which sets the ball with velocity and acceleration. 
+2. The ball moves according to the game engine kinematics in `GameEngine.move()` and bounces if it hits pegs or walls. 
+3. The returned collided physicsObjects are then processed by `PeggleGameEngine`. If it is a `PegPhysicsObject`, the peg is lighted up. 
+4. If the ball is stuck in place for too long (`timeForPrematureRemoval`), `board.clearAllLitPegs()` is called to do premature removal. 
+5. If the ball falls out of gameArea, it is removed in `removeBallIfOutOfBounds()`
 
 
 ## Tests
