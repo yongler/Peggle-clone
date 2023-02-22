@@ -138,46 +138,48 @@ tests in code, please delete this section.
 - Peg 
     - When peg is hit by ball, it should light up 
     - When a peg is light up, it should remain lit 
-    - When lit pegs are removed and ball exits the stage, new ball should be provided at the top 
+    - When lit pegs are removed and ball exits the stage, new ball should be provided at the top
+    
+     
+## Rules of the Game
+Please write the rules of your game here. This section should include the
+following sub-sections. You can keep the heading format here, and you can add
+more headings to explain the rules of your game in a structured manner.
+Alternatively, you can rewrite this section in your own style. You may also
+write this section in a new file entirely, if you wish.
 
+### Cannon Direction
+Please explain how the player moves the cannon.
+
+### Win and Lose Conditions
+Please explain how the player wins/loses the game.
+
+## Level Designer Additional Features
+
+### Peg Rotation
+Please explain how the player rotates the triangular pegs.
+
+### Peg Resizing
+Please explain how the player resizes the pegs.
+
+## Bells and Whistles
+Please write all of the additional features that you have implemented so that
+your grader can award you credit.
+
+## Tests
+If you decide to write how you are going to do your tests instead of writing
+actual tests, please write in this section. If you decide to write all of your
+tests in code, please delete this section.
 
 ## Written Answers
 
-### Design Tradeoffs
-> When you are designing your system, you will inevitably run into several
-> possible implementations, in which you need to choose one among all. Please
-> write at least 2 such scenarios and explain the trade-offs in the choices you
-> are making. Afterwards, explain what choices you choose to implement and why.
->
-> For example (might not happen to you -- this is just hypothetical!), when
-> implementing a certain touch gesture, you might decide to use the method
-> `foo` instead of `bar`. Explain what are the advantages and disadvantages of
-> using `foo` and `bar`, and why you decided to go with `foo`.
+### Reflecting on your Design
+> Now that you have integrated the previous parts, comment on your architecture
+> in problem sets 2 and 3. Here are some guiding questions:
+> - do you think you have designed your code in the previous problem sets well
+>   enough?
+> - is there any technical debt that you need to clean in this problem set?
+> - if you were to redo the entire application, is there anything you would
+>   have done differently?
 
 Your answer here
-
-1. Composition or inheritance for `GameEngine` and `PeggleGameEngine`.
-- Composition has the downside of needing to reimplement or add functionalities in `PeggleGameEngine`, thus increasing complexity and possibility of introducing bugs.  
-- Inheritance might fail the Liskov Substitution principle if it is used and cause complications down the road.
-- Also, inheritance makes them tightly coupled.  
-- Inheritance enables `PeggleGameEngine` to use `GameEngine` functionality without much reimplementing of the functions.
-- Instead, `PeggleGameEngine` feeds inputs into `GameEngine` functions and the outputs are then processed to give additional game engine features specific to peggle. 
-- Trade off of composition adding complexity to maintain code vs making the code loosely coupled, hence composition is used. 
-
-2. Having a flat structure vs hierrachy
-- Flat structure would be 1 of which models do not know of each other, and having a central model to tie them together, hence being loosely coupled. 
-- However this is hard to implement and introduces a lot of code. 
-- A hierrachy structure where 1 model knows of the other, that knows of another... is much simpler to implement but is tightly coupled. 
-- FLat structure, where `PeggleGameEngine` is the facade that ties `Board` and `GameEngine` together is used. Although trade off of being hard to implement, it has looser coupling and easier maintainability in the future. 
-
-3. Seperating Axis Theorem (SAT) vs own solution 
-- SAT is a theorem that helps to detect overlapping in objects. It introduces a lot of code and is complex in nature, involving a lot of geometry. 
-- Initially wanted to use own solution of drawing boundaries around objects and detecting overlaps by means of areas or projections. It is easier to understand and implement. However it has the downside of being not fully tested with edge cases hence might introduce bugs.  
-- SAT is used as a tradeoff of being a well known theorem that is fully tested although being hard to implement and understand and time consuming. 
-
-4. `PhysicsObject` being a protocol or class. 
-- Initially it was meant to be a protcol since it determines what properties and functions the physics objects should conform to, in addition to having own properties specific to shape. 
-- However in Swift a list of objects conforming to a protocol cannot be done, i.e. `[PhysicsObject]`. A possible solution is to create a wrapper for the protocol, or initialise a dictionary `[String: PhysicsObject]` but this introduces a lot of unecessary strings which might confuse developers. 
-- Classes was used in the end as a workaround to create a list of class objects, with the tradeoff of having slightly more code and needing to override properties or functions in derived classes when the functionalities change specific to the shape. 
-
-
