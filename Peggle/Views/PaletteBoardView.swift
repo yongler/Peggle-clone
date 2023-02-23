@@ -9,10 +9,7 @@ import SwiftUI
 
 struct PaletteBoardView: View {
     @ObservedObject var paletteViewModel: PaletteViewModel
-    
-    @ObservedObject var peggleGame: PeggleGameEngine
-    @Binding var board: Board
-    @Binding var selectedButton: String
+//    @State private var dragOffset = CGSize.zero
 
     var body: some View {
         GeometryReader { geometry in
@@ -27,20 +24,44 @@ struct PaletteBoardView: View {
                                     paletteViewModel.addPeg(location: value.location)
                                 }
                         )
-
+                    
+                    Text("\(paletteViewModel.board.pegs.count)")
+                    
                     Spacer()
 
-                    BallView(peggleGame: peggleGame, ball: $board.ball)
+//                    BallView(peggleGame: peggleGame, ball: $board.ball)
 
-                    ForEach($board.pegs) { peg in
-                        PalettePegView(peggleGame: peggleGame, board: board, peg: peg, selectedButton: $selectedButton)
+                    ForEach(paletteViewModel.boardPegs, id: \.id) { peg in
+                        Image(peg.color.rawValue)
+                            .resizable()
+                            .frame(width: peg.radius * 2, height: peg.radius * 2)
+                            .position(peg.centre)
+//                            .offset(dragOffset)
+                            .onLongPressGesture(perform: {
+                                paletteViewModel.pegOnLongPress(peg)
+                            })
+                            .gesture(
+                                DragGesture(minimumDistance: 0)
+                                    .onChanged { gesture in
+    //                                                dragOffset = gesture.translation
+    //                                            }
+    //                                            .onEnded { gesture in
+    //                                                dragOffset = .zero
+                                        paletteViewModel.pegOnDrag(peg, by: gesture.translation)
+                                    }
+                            )
+                            .onTapGesture { location in
+                                print("tapping")
+                                paletteViewModel.pegOnTap(at: location)
+                            }
+//                        PalettePegView(paletteViewModel: paletteViewModel, peg: peg)
                     }
                 }
 
             }
-            .task {
-                peggleGame.setup(geometry.size)
-            }
+//            .task {
+//                peggleGame.setup(geometry.size)
+//            }
         }
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct PaletteDesignButton: View {
     @ObservedObject var paletteViewModel: PaletteViewModel
     @State var selectedButton: PaletteViewModel.PaletteButtonEnum
-    var buttonRadius: CGFloat = 50
+    var buttonRadius: CGFloat = 80
     
     var body: some View {
         Button(action: {

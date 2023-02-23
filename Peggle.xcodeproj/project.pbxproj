@@ -18,6 +18,7 @@
 		12540EF429A63747006A2764 /* AlertMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540EF329A63747006A2764 /* AlertMessages.swift */; };
 		12540EF629A639C8006A2764 /* PaletteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540EF529A639C8006A2764 /* PaletteViewModel.swift */; };
 		12540EF829A63D24006A2764 /* PaletteDesignButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540EF729A63D24006A2764 /* PaletteDesignButtonView.swift */; };
+		12540EFA29A79149006A2764 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540EF929A79149006A2764 /* GameViewModel.swift */; };
 		12633C1B2984DA880057AF14 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1A2984DA880057AF14 /* BoardTests.swift */; };
 		12633C1D2984DD370057AF14 /* PegTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1C2984DD370057AF14 /* PegTests.swift */; };
 		12633C1F2984F6BE0057AF14 /* PalettePegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1E2984F6BE0057AF14 /* PalettePegView.swift */; };
@@ -70,6 +71,7 @@
 		12540EF329A63747006A2764 /* AlertMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessages.swift; sourceTree = "<group>"; };
 		12540EF529A639C8006A2764 /* PaletteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteViewModel.swift; sourceTree = "<group>"; };
 		12540EF729A63D24006A2764 /* PaletteDesignButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDesignButtonView.swift; sourceTree = "<group>"; };
+		12540EF929A79149006A2764 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		12633C1A2984DA880057AF14 /* BoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTests.swift; sourceTree = "<group>"; };
 		12633C1C2984DD370057AF14 /* PegTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegTests.swift; sourceTree = "<group>"; };
 		12633C1E2984F6BE0057AF14 /* PalettePegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettePegView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				12540EF329A63747006A2764 /* AlertMessages.swift */,
 				12540EF529A639C8006A2764 /* PaletteViewModel.swift */,
+				12540EF929A79149006A2764 /* GameViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				129DE90F29967D2100EB08CC /* BallView.swift in Sources */,
 				12540EF629A639C8006A2764 /* PaletteViewModel.swift in Sources */,
 				129DE9012993DF9D00EB08CC /* Ball.swift in Sources */,
+				12540EFA29A79149006A2764 /* GameViewModel.swift in Sources */,
 				129A2003298FA28300C32F57 /* Vector.swift in Sources */,
 				12EEE6AC298142D200E2FFEA /* BoardStore.swift in Sources */,
 				129A200F298FA5FD00C32F57 /* GameEngine.swift in Sources */,

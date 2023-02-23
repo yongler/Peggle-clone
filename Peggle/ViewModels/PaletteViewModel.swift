@@ -9,10 +9,16 @@ import Foundation
 
 class PaletteViewModel: ObservableObject {
     @Published var selectedButton: PaletteButtonEnum
-    @Published var board: Board = Board()
+    @Published var board: Board
     @Published var levelName: String = ""
     @Published var alertMessage: String = ""
     @Published var hasAlert = false
+    
+    let loadBoardFail = "Fail to load board"
+    let emptyLevelName = "Please specify a name to save"
+    let saveBoardFail = "Failed to save"
+    let levelDoesNotExist = "Level does not exist"
+    let overwriteWarning = "Saving will overwrite the existing level"
     
     enum PaletteButtonEnum: String {
         case bluePeg = "peg-blue"
@@ -22,6 +28,7 @@ class PaletteViewModel: ObservableObject {
     
     init(selectedButton: PaletteButtonEnum) {
         self.selectedButton = selectedButton
+        self.board = Board()
     }
     
     convenience init() {
@@ -41,28 +48,28 @@ class PaletteViewModel: ObservableObject {
     }
     
     
-    func loadLevel() {
-        do {
-            board = try BoardStore.load(name: levelName)
-        } catch {
-            alertMessage = "Failed to load board"
-            hasAlert = true
-        }
-    }
-    
-    func saveLevel() {
-        guard !levelName.isEmpty else {
-            alertMessage = "Please specify a name to save"
-            hasAlert = true
-            return
-        }
-        do {
-            try BoardStore.save(board: board, name: levelName)
-        } catch {
-            alertMessage = "Failed to save"
-            hasAlert = true
-        }
-    }
+//    func loadLevel() {
+//        do {
+//            board = try BoardStore.load(name: levelName)
+//        } catch {
+//            alertMessage = loadBoardFail
+//            hasAlert = true
+//        }
+//    }
+//
+//    func saveLevel() {
+//        guard !levelName.isEmpty else {
+//            alertMessage = emptyLevelName
+//            hasAlert = true
+//            return
+//        }
+//        do {
+//            try BoardStore.save(board: board, name: levelName)
+//        } catch {
+//            alertMessage = saveBoardFail
+//            hasAlert = true
+//        }
+//    }
     
     func closeAlert() {
         hasAlert = false
@@ -71,9 +78,10 @@ class PaletteViewModel: ObservableObject {
     func clearBoard() {
         board.clearBoard()
     }
-    
+
     
     func addPeg(location: CGPoint) {
+        print("adding peg")
         guard selectedButton != .delete else {
             return
         }
@@ -92,16 +100,25 @@ class PaletteViewModel: ObservableObject {
     func pegOnLongPress(_ peg: Peg) {
         board.removePeg(peg)
     }
-    
+
     func pegOnDrag(_ peg: Peg, by: CGSize) {
+        print("draggging")
         board.movePeg(peg, by: by)
     }
-    
+
     func pegOnTap(at: CGPoint) {
+        print("heiio")
         guard selectedButton == .delete else {
             return
         }
-        board.removePeg(at: location)
+        print("hellooo")
+        board.removePeg(at: at)
+    }
+    
+    var boardPegs: [Peg] {
+//        get { return board.pegs }
+//        set { boardPegs = newValue }
+        board.pegs
     }
     
     

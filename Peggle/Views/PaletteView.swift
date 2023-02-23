@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct PaletteView: View {
-    @ObservedObject var paletteViewModel: PaletteViewModel
+    @StateObject var paletteViewModel: PaletteViewModel
 
     var body: some View {
         VStack {
             PaletteBoardView(paletteViewModel: paletteViewModel)
             PaletteDesignButtonsView(paletteViewModel: paletteViewModel)
             PaletteActionButtonsView(paletteViewModel: paletteViewModel)
-
         }
         .padding()
     }

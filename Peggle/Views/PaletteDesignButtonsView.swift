@@ -15,6 +15,7 @@ struct PaletteDesignButtonsView: View {
         HStack {
             PaletteDesignButton(paletteViewModel: paletteViewModel, selectedButton: .bluePeg)
             PaletteDesignButton(paletteViewModel: paletteViewModel, selectedButton: .orangePeg)
+            Spacer()
             PaletteDesignButton(paletteViewModel: paletteViewModel, selectedButton: .delete)
         }
     }

@@ -139,7 +139,10 @@ tests in code, please delete this section.
     - When peg is hit by ball, it should light up 
     - When a peg is light up, it should remain lit 
     - When lit pegs are removed and ball exits the stage, new ball should be provided at the top
-    
+
+
+- Saving 
+    Note that while your application should work on all iPad sizes, persisted data need not be compatible across sizes. In particular, level data saved from a certain iPad size, when loaded on another iPad size, does not need to be exactly the same level (it does not need to work either)
      
 ## Rules of the Game
 Please write the rules of your game here. This section should include the
