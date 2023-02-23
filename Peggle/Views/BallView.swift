@@ -10,7 +10,7 @@ import SwiftUI
 struct BallView: View {
     @ObservedObject var peggleGame: PeggleGameEngine
     @Binding var ball: Ball?
-    @Binding var isDesigning: Bool
+//    @Binding var isDesigning: Bool
     @State private var dragOffset = CGSize.zero
 
     var body: some View {

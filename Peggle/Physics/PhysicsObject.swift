@@ -21,7 +21,7 @@ class PhysicsObject: Equatable {
             let edge: Vector = point1.subtract(point2)
             let normal: Vector = edge.getNormalizedPerpendicular()
             axes.append(normal)
-        }
+        }		
         return axes
     }
 

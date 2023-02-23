@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct BoardView: View {
+struct PaletteBoardView: View {
+    @ObservedObject var paletteViewModel: PaletteViewModel
+    
     @ObservedObject var peggleGame: PeggleGameEngine
     @Binding var board: Board
     @Binding var selectedButton: String
-    @Binding var isDesigning: Bool
 
     var body: some View {
         GeometryReader { geometry in
@@ -23,21 +24,16 @@ struct BoardView: View {
                         .gesture(
                             DragGesture(minimumDistance: 0)
                                 .onEnded { value in
-                                    guard selectedButton != "delete" && isDesigning else {
-                                        return
-                                    }
-
-                                    peggleGame.addPeg(color: selectedButton, centre: value.location)
+                                    paletteViewModel.addPeg(location: value.location)
                                 }
                         )
 
                     Spacer()
 
-                    BallView(peggleGame: peggleGame, ball: $board.ball, isDesigning: $isDesigning)
+                    BallView(peggleGame: peggleGame, ball: $board.ball)
 
                     ForEach($board.pegs) { peg in
-                        PegView(peggleGame: peggleGame, board: board, peg: peg, selectedButton: $selectedButton,
-                                isDesigning: $isDesigning)
+                        PalettePegView(peggleGame: peggleGame, board: board, peg: peg, selectedButton: $selectedButton)
                     }
                 }
 
@@ -49,9 +45,8 @@ struct BoardView: View {
     }
 }
 
-struct BoardView_Previews: PreviewProvider {
+struct PaletteBoardView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardView(peggleGame: (PeggleGameEngine()), board: .constant(Board.sampleBoard),
-                  selectedButton: .constant(""), isDesigning: .constant(true))
+        PaletteBoardView(paletteViewModel: PaletteViewModel())
     }
 }

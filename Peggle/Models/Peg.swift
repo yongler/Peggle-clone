@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Peg: Equatable, Codable, Identifiable {
+struct Peg: Equatable, Identifiable {
     static let defaultPegRadius: CGFloat = 25
 
     var id = UUID()
-    var color: String
+    var color: PegTypeEnum
     var centre: CGPoint
     var radius: CGFloat
     var isLit = false
@@ -22,10 +22,15 @@ struct Peg: Equatable, Codable, Identifiable {
         }
 
         isLit = true
-        if color == "peg-blue" {
-            color = "peg-blue-glow"
-        } else {
-            color = "peg-orange-glow"
+        switch color {
+        case .blue:
+            color = .blueGlow
+        case .orange:
+            color = .orangeGlow
+        case .green:
+            color = .greenGlow
+        default:
+            return
         }
     }
 
@@ -36,20 +41,23 @@ struct Peg: Equatable, Codable, Identifiable {
 }
 
 extension Peg {
-    static let sampleBluePeg1 = Peg(color: "peg-blue", centre: CGPoint(x: 250, y: 500), radius: 25)
-    static let sampleBluePeg2 = Peg(color: "peg-blue", centre: CGPoint(x: 300, y: 500), radius: 25)
-    static let sampleBluePeg3 = Peg(color: "peg-blue", centre: CGPoint(x: 350, y: 500), radius: 25)
-    static let sampleBluePeg4 = Peg(color: "peg-blue", centre: CGPoint(x: 400, y: 500), radius: 25)
-    static let sampleBluePeg5 = Peg(color: "peg-blue", centre: CGPoint(x: 450, y: 500), radius: 25)
-    static let sampleOrangePeg1 = Peg(color: "peg-orange", centre: CGPoint(x: 500, y: 500), radius: 25)
-    static let sampleOrangePeg2 = Peg(color: "peg-orange", centre: CGPoint(x: 600, y: 500), radius: 25)
-    static let sampleOrangePeg3 = Peg(color: "peg-orange", centre: CGPoint(x: 550, y: 500), radius: 25)
-    static let sampleOrangePeg4 = Peg(color: "peg-orange", centre: CGPoint(x: 650, y: 500), radius: 25)
-    static let sampleOrangePeg5 = Peg(color: "peg-orange", centre: CGPoint(x: 700, y: 500), radius: 25)
+    static let sampleBluePeg1 = Peg(color: .blue, centre: CGPoint(x: 250, y: 500), radius: 25)
+    static let sampleBluePeg2 = Peg(color: .blue, centre: CGPoint(x: 300, y: 500), radius: 25)
+    static let sampleBluePeg3 = Peg(color: .blue, centre: CGPoint(x: 350, y: 500), radius: 25)
+    static let sampleBluePeg4 = Peg(color: .blue, centre: CGPoint(x: 400, y: 500), radius: 25)
+    static let sampleBluePeg5 = Peg(color: .blue, centre: CGPoint(x: 450, y: 500), radius: 25)
+    static let sampleOrangePeg1 = Peg(color: .orange, centre: CGPoint(x: 500, y: 500), radius: 25)
+    static let sampleOrangePeg2 = Peg(color: .orange, centre: CGPoint(x: 600, y: 500), radius: 25)
+    static let sampleOrangePeg3 = Peg(color: .orange, centre: CGPoint(x: 550, y: 500), radius: 25)
+    static let sampleOrangePeg4 = Peg(color: .orange, centre: CGPoint(x: 650, y: 500), radius: 25)
+    static let sampleOrangePeg5 = Peg(color: .orange, centre: CGPoint(x: 700, y: 500), radius: 25)
 }
 
 extension Peg: CustomStringConvertible {
     var description: String {
         "peg \(centre) \(color) \(isLit)"
     }
+}
+
+extension Peg: Codable {
 }

@@ -48,7 +48,7 @@ class Board: Codable, ObservableObject {
     }
 
     /// Check if peg to add is a valid position, if yes add to board.
-    func addPeg(color: String, centre: CGPoint, radius: CGFloat = Peg.defaultPegRadius) {
+    func addPeg(color: PegTypeEnum, centre: CGPoint, radius: CGFloat = Peg.defaultPegRadius) {
         let peg = Peg(color: color, centre: centre, radius: radius)
         addPeg(peg)
     }

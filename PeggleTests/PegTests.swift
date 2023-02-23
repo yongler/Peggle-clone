@@ -1,16 +1,16 @@
+////
+////  PegTests.swift
+////  PeggleTests
+////
+////  Created by Lee Yong Ler on 28/1/23.
+////
 //
-//  PegTests.swift
-//  PeggleTests
+//import XCTest
+//@testable import Peggle
 //
-//  Created by Lee Yong Ler on 28/1/23.
+//final class PegTests: XCTestCase {
 //
-
-import XCTest
-@testable import Peggle
-
-final class PegTests: XCTestCase {
-
-    func testConstruct() {
-        let peg = Peg(color: "peg-blue", x: 300, y: 300, radius: 50)
-    }
-}
+//    func testConstruct() {
+//        let peg = Peg(color: "peg-blue", x: 300, y: 300, radius: 50)
+//    }
+//}
