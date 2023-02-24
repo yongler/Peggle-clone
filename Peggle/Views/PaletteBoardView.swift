@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PaletteBoardView: View {
     @ObservedObject var paletteViewModel: PaletteViewModel
-//    @State private var dragOffset = CGSize.zero
 
     var body: some View {
         GeometryReader { geometry in
@@ -25,43 +24,19 @@ struct PaletteBoardView: View {
                                 }
                         )
                     
-                    Text("\(paletteViewModel.board.pegs.count)")
-                    
                     Spacer()
 
 //                    BallView(peggleGame: peggleGame, ball: $board.ball)
 
-                    ForEach(paletteViewModel.boardPegs, id: \.id) { peg in
-                        Image(peg.color.rawValue)
-                            .resizable()
-                            .frame(width: peg.radius * 2, height: peg.radius * 2)
-                            .position(peg.centre)
-//                            .offset(dragOffset)
-                            .onLongPressGesture(perform: {
-                                paletteViewModel.pegOnLongPress(peg)
-                            })
-                            .gesture(
-                                DragGesture(minimumDistance: 0)
-                                    .onChanged { gesture in
-    //                                                dragOffset = gesture.translation
-    //                                            }
-    //                                            .onEnded { gesture in
-    //                                                dragOffset = .zero
-                                        paletteViewModel.pegOnDrag(peg, by: gesture.translation)
-                                    }
-                            )
-                            .onTapGesture { location in
-                                print("tapping")
-                                paletteViewModel.pegOnTap(at: location)
-                            }
-//                        PalettePegView(paletteViewModel: paletteViewModel, peg: peg)
+                    ForEach($paletteViewModel.boardPegs) { peg in
+                        PalettePegView(paletteViewModel: paletteViewModel, peg: peg)
                     }
                 }
 
             }
-//            .task {
-//                peggleGame.setup(geometry.size)
-//            }
+            .task {
+                paletteViewModel.updateGameArea(geometry.size)
+            }
         }
     }
 }

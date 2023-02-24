@@ -14,7 +14,11 @@ class PaletteViewModel: ObservableObject {
     @Published var alertMessage: String = ""
     @Published var hasAlert = false
     
+    @Published var levels: [Board] = []
+    @Published var boardNames: [String] = []
+    
     let loadBoardFail = "Fail to load board"
+    let loadLevelsFail = "Fail to load levels"
     let emptyLevelName = "Please specify a name to save"
     let saveBoardFail = "Failed to save"
     let levelDoesNotExist = "Level does not exist"
@@ -35,6 +39,11 @@ class PaletteViewModel: ObservableObject {
         self.init(selectedButton: .bluePeg)
     }
     
+    convenience init(boardName: String) {
+        self.init(selectedButton: .bluePeg)
+        loadLevel(name: boardName)
+    }
+    
     func select(_ button: PaletteButtonEnum) {
         self.selectedButton = button
     }
@@ -47,41 +56,73 @@ class PaletteViewModel: ObservableObject {
         return button.rawValue
     }
     
+    func loadLevel() {
+        if !boardNames.contains(levelName) {
+            alertMessage = levelDoesNotExist
+            hasAlert = true
+            return
+        }
+        
+        do {
+            board = try BoardStore.load(name: levelName)
+        } catch {
+            alertMessage = loadBoardFail
+            hasAlert = true
+        }
+    }
     
-//    func loadLevel() {
-//        do {
-//            board = try BoardStore.load(name: levelName)
-//        } catch {
-//            alertMessage = loadBoardFail
-//            hasAlert = true
-//        }
-//    }
-//
-//    func saveLevel() {
-//        guard !levelName.isEmpty else {
-//            alertMessage = emptyLevelName
-//            hasAlert = true
-//            return
-//        }
-//        do {
-//            try BoardStore.save(board: board, name: levelName)
-//        } catch {
-//            alertMessage = saveBoardFail
-//            hasAlert = true
-//        }
-//    }
+    func loadLevel(name: String) {
+        if !boardNames.contains(name) {
+            alertMessage = levelDoesNotExist
+            hasAlert = true
+            return
+        }
+        
+        levelName = name
+        loadLevel()
+    }
+    
+    func loadLevelsName() {
+        do {
+            boardNames = try BoardStore.loadLevels()
+        } catch {
+            alertMessage = loadLevelsFail
+            hasAlert = true
+        }
+    }
+
+    func saveLevel() {
+        guard !levelName.isEmpty else {
+            alertMessage = emptyLevelName
+            hasAlert = true
+            return
+        }
+        
+        do {
+            if boardNames.contains(levelName) {
+                alertMessage = overwriteWarning
+                hasAlert = true
+            } else {
+                boardNames.append(levelName)
+            }
+            try BoardStore.saveLevels(boardNames: boardNames)
+            try BoardStore.save(board: board, name: levelName)
+        } catch {
+            alertMessage = saveBoardFail
+            hasAlert = true
+        }
+    }
     
     func closeAlert() {
         hasAlert = false
     }
-    
+        
     func clearBoard() {
         board.clearBoard()
     }
 
     
     func addPeg(location: CGPoint) {
-        print("adding peg")
         guard selectedButton != .delete else {
             return
         }
@@ -101,25 +142,24 @@ class PaletteViewModel: ObservableObject {
         board.removePeg(peg)
     }
 
-    func pegOnDrag(_ peg: Peg, by: CGSize) {
-        print("draggging")
-        board.movePeg(peg, by: by)
+    func pegOnDrag(_ peg: Peg, to: CGPoint) {
+        board.movePeg(peg, to: to)
     }
 
     func pegOnTap(at: CGPoint) {
-        print("heiio")
         guard selectedButton == .delete else {
             return
         }
-        print("hellooo")
         board.removePeg(at: at)
     }
     
     var boardPegs: [Peg] {
-//        get { return board.pegs }
-//        set { boardPegs = newValue }
-        board.pegs
+        get { return board.pegs }
+        set { self.boardPegs = newValue }
     }
     
+    func updateGameArea(_ size: CGSize) {
+        board.updateGameArea(size)
+    }
     
 }

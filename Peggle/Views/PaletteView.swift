@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct PaletteView: View {
-    @StateObject var paletteViewModel: PaletteViewModel
+    @ObservedObject var paletteViewModel: PaletteViewModel
+    @State var boardName: String?
 
     var body: some View {
         VStack {
@@ -17,11 +18,18 @@ struct PaletteView: View {
             PaletteActionButtonsView(paletteViewModel: paletteViewModel)
         }
         .padding()
+        .task {
+            guard let name = boardName else {
+                paletteViewModel.clearBoard()
+                return
+            }
+            paletteViewModel.loadLevel(name: name)
+        }
     }
 }
 
 struct PaletteView_Previews: PreviewProvider {
     static var previews: some View {
-        PaletteView(paletteViewModel: PaletteViewModel())
+        PaletteView(paletteViewModel: PaletteViewModel(), boardName: ("hello"))
     }
 }

@@ -13,10 +13,10 @@ struct PaletteActionButtonsView: View {
     var body: some View {
         HStack {
             Button("LOAD") {
-//                paletteViewModel.loadLevel()
+                paletteViewModel.loadLevel()
             }
             Button("SAVE") {
-//                paletteViewModel.saveLevel()
+                paletteViewModel.saveLevel()
             }
             .alert(paletteViewModel.alertMessage, isPresented: $paletteViewModel.hasAlert) {
                 Button("OK", role: .cancel) {
@@ -25,15 +25,17 @@ struct PaletteActionButtonsView: View {
             }
 
             Button("RESET") {
-//                paletteViewModel.clearBoard()
+                paletteViewModel.clearBoard()
             }
 
             TextField("Level name", text: $paletteViewModel.levelName).border(.secondary)
 
             Button("START") {
                 
+                
             }
         }
+        .ignoresSafeArea(.keyboard)
     }
 }
 

@@ -7,21 +7,8 @@
 
 import Foundation
 
-struct Board {
-//    enum CodingKeys: CodingKey {
-//        case pegs
-//    }
-//
-//    required init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        pegs = try container.decode([Peg].self, forKey: .pegs)
-//    }
-//
-//    func encode(to encoder: Encoder) throws {
-//        var container = encoder.container(keyedBy: CodingKeys.self)
-//        try container.encode(pegs, forKey: .pegs)
-//    }
-//
+struct Board: Identifiable {
+    let id = UUID()
     var pegs: [Peg] = []
     var ball: Ball?
     
@@ -70,15 +57,17 @@ struct Board {
     }
 
     /// Move peg by the specifiied size
-    mutating func movePeg(_ peg: Peg, by: CGSize) {
+    mutating func movePeg(_ peg: Peg, to: CGPoint) {
+        let oldCentre = peg.centre
+        
         for i in 0..<pegs.count {
             if pegs[i] != peg {
                 continue
             }
-            pegs[i].moveCentre(by: by)
+            pegs[i].moveCentre(to: to)
 
             guard checkValidPosition(peg: pegs[i]) else {
-                removePeg(pegs[i])
+                pegs[i].centre = oldCentre
                 return
             }
         }
@@ -191,6 +180,9 @@ struct Board {
     }
 
 }
+
+
+
 
 extension Board {
     static var sampleBoard = Board(pegs: [Peg.sampleBluePeg1, Peg.sampleBluePeg2,
