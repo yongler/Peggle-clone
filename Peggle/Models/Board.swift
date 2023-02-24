@@ -72,6 +72,23 @@ struct Board: Identifiable {
             }
         }
     }
+    
+    /// Move peg by the specifiied size
+    mutating func movePeg(_ peg: Peg, by: CGSize) {
+        let oldCentre = peg.centre
+        
+        for i in 0..<pegs.count {
+            if pegs[i] != peg {
+                continue
+            }
+            pegs[i].moveCentre(by: by)
+
+            guard checkValidPosition(peg: pegs[i]) else {
+                pegs[i].centre = oldCentre
+                return
+            }
+        }
+    }
 
     /// Find peg
     private func findPeg(peg: Peg) -> Int? {
@@ -106,9 +123,8 @@ struct Board: Identifiable {
     }
 
     /// Convenience function to reset ball to top
-    mutating func setBall() {
-        setBall(Ball(centre: CGPoint(x: gameArea.width / 2, y: 100),
-                     velocity: Vector.zero, acceleration: Acceleration.zero))
+    mutating func resetBall() {
+        setBall(Ball(centre: CGPoint(x: gameArea.width / 2, y: 100)))
     }
 
     mutating func removeBall() {
@@ -131,12 +147,15 @@ struct Board: Identifiable {
     }
 
     func moveBall(by: CGSize) {
-        guard let ball = ball else {
+        guard var ball = ball else {
             return
         }
-        guard ball.velocity == Vector.zero && ball.acceleration == Acceleration.zero else {
-            return
-        }
+//        guard self.ball != nil else {
+//            return
+//        }
+//        guard ball.velocity == Vector.zero && ball.acceleration == Acceleration.zero else {
+//            return
+//        }
         ball.moveCentre(by: by)
     }
 

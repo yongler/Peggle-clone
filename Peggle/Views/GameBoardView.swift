@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct GameBoardView: View {
-    @ObservedObject var paletteViewModel: PaletteViewModel
+    @ObservedObject var gameViewModel: GameViewModel
 
     var body: some View {
         GeometryReader { geometry in
@@ -19,13 +19,15 @@ struct GameBoardView: View {
                     
                     Spacer()
 
-//                    BallView(peggleGame: peggleGame, ball: $board.ball)
+                    GameBallView(gameViewModel: gameViewModel)
 
-                    ForEach($paletteViewModel.boardPegs) { peg in
-                        PalettePegView(paletteViewModel: paletteViewModel, peg: peg)
+                    ForEach($gameViewModel.boardPegs) { peg in
+                        GamePegView(gameViewModel: gameViewModel, peg: peg)
                     }
                 }
-
+            }
+            .task {
+                gameViewModel.setupGame(gameArea: geometry.size)
             }
         }
     }
@@ -33,6 +35,6 @@ struct GameBoardView: View {
 
 struct GameBoardView_Previews: PreviewProvider {
     static var previews: some View {
-        GameBoardView(paletteViewModel: PaletteViewModel())
+        GameBoardView(gameViewModel: GameViewModel())
     }
 }

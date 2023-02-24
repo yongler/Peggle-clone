@@ -17,9 +17,8 @@ struct LevelsView: View {
                 
                 ForEach(0..<paletteViewModel.boardNames.count, id: \.self) {
                     let boardName = paletteViewModel.boardNames[$0]
-//                    paletteViewModel.loadLevel(name: boardName)
-//                    let paletteViewModelLevel = PaletteViewModel(boardName: boardName)
                     NavigationLink(boardName, destination: PaletteView(paletteViewModel: paletteViewModel, boardName: boardName))
+//                    NavigationLink(boardName, destination: GameBoardView(gameViewModel: gameViewModel, boardName: boardName))
                 }
             }
         }
@@ -32,7 +31,6 @@ struct LevelsView: View {
 
 struct LevelsView_Previews: PreviewProvider {
     static var previews: some View {
-//        LevelsView().environmentObject(PaletteViewModel())
         LevelsView(paletteViewModel: PaletteViewModel())
     }
 }

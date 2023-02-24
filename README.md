@@ -22,6 +22,12 @@
 If you have changed the specifications in any way, please write your
 justification here. Otherwise, you may discard this section.
 
+how one aims the cannon in the rules of the game.
+
+exact rules of the game modes that you end up implementing and how a player chooses them, always document them with the greatest detail in your Developer Guide
+
+You are free to decide how they look, the resulting animations or transitions, or any extensions you would like to implement. Remember to document them with the greatest detail in your Developer Guide.
+
 Own behaviours added: 
 1. Player can drag the ball around and tap it to launch the ball. Magnitude and direction is controlled by relative position of ball to top center of screen. 
 
@@ -60,6 +66,8 @@ Observer pattern is used. Whenever the board model instance changes, views that 
 4. If the ball is stuck in place for too long (`timeForPrematureRemoval`), `board.clearAllLitPegs()` is called to do premature removal. 
 5. If the ball falls out of gameArea, it is removed in `removeBallIfOutOfBounds()`
 
+## Design tradeoffs (extra marks for effort? :p)
+loading levels vs names 
 
 
 ## Tests
@@ -186,3 +194,5 @@ tests in code, please delete this section.
 >   have done differently?
 
 Your answer here
+
+

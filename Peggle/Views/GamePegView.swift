@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GamePegView: View {
-    @ObservedObject var paletteViewModel: PaletteViewModel
+    @ObservedObject var gameViewModel: GameViewModel
     @Binding var peg: Peg
 
     var body: some View {
@@ -21,6 +21,6 @@ struct GamePegView: View {
 
 struct GamePegView_Previews: PreviewProvider {
     static var previews: some View {
-        GamePegView(paletteViewModel: PaletteViewModel(), peg: .constant(Peg.sampleBluePeg1))
+        GamePegView(gameViewModel: GameViewModel(), peg: .constant(Peg.sampleBluePeg1))
     }
 }

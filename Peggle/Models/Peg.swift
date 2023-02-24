@@ -37,6 +37,11 @@ struct Peg: Equatable, Identifiable {
     mutating func moveCentre(to: CGPoint) {
         centre = to
     }
+    
+    mutating func moveCentre(by: CGSize) {
+        centre.x += by.width
+        centre.y += by.height
+    }
 }
 
 extension Peg {

@@ -11,11 +11,13 @@ import SwiftUI
 struct PeggleApp: App {
 //    @State var peggleGame = PeggleGameEngine()
     @StateObject var paletteViewModel = PaletteViewModel()
+    @StateObject var gameViewModel = GameViewModel()
     
     var body: some Scene {
         WindowGroup {
-//            GameView(peggleGame: peggleGame)
-            LevelsView(paletteViewModel: paletteViewModel)
+            GameBoardView(gameViewModel: gameViewModel)
+//            PeggleView(paletteViewModel: paletteViewModel)
+//            LevelsView(paletteViewModel: paletteViewModel)
 //            PaletteView(paletteViewModel: paletteViewModel)
             
         }

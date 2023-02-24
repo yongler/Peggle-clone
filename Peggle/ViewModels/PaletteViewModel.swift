@@ -24,6 +24,9 @@ class PaletteViewModel: ObservableObject {
     let levelDoesNotExist = "Level does not exist"
     let overwriteWarning = "Saving will overwrite the existing level"
     
+    var defaultBallPosition: CGPoint = CGPoint()
+    
+    
     enum PaletteButtonEnum: String {
         case bluePeg = "peg-blue"
         case orangePeg = "peg-orange"
@@ -160,6 +163,7 @@ class PaletteViewModel: ObservableObject {
     
     func updateGameArea(_ size: CGSize) {
         board.updateGameArea(size)
+        defaultBallPosition = CGPoint(x: board.gameArea.width / 2, y: 100)
     }
     
 }

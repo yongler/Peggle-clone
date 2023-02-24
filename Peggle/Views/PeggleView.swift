@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct PeggleView: View {
+    @ObservedObject var paletteViewModel: PaletteViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            NavigationLink("Levels", destination: LevelsView(paletteViewModel: paletteViewModel))
+        }
     }
 }
 
 struct PeggleView_Previews: PreviewProvider {
     static var previews: some View {
-        PeggleView()
+        PeggleView(paletteViewModel: PaletteViewModel())
     }
 }
