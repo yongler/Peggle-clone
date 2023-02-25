@@ -54,10 +54,7 @@ class GameViewModel: ObservableObject {
     }
     
     func setupGame(gameArea: CGSize) {
-        board.updateGameArea(gameArea)
         board.setBucket(gameArea: gameArea)
-        board.resetBall()
-        
         peggle.setup(gameArea)
         createDisplayLink()
         print("setup")
@@ -71,6 +68,7 @@ class GameViewModel: ObservableObject {
     @objc func update(displaylink: CADisplayLink) {
         let frameDuration = Double(displaylink.targetTimestamp - displaylink.timestamp)
         board = peggle.update(frameDuration: frameDuration)
+        getBucketPosition()
 //        print("update \(board.ball?.centre)")
     }
     

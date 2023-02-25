@@ -30,9 +30,10 @@ class GameEngine {
         if object2 is RectangleObject {
             let top: CGFloat = 100
             if object2.centre.y < top {
-                object1.velocity.directionY *= -1 * normalForceCoefficient
+                object1.velocity.directionY *= -1
             } else {
-                object1.velocity.directionX *= -1 * normalForceCoefficient
+                object1.velocity.directionX *= -1
+                print("bang \(object1) \(object2)")
             }
         }
         return object1

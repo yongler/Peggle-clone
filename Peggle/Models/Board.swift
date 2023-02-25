@@ -40,6 +40,7 @@ struct Board: Identifiable {
     
     mutating func setBucket(gameArea: CGSize) {
         bucket.centre = CGPoint(x: gameArea.width / 2, y: gameArea.height - bucket.height / 2)
+        print("setting bucket------ \(bucket)")
     }
 
     /// Check if peg to add is a valid position, if yes add to board.

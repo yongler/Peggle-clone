@@ -56,6 +56,7 @@ class PeggleGameEngine: ObservableObject {
     func update(frameDuration: Double) -> Board {
         let collidedObjects = gameEngine.moveAll(time: frameDuration)
         updateBoardWithGameEngine(collidedObjects: collidedObjects)
+        print("bucket \(board.bucket.centre)")
         return board
     }
 
@@ -68,7 +69,7 @@ class PeggleGameEngine: ObservableObject {
         guard let ball = board.ball else {
             return
         }
-        print("hello \(cos(CGFloat(angle.radians)) * 500) \(-sin(CGFloat(angle.radians)) * 500)")
+//        print("hello \(cos(CGFloat(angle.radians)) * 500) \(-sin(CGFloat(angle.radians)) * 500)")
         let ballVelocity = Vector(origin: ball.centre,
                                   directionX: -sin(CGFloat(angle.radians)) * 500,
                                   directionY: cos(CGFloat(angle.radians)) * 500)
@@ -113,6 +114,8 @@ class PeggleGameEngine: ObservableObject {
             let pegToAdd = PegPhysicsObject(peg: peg)
             gameEngine.addPhysicsObject(object: pegToAdd)
         }
+        
+        print("adding to enginer \(bucketPhysicsObject.getBucket())")
         gameEngine.addPhysicsObject(object: ballPhysicsObject)
         gameEngine.addPhysicsObject(object: bucketPhysicsObject)
         
@@ -165,6 +168,7 @@ class PeggleGameEngine: ObservableObject {
             }
             if let obj = object as? BucketPhysicsObject {
                 newBoard.bucket = obj.getBucket()
+                print("new board bucket \(obj.getBucket())")
             }
         }
         if !launchedBall {
@@ -204,6 +208,9 @@ class PeggleGameEngine: ObservableObject {
     }
 
     func setup(_ gameArea: CGSize) {
+        board.updateGameArea(gameArea)
+        board.setBucket(gameArea: gameArea)
+        board.resetBall()
         setupWalls()
         setupBucket()
         setBoardToGameEngine()
