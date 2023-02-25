@@ -12,6 +12,7 @@ struct Board: Identifiable {
     var pegs: [Peg] = []
     var ball: Ball?
     var bucket = Bucket()
+    var blocks: [RectangleBlock] = []
     var ballsCount: Int = 10
     var ballsLeftCount: Int = 1
     
@@ -49,17 +50,23 @@ struct Board: Identifiable {
         }
         return count
     }
+    
+//    var boardBlocks: [RectangleBlock] {
+//        blocks
+//    }
 
-    init(gameArea: CGSize, pegs: [Peg] = [], ballsLeftCount: Int) {
+    init(gameArea: CGSize, pegs: [Peg] = [], ballsLeftCount: Int, blocks: [RectangleBlock] = []) {
         self.pegs = pegs
         self.gameArea = gameArea
         self.ballsLeftCount = ballsLeftCount
+        self.blocks = blocks
     }
 
-    init(pegs: [Peg] = [], ball: Ball? = nil) {
+    init(pegs: [Peg] = [], ball: Ball? = nil, blocks: [RectangleBlock] = []) {
         self.pegs = pegs
         self.ball = ball
         self.ballsLeftCount = ballsCount
+        self.blocks = blocks
     }
     
     mutating func flipBoard() {
@@ -250,6 +257,10 @@ struct Board: Identifiable {
         return true
     }
     
+    mutating func addBlock(block: RectangleBlock) {
+        blocks.append(block)
+        print("in board \(blocks)")
+    }
 
 }
 
@@ -260,16 +271,18 @@ extension Board {
     static var sampleBoard = Board(pegs: [Peg.sampleBluePeg1, Peg.sampleBluePeg2,
                                           Peg.sampleOrangePeg1, Peg.sampleOrangePeg2], ball: Ball.sampleBall)
 
-    static var sampleGameBoard = Board(pegs: [
-        Peg.sampleBluePeg1,
-        Peg.sampleBluePeg2,
-        Peg.sampleBluePeg3,
-        Peg.sampleBluePeg4,
-        Peg.sampleBluePeg5,
-        Peg.sampleOrangePeg1,
-        Peg.sampleOrangePeg2,
-        Peg.sampleOrangePeg3,
-        Peg.sampleOrangePeg4,
-        Peg.sampleOrangePeg5
-    ], ball: Ball.sampleBall)
+    static var sampleGameBoard =
+        Board(pegs: [
+            Peg.sampleBluePeg1,
+            Peg.sampleBluePeg2,
+            Peg.sampleBluePeg3,
+            Peg.sampleBluePeg4,
+            Peg.sampleBluePeg5,
+            Peg.sampleOrangePeg1,
+            Peg.sampleOrangePeg2,
+            Peg.sampleOrangePeg3,
+            Peg.sampleOrangePeg4,
+            Peg.sampleOrangePeg5
+        ], ball: Ball.sampleBall, blocks: [RectangleBlock.sampleBlock])
+        
 }

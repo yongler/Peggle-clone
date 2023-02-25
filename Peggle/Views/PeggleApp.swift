@@ -15,10 +15,10 @@ struct PeggleApp: App {
     
     var body: some Scene {
         WindowGroup {
-            GameBoardView(gameViewModel: gameViewModel)
+//            GameBoardView(gameViewModel: gameViewModel)
 //            PeggleView(paletteViewModel: paletteViewModel)
 //            LevelsView(paletteViewModel: paletteViewModel)
-//            PaletteView(paletteViewModel: paletteViewModel)
+            PaletteView(paletteViewModel: paletteViewModel)
             
         }
     }

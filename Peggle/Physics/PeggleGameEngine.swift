@@ -126,6 +126,10 @@ class PeggleGameEngine: ObservableObject {
             let pegToAdd = PegPhysicsObject(peg: peg)
             gameEngine.addPhysicsObject(object: pegToAdd)
         }
+        for block in board.blocks {
+            let blockToAdd = BlockPhysicsObject(block: block)
+            gameEngine.addPhysicsObject(object: blockToAdd)
+        }
         
         gameEngine.addPhysicsObject(object: ballPhysicsObject)
         gameEngine.addPhysicsObject(object: bucketPhysicsObject)
@@ -196,6 +200,10 @@ class PeggleGameEngine: ObservableObject {
             }
             if let obj = object as? BucketPhysicsObject {
                 newBoard.bucket = obj.getBucket()
+//                print("new board bucket \(obj.getBucket())")
+            }
+            if let obj = object as? BlockPhysicsObject {
+                newBoard.addBlock(block: obj.getBlock())
 //                print("new board bucket \(obj.getBucket())")
             }
         }

@@ -14,6 +14,12 @@ class GameViewModel: ObservableObject {
     var displayLink: CADisplayLink!
     
     
+    static let blockImage = "block"
+    var boardBlocks: [RectangleBlock] {
+        get { return board.blocks }
+        set { self.boardBlocks = newValue }
+    }
+    
     
     var ballsLeftCount: Int {
         board.ballsLeftCount

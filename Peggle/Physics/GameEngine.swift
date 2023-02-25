@@ -9,7 +9,7 @@ import Foundation
 
 class GameEngine {
     static let sharedInstance = GameEngine()
-    let normalForceCoefficient = 0.6
+    let normalForceCoefficient = 0.8
 
     var objects = [PhysicsObject]()
     let collision = Collision()

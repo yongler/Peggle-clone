@@ -20,7 +20,7 @@ struct PaletteBoardView: View {
                         .gesture(
                             DragGesture(minimumDistance: 0)
                                 .onEnded { value in
-                                    paletteViewModel.addPeg(location: value.location)
+                                    paletteViewModel.onTapBackground(location: value.location)
                                 }
                         )
                     
@@ -30,6 +30,9 @@ struct PaletteBoardView: View {
 
                     ForEach($paletteViewModel.boardPegs) { peg in
                         PalettePegView(paletteViewModel: paletteViewModel, peg: peg)
+                    }
+                    ForEach($paletteViewModel.boardBlocks) { block in
+                        BlockView(block: block)
                     }
                 }
 

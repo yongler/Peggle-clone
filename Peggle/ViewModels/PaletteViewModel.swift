@@ -30,6 +30,7 @@ class PaletteViewModel: ObservableObject {
     enum PaletteButtonEnum: String {
         case bluePeg = "peg-blue"
         case orangePeg = "peg-orange"
+        case block = "block"
         case delete = "delete"
     }
     
@@ -125,7 +126,7 @@ class PaletteViewModel: ObservableObject {
     }
 
     
-    func addPeg(location: CGPoint) {
+    func onTapBackground(location: CGPoint) {
         guard selectedButton != .delete else {
             return
         }
@@ -135,6 +136,10 @@ class PaletteViewModel: ObservableObject {
             board.addPeg(color: .blue, centre: location, power: .nopower)
         case .orangePeg:
             board.addPeg(color: .orange, centre: location, power: .nopower)
+        case .block:
+            let block = RectangleBlock(centre: location)
+            print("add block")
+            board.addBlock(block: block)
         default:
             return
         }
@@ -159,6 +164,11 @@ class PaletteViewModel: ObservableObject {
     var boardPegs: [Peg] {
         get { return board.pegs }
         set { self.boardPegs = newValue }
+    }
+    
+    var boardBlocks: [RectangleBlock] {
+        get { return board.blocks }
+        set { self.boardBlocks = newValue }
     }
     
     func updateGameArea(_ size: CGSize) {

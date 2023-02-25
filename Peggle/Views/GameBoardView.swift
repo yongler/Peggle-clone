@@ -25,6 +25,9 @@ struct GameBoardView: View {
                 ForEach($gameViewModel.boardPegs) { peg in
                     GamePegView(gameViewModel: gameViewModel, peg: peg)
                 }
+                ForEach($gameViewModel.boardBlocks) { block in
+                    BlockView(block: block)
+                }
             }
             .alert(gameViewModel.gameEndMessage, isPresented: $gameViewModel.hasGameEndMessage) {
                 Button("OK", role: .cancel) {
