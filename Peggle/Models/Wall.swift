@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+//struct Cannon {
+//    static let deafultCannonWidth
+//}

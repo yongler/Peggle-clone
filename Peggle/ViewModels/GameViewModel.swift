@@ -10,7 +10,34 @@ import Foundation
 
 class GameViewModel: ObservableObject {
     var peggle: PeggleGameEngine = PeggleGameEngine()
-    @Published var board: Board = Board()
+    @Published var board: Board = Board.sampleGameBoard
+    
+    let bucketImage = "bucket"
+    var bucketWidth: CGFloat {
+        board.bucket.width
+    }
+    var bucketHeight: CGFloat {
+        board.bucket.height
+    }
+    @Published var bucketPosition: CGPoint = Bucket.defaultPosition
+    
+    func getBucketPosition() {
+        bucketPosition = board.bucket.centre
+    }
+    
+    let cannonImage = "cannon"
+    var cannonWidth: CGFloat {
+        board.gameArea.width / 3
+    }
+    var cannonHeight: CGFloat {
+        board.gameArea.height / 6
+    }
+    var cannonPosition: CGPoint {
+        CGPoint(x: board.gameArea.width/2, y: cannonHeight / 2)
+    }
+    
+    @Published var angle: Angle = .zero
+    
     
     var boardPegs: [Peg] {
         get { return board.pegs }
@@ -27,6 +54,10 @@ class GameViewModel: ObservableObject {
     }
     
     func setupGame(gameArea: CGSize) {
+        board.updateGameArea(gameArea)
+        board.setBucket(gameArea: gameArea)
+        board.resetBall()
+        
         peggle.setup(gameArea)
         createDisplayLink()
         print("setup")
@@ -43,12 +74,21 @@ class GameViewModel: ObservableObject {
 //        print("update \(board.ball?.centre)")
     }
     
-    func onDragBall(by: CGSize) {
-        board.moveBall(by: by)
+//    func onDragBall(to: CGPoint) {
+//        board.moveBall(to: to)
+//        peggle.updateBall(to: to)
+//    }
+//
+    func onDragCannon(to: CGPoint) {
+        angle = Angle(radians: -atan((to.x - board.gameArea.width/2) / to.y))
     }
     
-    func onTapBall() {
-        peggle.launchBall()
+    
+    
+    func onStopDragCannon() {
+        print("tap")
+        peggle.launchBall(angle: angle)
     }
+
     
 }

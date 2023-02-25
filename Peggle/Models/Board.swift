@@ -11,10 +11,21 @@ struct Board: Identifiable {
     let id = UUID()
     var pegs: [Peg] = []
     var ball: Ball?
+    var bucket = Bucket()
     
     var gameArea = CGSize(width: 1_000, height: 1_000)
     var pegCount: Int {
         pegs.count
+    }
+    
+    var orangePegsCount: Int {
+        var count = 1
+        for peg in pegs {
+            if peg.color == .orange {
+                count += 1
+            }
+        }
+        return count
     }
 
     init(gameArea: CGSize, pegs: [Peg] = []) {
@@ -25,6 +36,10 @@ struct Board: Identifiable {
     init(pegs: [Peg] = [], ball: Ball? = nil) {
         self.pegs = pegs
         self.ball = ball
+    }
+    
+    mutating func setBucket(gameArea: CGSize) {
+        bucket.centre = CGPoint(x: gameArea.width / 2, y: gameArea.height - bucket.height / 2)
     }
 
     /// Check if peg to add is a valid position, if yes add to board.
@@ -145,18 +160,22 @@ struct Board: Identifiable {
         }
         return false
     }
-
-    func moveBall(by: CGSize) {
-        guard var ball = ball else {
-            return
-        }
-//        guard self.ball != nil else {
+    
+    mutating func moveBall(to: CGPoint) {
+        ball?.moveCentre(to: to)
+    }
+    
+    mutating func moveBall(by: CGSize) {
+//        guard var ball = ball else {
+//            return
+//        }
+////        guard self.ball != nil else {
 //            return
 //        }
 //        guard ball.velocity == Vector.zero && ball.acceleration == Acceleration.zero else {
 //            return
 //        }
-        ball.moveCentre(by: by)
+        ball?.moveCentre(by: by)
     }
 
     mutating func updateGameArea(_ gameArea: CGSize) {
@@ -197,6 +216,7 @@ struct Board: Identifiable {
         }
         return true
     }
+    
 
 }
 

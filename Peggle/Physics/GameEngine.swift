@@ -12,6 +12,7 @@ class GameEngine {
     let normalForceCoefficient = 0.6
 
     var objects = [PhysicsObject]()
+    let collision = Collision()
 
     func addPhysicsObject(object: PhysicsObject) {
         objects.append(object)
@@ -44,7 +45,7 @@ class GameEngine {
             if object == obj {
                 continue
             }
-            if object.isOverlapping(with: obj) {
+            if collision.detectCollision(for: object, with: obj){
                 collidedObjects.append(obj)
             }
         }

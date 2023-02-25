@@ -31,6 +31,12 @@ struct Vector: Equatable {
         self.directionX = origin.x
         self.directionY = origin.y
     }
+    
+    init(directionX: CGFloat, directionY: CGFloat) {
+        self.origin = CGPoint()
+        self.directionX = directionX
+        self.directionY = directionY
+    }
 
     func subtract(_ vector: Vector) -> Vector {
         Vector(origin: self.origin, directionX: self.directionX - vector.directionX,

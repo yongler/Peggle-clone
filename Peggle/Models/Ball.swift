@@ -10,7 +10,7 @@ import Foundation
 struct Ball {
     var centre: CGPoint
     var radius: CGFloat
-    static let defaultBallRadius = CGFloat(40)
+    static let defaultBallRadius = CGFloat(25)
     
     init(centre: CGPoint, radius: CGFloat = defaultBallRadius) {
         self.centre = centre
@@ -21,7 +21,10 @@ struct Ball {
         centre.x += by.width
         centre.y += by.height
     }
-
+    
+    mutating func moveCentre(to: CGPoint) {
+        centre = to
+    }
 }
 
 extension Ball {

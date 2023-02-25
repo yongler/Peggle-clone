@@ -14,14 +14,21 @@ class BallPhysicsObject: CircleObject {
         self.init(centre: ball.centre, velocity: Vector.zero, acceleration: Acceleration.zero, radius: ball.radius)
         self.ball = ball
     }
+    
+    convenience init(ball: Ball, centre: CGPoint,
+         velocity: Vector, acceleration: Acceleration, radius: CGFloat = defaultBallRadius) {
+        self.init(centre: ball.centre, velocity: velocity, acceleration: acceleration, radius: ball.radius)
+        self.ball = ball
+    }
 
     func getBall() -> Ball {
-        ball
+        ball.moveCentre(to: self.centre)
+        return ball
     }
 }
 
 extension BallPhysicsObject: CustomStringConvertible {
     var description: String {
-        "ball \(centre) \(velocity) \(acceleration)"
+        "ball \(velocity)"
     }
 }

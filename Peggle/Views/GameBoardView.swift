@@ -18,9 +18,12 @@ struct GameBoardView: View {
                         .background()
                     
                     Spacer()
-
+                    
+//                    Text((gameViewModel.angle))
+                    CannonView(gameViewModel: gameViewModel)
                     GameBallView(gameViewModel: gameViewModel)
-
+                    BucketView(gameViewModel: gameViewModel)
+                    
                     ForEach($gameViewModel.boardPegs) { peg in
                         GamePegView(gameViewModel: gameViewModel, peg: peg)
                     }

@@ -16,18 +16,7 @@ struct GameBallView: View {
                 .resizable()
                 .frame(width: ball.radius * 2, height: ball.radius * 2)
                 .position(ball.centre)
-                .gesture(
-                    DragGesture(minimumDistance: 50)
-                        .onChanged { gesture in
-                            gameViewModel.onDragBall(by: gesture.translation)
-                        }
-                )
-                .gesture(
-                    DragGesture(minimumDistance: 0)
-                        .onEnded { _ in
-                            gameViewModel.onTapBall()
-                        }
-                 )
+//
         }
     }
 }

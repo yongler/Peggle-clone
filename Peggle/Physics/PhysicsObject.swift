@@ -66,27 +66,5 @@ class PhysicsObject: Equatable {
         return Projection(start: start, end: end)
     }
 
-    private func isOverlappingHelper(with object: PhysicsObject, axes: [Vector]) -> Bool {
-        for i in 0..<axes.count {
-            let axis = axes[i]
 
-            let projection1: Projection = self.project(onto: axis)
-            let projection2: Projection = object.project(onto: axis)
-
-            if !projection1.isOverlapping(projection: projection2) {
-                return false
-            }
-        }
-        return true
-    }
-
-    func isOverlapping(with object: PhysicsObject) -> Bool {
-        let axes1: [Vector] = self.axes
-        let axes2: [Vector] = object.axes
-
-        if isOverlappingHelper(with: object, axes: axes1) {
-            return true
-        }
-        return isOverlappingHelper(with: object, axes: axes2)
-    }
 }

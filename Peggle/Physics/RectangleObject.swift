@@ -31,6 +31,12 @@ class RectangleObject: PhysicsObject {
         self.height = height
         super.init(centre: centre, velocity: Vector.zero, acceleration: Acceleration.zero)
     }
+    
+    init(centre: CGPoint, width: CGFloat, height: CGFloat, velocity: Vector, acceleration: Acceleration) {
+        self.width = width
+        self.height = height
+        super.init(centre: centre, velocity: velocity, acceleration: acceleration)
+    }
 }
 
 extension RectangleObject: CustomStringConvertible {
