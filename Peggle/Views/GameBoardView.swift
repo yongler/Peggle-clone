@@ -11,22 +11,24 @@ struct GameBoardView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            VStack {
-                ZStack {
-                    Image("background")
-                        .resizable()
-                        .background()
-                    
-                    Spacer()
-                    
-//                    Text((gameViewModel.angle))
-                    CannonView(gameViewModel: gameViewModel)
-                    GameBallView(gameViewModel: gameViewModel)
-                    BucketView(gameViewModel: gameViewModel)
-                    
-                    ForEach($gameViewModel.boardPegs) { peg in
-                        GamePegView(gameViewModel: gameViewModel, peg: peg)
-                    }
+            ZStack {
+                Image("background")
+                    .resizable()
+                    .background()
+                
+                Spacer()
+                Text("Balls left \(gameViewModel.ballsLeftCount)")
+                CannonView(gameViewModel: gameViewModel)
+                GameBallView(gameViewModel: gameViewModel)
+                BucketView(gameViewModel: gameViewModel)
+                
+                ForEach($gameViewModel.boardPegs) { peg in
+                    GamePegView(gameViewModel: gameViewModel, peg: peg)
+                }
+            }
+            .alert(gameViewModel.gameEndMessage, isPresented: $gameViewModel.hasGameEndMessage) {
+                Button("OK", role: .cancel) {
+//                        gameViewModel.endGame()
                 }
             }
             .task {

@@ -12,14 +12,26 @@ struct Board: Identifiable {
     var pegs: [Peg] = []
     var ball: Ball?
     var bucket = Bucket()
+    var ballsCount: Int = 10
+    var ballsLeftCount: Int = 1
     
     var gameArea = CGSize(width: 1_000, height: 1_000)
     var pegCount: Int {
         pegs.count
     }
     
+    var remainingPegsCount: Int {
+        var count = 0
+        for peg in pegs {
+            if !peg.isLit {
+                count += 1
+            }
+        }
+        return count
+    }
+    
     var orangePegsCount: Int {
-        var count = 1
+        var count = 0
         for peg in pegs {
             if peg.color == .orange {
                 count += 1
@@ -27,20 +39,37 @@ struct Board: Identifiable {
         }
         return count
     }
+    
+    var orangePegsLeftCount: Int {
+        var count = 0
+        for peg in pegs {
+            if peg.color == .orange && !peg.isLit {
+                count += 1
+            }
+        }
+        return count
+    }
 
-    init(gameArea: CGSize, pegs: [Peg] = []) {
+    init(gameArea: CGSize, pegs: [Peg] = [], ballsLeftCount: Int) {
         self.pegs = pegs
         self.gameArea = gameArea
+        self.ballsLeftCount = ballsLeftCount
     }
 
     init(pegs: [Peg] = [], ball: Ball? = nil) {
         self.pegs = pegs
         self.ball = ball
+        self.ballsLeftCount = ballsCount
+    }
+    
+    mutating func flipBoard() {
+        for i in 0..<pegs.count {
+            pegs[i].flip(centreAxisXValue: gameArea.height/2)
+        }
     }
     
     mutating func setBucket(gameArea: CGSize) {
         bucket.centre = CGPoint(x: gameArea.width / 2, y: gameArea.height - bucket.height / 2)
-        print("setting bucket------ \(bucket)")
     }
 
     /// Check if peg to add is a valid position, if yes add to board.
@@ -52,8 +81,8 @@ struct Board: Identifiable {
     }
 
     /// Check if peg to add is a valid position, if yes add to board.
-    mutating func addPeg(color: PegTypeEnum, centre: CGPoint, radius: CGFloat = Peg.defaultPegRadius) {
-        let peg = Peg(color: color, centre: centre, radius: radius)
+    mutating func addPeg(color: PegTypeEnum, centre: CGPoint, radius: CGFloat = Peg.defaultPegRadius, power: PegPowerEnum) {
+        let peg = Peg(color: color, centre: centre, radius: radius, power: power)
         addPeg(peg)
     }
 
@@ -155,7 +184,10 @@ struct Board: Identifiable {
     }
 
     mutating func removeBallIfOutOfBounds() -> Bool {
-        if ballIsOutOfBounds {
+        guard let ball = ball else {
+            return false
+        }
+        if ballIsOutOfBounds && ball.powerUps.contains(.spookyball) {
             removeBall()
             return true
         }

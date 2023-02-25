@@ -21,4 +21,18 @@ struct Bucket {
     init(centre: CGPoint) {
         self.centre = centre
     }
+    
+    var rightX: CGFloat {
+        centre.x + width / 2
+    }
+    var leftX: CGFloat {
+        centre.x - width / 2
+    }
+    var topY: CGFloat {
+        centre.y - height / 2
+    }
+    
+//    func specialEffect() {
+//
+//    }
 }

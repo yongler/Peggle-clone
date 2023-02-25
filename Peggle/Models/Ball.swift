@@ -10,11 +10,14 @@ import Foundation
 struct Ball {
     var centre: CGPoint
     var radius: CGFloat
+    var powerUps: Set<BallPowerEnum>
+    
     static let defaultBallRadius = CGFloat(25)
     
-    init(centre: CGPoint, radius: CGFloat = defaultBallRadius) {
+    init(centre: CGPoint, radius: CGFloat = defaultBallRadius, powerUps: Set<BallPowerEnum> = []) {
         self.centre = centre
         self.radius = radius
+        self.powerUps = powerUps
     }
     
     mutating func moveCentre(by: CGSize) {
@@ -24,6 +27,18 @@ struct Ball {
     
     mutating func moveCentre(to: CGPoint) {
         centre = to
+    }
+    
+    mutating func moveToTop() {
+        centre = CGPoint(x: centre.x, y: 0)
+    }
+    
+    mutating func addPowerUp(power: BallPowerEnum) {
+        powerUps.insert(power)
+    }
+    
+    mutating func addPowerUps(powerUps: Set<BallPowerEnum>) {
+        self.powerUps = self.powerUps.union(powerUps)
     }
 }
 

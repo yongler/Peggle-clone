@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BallPhysicsObject: CircleObject {
+class BallPhysicsObject: CirclePhysicsObject {
     var ball = Ball.sampleBall
     
     convenience init(ball: Ball) {

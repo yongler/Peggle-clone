@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PegPhysicsObject: CircleObject {
+class PegPhysicsObject: CirclePhysicsObject {
     var peg = Peg.sampleBluePeg1
 
     convenience init(peg: Peg) {

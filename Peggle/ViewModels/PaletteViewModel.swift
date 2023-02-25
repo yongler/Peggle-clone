@@ -132,9 +132,9 @@ class PaletteViewModel: ObservableObject {
         
         switch selectedButton {
         case .bluePeg:
-            board.addPeg(color: .blue, centre: location)
+            board.addPeg(color: .blue, centre: location, power: .nopower)
         case .orangePeg:
-            board.addPeg(color: .orange, centre: location)
+            board.addPeg(color: .orange, centre: location, power: .nopower)
         default:
             return
         }

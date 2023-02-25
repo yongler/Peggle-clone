@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BucketPhysicsObject: RectangleObject {
+class BucketPhysicsObject: RectanglePhysicsObject {
     static let defaultVelocity = Vector(directionX: 300, directionY: 0)
     
     convenience init(bucket: Bucket) {

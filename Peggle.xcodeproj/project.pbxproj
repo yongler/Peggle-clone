@@ -28,13 +28,18 @@
 		12540F0C29A90534006A2764 /* BallPhysicsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F0B29A90534006A2764 /* BallPhysicsObject.swift */; };
 		12540F0E29A906C7006A2764 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F0D29A906C7006A2764 /* Wall.swift */; };
 		12540F1029A906DA006A2764 /* WallPhysicsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F0F29A906DA006A2764 /* WallPhysicsObject.swift */; };
-		12540F1229A9B24F006A2764 /* Transformable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F1129A9B24F006A2764 /* Transformable.swift */; };
+		12540F1229A9B24F006A2764 /* TransformableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F1129A9B24F006A2764 /* TransformableObject.swift */; };
 		12540F1429A9B3DA006A2764 /* Collision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F1329A9B3DA006A2764 /* Collision.swift */; };
 		12540F1629A9B7CF006A2764 /* Cannon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F1529A9B7CF006A2764 /* Cannon.swift */; };
 		12540F1829A9EA60006A2764 /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F1729A9EA60006A2764 /* Bucket.swift */; };
 		12540F1A29A9EA72006A2764 /* BucketPhysicsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F1929A9EA72006A2764 /* BucketPhysicsObject.swift */; };
-		12540F1C29A9EAB3006A2764 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F1B29A9EAB3006A2764 /* Block.swift */; };
+		12540F1C29A9EAB3006A2764 /* RectangleBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F1B29A9EAB3006A2764 /* RectangleBlock.swift */; };
 		12540F1E29A9EF68006A2764 /* BucketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F1D29A9EF68006A2764 /* BucketView.swift */; };
+		12540F2029AA232B006A2764 /* PegPowerEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F1F29AA232B006A2764 /* PegPowerEnum.swift */; };
+		12540F2229AA23CF006A2764 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F2129AA23CF006A2764 /* GameMode.swift */; };
+		12540F2429AA4B15006A2764 /* BallPowerEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F2329AA4B15006A2764 /* BallPowerEnum.swift */; };
+		12540F2629AA4BE7006A2764 /* BlockPhysicsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F2529AA4BE7006A2764 /* BlockPhysicsObject.swift */; };
+		12540F2829AA4ED5006A2764 /* RectangleTransformableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12540F2729AA4ED5006A2764 /* RectangleTransformableObject.swift */; };
 		12633C1B2984DA880057AF14 /* BoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1A2984DA880057AF14 /* BoardTests.swift */; };
 		12633C1D2984DD370057AF14 /* PegTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1C2984DD370057AF14 /* PegTests.swift */; };
 		12633C1F2984F6BE0057AF14 /* PalettePegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12633C1E2984F6BE0057AF14 /* PalettePegView.swift */; };
@@ -42,10 +47,10 @@
 		129A1FFD298FA17800C32F57 /* PhysicsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A1FFC298FA17800C32F57 /* PhysicsObject.swift */; };
 		129A2001298FA25200C32F57 /* Acceleration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A2000298FA25200C32F57 /* Acceleration.swift */; };
 		129A2003298FA28300C32F57 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A2002298FA28300C32F57 /* Vector.swift */; };
-		129A2007298FA3FF00C32F57 /* CircleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A2006298FA3FF00C32F57 /* CircleObject.swift */; };
+		129A2007298FA3FF00C32F57 /* CirclePhysicsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A2006298FA3FF00C32F57 /* CirclePhysicsObject.swift */; };
 		129A200F298FA5FD00C32F57 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A200E298FA5FD00C32F57 /* GameEngine.swift */; };
 		129A2012298FA60F00C32F57 /* PeggleGameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A2011298FA60F00C32F57 /* PeggleGameEngine.swift */; };
-		129A2014298FA68700C32F57 /* RectangleObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A2013298FA68700C32F57 /* RectangleObject.swift */; };
+		129A2014298FA68700C32F57 /* RectanglePhysicsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A2013298FA68700C32F57 /* RectanglePhysicsObject.swift */; };
 		129DE9012993DF9D00EB08CC /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129DE9002993DF9D00EB08CC /* Ball.swift */; };
 		129DE90B2995381100EB08CC /* PegPhysicsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129DE90A2995381100EB08CC /* PegPhysicsObject.swift */; };
 		129DE90D29953E3100EB08CC /* GameBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129DE90C29953E3100EB08CC /* GameBoardView.swift */; };
@@ -97,13 +102,18 @@
 		12540F0B29A90534006A2764 /* BallPhysicsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallPhysicsObject.swift; sourceTree = "<group>"; };
 		12540F0D29A906C7006A2764 /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 		12540F0F29A906DA006A2764 /* WallPhysicsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallPhysicsObject.swift; sourceTree = "<group>"; };
-		12540F1129A9B24F006A2764 /* Transformable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transformable.swift; sourceTree = "<group>"; };
+		12540F1129A9B24F006A2764 /* TransformableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformableObject.swift; sourceTree = "<group>"; };
 		12540F1329A9B3DA006A2764 /* Collision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collision.swift; sourceTree = "<group>"; };
 		12540F1529A9B7CF006A2764 /* Cannon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cannon.swift; sourceTree = "<group>"; };
 		12540F1729A9EA60006A2764 /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
 		12540F1929A9EA72006A2764 /* BucketPhysicsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketPhysicsObject.swift; sourceTree = "<group>"; };
-		12540F1B29A9EAB3006A2764 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		12540F1B29A9EAB3006A2764 /* RectangleBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleBlock.swift; sourceTree = "<group>"; };
 		12540F1D29A9EF68006A2764 /* BucketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketView.swift; sourceTree = "<group>"; };
+		12540F1F29AA232B006A2764 /* PegPowerEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegPowerEnum.swift; sourceTree = "<group>"; };
+		12540F2129AA23CF006A2764 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
+		12540F2329AA4B15006A2764 /* BallPowerEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallPowerEnum.swift; sourceTree = "<group>"; };
+		12540F2529AA4BE7006A2764 /* BlockPhysicsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockPhysicsObject.swift; sourceTree = "<group>"; };
+		12540F2729AA4ED5006A2764 /* RectangleTransformableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleTransformableObject.swift; sourceTree = "<group>"; };
 		12633C1A2984DA880057AF14 /* BoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTests.swift; sourceTree = "<group>"; };
 		12633C1C2984DD370057AF14 /* PegTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegTests.swift; sourceTree = "<group>"; };
 		12633C1E2984F6BE0057AF14 /* PalettePegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettePegView.swift; sourceTree = "<group>"; };
@@ -111,10 +121,10 @@
 		129A1FFC298FA17800C32F57 /* PhysicsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsObject.swift; sourceTree = "<group>"; };
 		129A2000298FA25200C32F57 /* Acceleration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acceleration.swift; sourceTree = "<group>"; };
 		129A2002298FA28300C32F57 /* Vector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
-		129A2006298FA3FF00C32F57 /* CircleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleObject.swift; sourceTree = "<group>"; };
+		129A2006298FA3FF00C32F57 /* CirclePhysicsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclePhysicsObject.swift; sourceTree = "<group>"; };
 		129A200E298FA5FD00C32F57 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		129A2011298FA60F00C32F57 /* PeggleGameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleGameEngine.swift; sourceTree = "<group>"; };
-		129A2013298FA68700C32F57 /* RectangleObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleObject.swift; sourceTree = "<group>"; };
+		129A2013298FA68700C32F57 /* RectanglePhysicsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectanglePhysicsObject.swift; sourceTree = "<group>"; };
 		129DE9002993DF9D00EB08CC /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 		129DE90A2995381100EB08CC /* PegPhysicsObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegPhysicsObject.swift; sourceTree = "<group>"; };
 		129DE90C29953E3100EB08CC /* GameBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardView.swift; sourceTree = "<group>"; };
@@ -159,13 +169,18 @@
 		1215D67B2980212D0086F526 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				12540F1129A9B24F006A2764 /* TransformableObject.swift */,
 				12CF51032986D35E00D2D1C8 /* Board.swift */,
 				12540F1729A9EA60006A2764 /* Bucket.swift */,
 				12CF51042986D35E00D2D1C8 /* Peg.swift */,
-				12540F1B29A9EAB3006A2764 /* Block.swift */,
+				12540F1B29A9EAB3006A2764 /* RectangleBlock.swift */,
+				12540F2729AA4ED5006A2764 /* RectangleTransformableObject.swift */,
 				129DE9002993DF9D00EB08CC /* Ball.swift */,
 				12540F0D29A906C7006A2764 /* Wall.swift */,
 				12540F1529A9B7CF006A2764 /* Cannon.swift */,
+				12540F2129AA23CF006A2764 /* GameMode.swift */,
+				12540F1F29AA232B006A2764 /* PegPowerEnum.swift */,
+				12540F2329AA4B15006A2764 /* BallPowerEnum.swift */,
 				12540EF129A634FB006A2764 /* PegTypeEnum.swift */,
 			);
 			path = Models;
@@ -185,19 +200,19 @@
 			isa = PBXGroup;
 			children = (
 				129A1FFC298FA17800C32F57 /* PhysicsObject.swift */,
-				129A2006298FA3FF00C32F57 /* CircleObject.swift */,
-				129A2013298FA68700C32F57 /* RectangleObject.swift */,
+				129A2006298FA3FF00C32F57 /* CirclePhysicsObject.swift */,
+				129A2013298FA68700C32F57 /* RectanglePhysicsObject.swift */,
 				129A2000298FA25200C32F57 /* Acceleration.swift */,
 				129A2002298FA28300C32F57 /* Vector.swift */,
 				1283E4932998CA7D00F1EBE0 /* Projection.swift */,
 				12540F0B29A90534006A2764 /* BallPhysicsObject.swift */,
+				12540F2529AA4BE7006A2764 /* BlockPhysicsObject.swift */,
 				12540F1929A9EA72006A2764 /* BucketPhysicsObject.swift */,
 				129DE90A2995381100EB08CC /* PegPhysicsObject.swift */,
 				12540F0F29A906DA006A2764 /* WallPhysicsObject.swift */,
 				129A2011298FA60F00C32F57 /* PeggleGameEngine.swift */,
 				129A200E298FA5FD00C32F57 /* GameEngine.swift */,
 				12540F1329A9B3DA006A2764 /* Collision.swift */,
-				12540F1129A9B24F006A2764 /* Transformable.swift */,
 			);
 			path = Physics;
 			sourceTree = "<group>";
@@ -444,15 +459,18 @@
 				12540EEB29A6309A006A2764 /* PaletteActionButtonsView.swift in Sources */,
 				12A26FC1297F86450080DFC1 /* PeggleApp.swift in Sources */,
 				12540F0E29A906C7006A2764 /* Wall.swift in Sources */,
+				12540F2629AA4BE7006A2764 /* BlockPhysicsObject.swift in Sources */,
 				12CF51052986D35E00D2D1C8 /* Board.swift in Sources */,
 				12540EFE29A84EB1006A2764 /* PeggleView.swift in Sources */,
+				12540F2229AA23CF006A2764 /* GameMode.swift in Sources */,
 				12CF51062986D35E00D2D1C8 /* Peg.swift in Sources */,
 				129A2001298FA25200C32F57 /* Acceleration.swift in Sources */,
-				129A2007298FA3FF00C32F57 /* CircleObject.swift in Sources */,
+				129A2007298FA3FF00C32F57 /* CirclePhysicsObject.swift in Sources */,
 				129DE90F29967D2100EB08CC /* PaletteBallView.swift in Sources */,
 				12540EF629A639C8006A2764 /* PaletteViewModel.swift in Sources */,
 				129DE9012993DF9D00EB08CC /* Ball.swift in Sources */,
 				12540EFA29A79149006A2764 /* GameViewModel.swift in Sources */,
+				12540F2429AA4B15006A2764 /* BallPowerEnum.swift in Sources */,
 				12540F1429A9B3DA006A2764 /* Collision.swift in Sources */,
 				12540F1829A9EA60006A2764 /* Bucket.swift in Sources */,
 				12540F0229A84EE6006A2764 /* GameMenuView.swift in Sources */,
@@ -469,19 +487,21 @@
 				1215D676298011200086F526 /* PaletteBoardView.swift in Sources */,
 				12540EEA29A6309A006A2764 /* PaletteDesignButtonsView.swift in Sources */,
 				12540EF229A634FB006A2764 /* PegTypeEnum.swift in Sources */,
-				129A2014298FA68700C32F57 /* RectangleObject.swift in Sources */,
+				129A2014298FA68700C32F57 /* RectanglePhysicsObject.swift in Sources */,
 				12633C1F2984F6BE0057AF14 /* PalettePegView.swift in Sources */,
 				1283E4942998CA7D00F1EBE0 /* Projection.swift in Sources */,
+				12540F2029AA232B006A2764 /* PegPowerEnum.swift in Sources */,
 				12540EF829A63D24006A2764 /* PaletteDesignButtonView.swift in Sources */,
 				12540F1029A906DA006A2764 /* WallPhysicsObject.swift in Sources */,
 				12540F0A29A8F68A006A2764 /* CannonView.swift in Sources */,
-				12540F1C29A9EAB3006A2764 /* Block.swift in Sources */,
+				12540F1C29A9EAB3006A2764 /* RectangleBlock.swift in Sources */,
 				12540F1629A9B7CF006A2764 /* Cannon.swift in Sources */,
-				12540F1229A9B24F006A2764 /* Transformable.swift in Sources */,
+				12540F1229A9B24F006A2764 /* TransformableObject.swift in Sources */,
 				129A1FFD298FA17800C32F57 /* PhysicsObject.swift in Sources */,
 				12540EEC29A6309A006A2764 /* PaletteView.swift in Sources */,
 				12540F0429A84EF7006A2764 /* GamePegView.swift in Sources */,
 				12540F0829A893D7006A2764 /* GameBallView.swift in Sources */,
+				12540F2829AA4ED5006A2764 /* RectangleTransformableObject.swift in Sources */,
 				12540EF429A63747006A2764 /* AlertMessages.swift in Sources */,
 				129DE90B2995381100EB08CC /* PegPhysicsObject.swift in Sources */,
 			);

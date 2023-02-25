@@ -1,5 +1,5 @@
 //
-//  CircleObject.swift
+//  CirclePhysicsObject.swift
 //  Peggle
 //
 //  Created by Lee Yong Ler on 5/2/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CircleObject: PhysicsObject {
+class CirclePhysicsObject: PhysicsObject {
     var radius: CGFloat
     static let defaultBallRadius = CGFloat(25)
     static let numberOfCircumferencePoints: Int = 16
@@ -21,8 +21,8 @@ class CircleObject: PhysicsObject {
     override var vertices: [CGPoint] {
         var vertices: [CGPoint] = []
 
-        for i in 0...CircleObject.numberOfCircumferencePoints {
-            let angle = Double(i) / Double(CircleObject.numberOfCircumferencePoints) * Double.pi * 2
+        for i in 0...CirclePhysicsObject.numberOfCircumferencePoints {
+            let angle = Double(i) / Double(CirclePhysicsObject.numberOfCircumferencePoints) * Double.pi * 2
             let x = cos(angle) * radius + centre.x
             let y = sin(angle) * radius + centre.y
             let vertex = CGPoint(x: x, y: y)
@@ -32,8 +32,8 @@ class CircleObject: PhysicsObject {
         return vertices
     }
 
-    static func == (lhs: CircleObject, rhs: PhysicsObject) -> Bool {
-        guard let obj = rhs as? CircleObject else {
+    static func == (lhs: CirclePhysicsObject, rhs: PhysicsObject) -> Bool {
+        guard let obj = rhs as? CirclePhysicsObject else {
             return false
         }
         return lhs.centre == obj.centre && lhs.velocity == obj.velocity

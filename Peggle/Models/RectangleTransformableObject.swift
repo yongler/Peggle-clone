@@ -1,17 +1,19 @@
 //
-//  RectangleObject.swift
+//  RectangleTransformableObject.swift
 //  Peggle
 //
-//  Created by Lee Yong Ler on 5/2/23.
+//  Created by Lee Yong Ler on 25/2/23.
 //
 
 import Foundation
 
-class RectangleObject: PhysicsObject {
+class RectangleTransformableObject: TransformableObject {
+    var centre: CGPoint
+    var rotationInRadians: CGFloat
     var width: CGFloat
     var height: CGFloat
 
-    override var vertices: [CGPoint] {
+    var vertices: [CGPoint] {
         let leftX = centre.x - width / 2
         let rightX = centre.x + width / 2
 
@@ -25,23 +27,28 @@ class RectangleObject: PhysicsObject {
 
         return [topLeftCorner, topRightCorner, bottomLeftCorner, bottomRightCorner]
     }
+    
+    var verticesAfterRotation: [CGPoint]  {
+        return []
+    }
 
-    init(centre: CGPoint, width: CGFloat, height: CGFloat) {
+    init(centre: CGPoint, width: CGFloat, height: CGFloat, rotationInRadians: CGFloat = 0) {
         self.width = width
         self.height = height
-        super.init(centre: centre, velocity: Vector.zero, acceleration: Acceleration.zero)
+        self.centre = centre
+        self.rotationInRadians = rotationInRadians
     }
     
-    init(centre: CGPoint, width: CGFloat, height: CGFloat, velocity: Vector, acceleration: Acceleration) {
-        self.width = width
-        self.height = height
-        super.init(centre: centre, velocity: velocity, acceleration: acceleration)
+    func applyTransform() {
+        
     }
+ 
 }
 
-extension RectangleObject: CustomStringConvertible {
+
+extension RectangleTransformableObject: CustomStringConvertible {
     var description: String {
-        "wall \(centre)"
+        "RectangleTransformableObject \(centre)"
 //        "wall \(centre) \(width) \(height) \(vertices)"
     }
 }

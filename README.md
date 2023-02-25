@@ -98,7 +98,7 @@ tests in code, please delete this section.
    - `removeBallIfOutOfBounds()` should remove ball if is out of bounds
    - ` moveBall(by: CGSize)` should move the ball by specified size, ignore if if ball does not exist or if ball is moving (`ball.velocity != Vector.zero && ball.acceleration != Acceleration.zero`
    - `updateGameArea(_ gameArea: CGSize)` should updates self.gameArea with input
-- CircleObject 
+- CirclePhysicsObject 
     - Should be able to initialise with `centre: CGPoint, velocity: Vector,
                   acceleration: Acceleration, radius: CGFloat` without fail 
    - `vertices` Should be able to access computed vertices (treat circle as polygon) 
@@ -122,7 +122,7 @@ tests in code, please delete this section.
    - Should initialise and set  `board = Board.sampleGameBoard
         lastBallPosition = CGPoint(x: 0, y: 0)
         timeAtLastBallPosition = Double(Calendar.current.component(.second, from: Date()))`
-   - `setupWalls()` should setup up left, right, top walls that are rectangleObjects dependant on gameArea and add to gameEngine objects. 
+   - `setupWalls()` should setup up left, right, top walls that are RectanglePhysicsObjects dependant on gameArea and add to gameEngine objects. 
    - `createDisplayLink()` should initialise CADisplayLink and automatically call `update` at every frame change. 
    - `update(displaylink: CADisplayLink)` should call `let collidedObjects = gameEngine.moveAll(time: frameDuration)
         updateBoardWithGameEngine(collidedObjects: collidedObjects)` without fail 
@@ -160,11 +160,23 @@ more headings to explain the rules of your game in a structured manner.
 Alternatively, you can rewrite this section in your own style. You may also
 write this section in a new file entirely, if you wish.
 
+bucket 
+Please write this effect in the rules of the game as well.
+
 ### Cannon Direction
-Please explain how the player moves the cannon.
+Player can drag cannon around, on release the ball is launched. 
+
+### Bucket effect 
+Player gets 1 extra ball if ball enters bucket. 
 
 ### Win and Lose Conditions
-Please explain how the player wins/loses the game.
+To win, clear all orange pegs.
+You start with 10 balls. Every time you shoot a ball, the number of balls get subtracted. You lose if you run out of balls and there are still orange pegs remaining in the game.
+
+### Power up 
+Green balls give ka-boom power
+Purple balls give spooky ball power. 
+Bucket is not shut at any point of time.  
 
 ## Level Designer Additional Features
 

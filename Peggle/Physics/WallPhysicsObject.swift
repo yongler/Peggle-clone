@@ -7,7 +7,7 @@
 //
 //import Foundation
 //
-//class WallPhysicsObject: RectangleObject {
+//class WallPhysicsObject: RectanglePhysicsObject {
 //    var peg = Peg.sampleBluePeg1
 //
 //    convenience init(peg: Peg) {
