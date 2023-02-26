@@ -32,6 +32,10 @@ class GameViewModel: ObservableObject {
 //        displayLink.isPaused = false
 //    }
 
+    var beatTheScore: Int {
+        board.beatTheScore
+    }
+    
     @Published var boardNames: [String] = []
     @Published var alertMessage: String = ""
     @Published var hasAlert = false
@@ -188,13 +192,13 @@ class GameViewModel: ObservableObject {
     }
 
     func endGame() {
-//        displayLink.remove(from: .current, forMode: RunLoop.Mode.default)
+        displayLink?.remove(from: .current, forMode: RunLoop.Mode.default)
         displayLink?.isPaused = true
         displayLink?.invalidate()
         displayLink = nil
 
         timerObject.invalidate()
-//        timerObject = nil
+        timerObject = nil
     }
 
 //    func onDragBall(to: CGPoint) {

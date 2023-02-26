@@ -35,6 +35,8 @@ class PeggleGameEngine: ObservableObject {
     func setGameMode(_ gameMode: GameMode) {
         gameModeSelected = gameMode
     }
+    
+    var pastCollidedObjects = [PhysicsObject]()
 
 //    var timer:
 //    var orangePegsHitCount: Int = 0
@@ -171,6 +173,10 @@ class PeggleGameEngine: ObservableObject {
         let otherPegScore = 500
 
         for obj in collidedObjects {
+            if pastCollidedObjects.contains(obj) {
+                continue
+            }
+            
             if let pegObj = obj as? PegPhysicsObject {
 
                 let peg = pegObj.getPeg()
@@ -195,7 +201,7 @@ class PeggleGameEngine: ObservableObject {
         var hasSpooky = false
 
         updateScore(collidedObjects: collidedObjects)
-
+        pastCollidedObjects.append(contentsOf: collidedObjects)
 //        print("hello---- collided \(collidedObjects)")
 
         for object in gameEngine.objects {
@@ -223,10 +229,11 @@ class PeggleGameEngine: ObservableObject {
 //                        spicyPegs.insert(peg.pegType)
 //                        print("confusement -as-d-as-d-as-d-as-d")
 //                    }
+                    newBoard.pegsHitCount += 1
 
                 }
                 newBoard.addPeg(peg)
-                newBoard.pegsHitCount += 1
+                
             }
             
             if let obj = object as? BallPhysicsObject {

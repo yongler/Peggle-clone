@@ -30,8 +30,13 @@ enum GameMode {
         case .beatTheScore:
             return score < board.beatTheScore && (board.ballsLeftCount == 0 || timeLeftInSeconds <= 0)
         case .siamLeftSiamRight:
+            print("hit count \(board.pegsHitCount)")
+            print("shot count \(board.ballsShotCount )")
+            print("timeLeftInSeconds \(timeLeftInSeconds)")
+            print("board.siamLeftSiamRightBallsCount \(board.siamLeftSiamRightBallsCount)")
+            
             return board.ballsShotCount < board.siamLeftSiamRightBallsCount &&
-            ( timeLeftInSeconds > 0 || board.pegsHitCount > 0)
+            ( timeLeftInSeconds <= 0 || board.pegsHitCount > 0)
         }
     }
 

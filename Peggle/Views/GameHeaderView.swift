@@ -12,16 +12,18 @@ struct GameHeaderView: View {
 
     var body: some View {
         HStack {
-            Spacer()
+//            Spacer()
             Text("Score: \(gameViewModel.score)")
+            Spacer()
+            Text("Beat The Score: \(gameViewModel.beatTheScore)")
             Spacer()
             Text("Ball left: \(gameViewModel.ballsLeftCount)")
             Spacer()
             Text("Orange Peg left: \(gameViewModel.orangePegsLeftCount)")
             Spacer()
             Text("\(gameViewModel.timer)")
-            Spacer()
-        }
+//            Spacer()
+        }.padding()
     }
 }
 

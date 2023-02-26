@@ -219,9 +219,9 @@ class PaletteViewModel: ObservableObject {
 
         case .block:
             let block = RectangleBlock(centre: location)
-            print("add block")
+//            print("add block")
             board.addBlock(block: block)
-            print("board blocks \(board.blocks)")
+//            print("board blocks \(board.blocks)")
         default:
             return
         }
@@ -272,9 +272,9 @@ class PaletteViewModel: ObservableObject {
         let samplePeg6 = Peg(pegType: .orange,
                              centre: CGPoint(x: gameAreaThreeQuarterWidth - 50, y: gameAreaMidHeight - 50))
 
-        let powerUpBoard = Board(gameArea: gameArea, pegs: [samplePeg1, samplePeg2])
+//        let powerUpBoard = Board(gameArea: gameArea, pegs: [samplePeg1, samplePeg2])
 
-//        let powerUpBoard = Board(gameArea: gameArea, pegs: [samplePeg1, samplePeg2, samplePeg3, samplePeg4, samplePeg5, samplePeg6])
+        let powerUpBoard = Board(gameArea: gameArea, pegs: [samplePeg1, samplePeg2, samplePeg3, samplePeg4, samplePeg5, samplePeg6])
 
         return powerUpBoard
     }

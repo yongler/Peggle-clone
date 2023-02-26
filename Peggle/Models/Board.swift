@@ -18,7 +18,7 @@ struct Board: Identifiable {
     var ballsCount: Int = 10
     var ballsLeftCount: Int = 10
     var siamLeftSiamRightBallsCount: Int = 5
-    var beatTheScore: Int = 10_000
+    var beatTheScore: Int = 5000
 
     var gameArea = CGSize(width: 1_000, height: 1_000)
     var pegCount: Int {
