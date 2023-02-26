@@ -311,12 +311,6 @@ Confusement peg flips the board upside down
 4. A timer that results in a game over when it ends, shown during game play at the top of the board
 5. Engineering luck. Player gets additional ball once in a while (dependent on RNG behind the scenes)
 
-
-## Tests
-If you decide to write how you are going to do your tests instead of writing
-actual tests, please write in this section. If you decide to write all of your
-tests in code, please delete this section.
-
 ## Written Answers
 
 ### Reflecting on your Design
