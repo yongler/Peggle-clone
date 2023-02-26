@@ -25,6 +25,10 @@ struct GameBoardView: View {
 
                     ForEach($gameViewModel.boardPegs) { peg in GamePegView(gameViewModel: gameViewModel, peg: peg) }
                     ForEach($gameViewModel.boardBlocks) { block in BlockView(block: block) }
+                    
+                    if gameViewModel.hasNotSelectedGameMode {
+                        GameMenuView(gameViewModel: gameViewModel)
+                    }
                 }
                 .alert(gameViewModel.gameEndMessage, isPresented: $gameViewModel.hasGameEndMessage) {
                     Button("OK", role: .cancel) {
@@ -47,7 +51,7 @@ struct GameBoardView: View {
             .task {
                 gameViewModel.loadLevel(name: boardName)
                 gameViewModel.setupGame(gameArea: geometry.size)
-                print("loading from board \(gameViewModel.boardPegs)")
+                print("loading from board \(gameViewModel.boardBlocks) ")
             }
         }
     }

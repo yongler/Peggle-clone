@@ -148,6 +148,14 @@ class PaletteViewModel: ObservableObject {
             hasAlert = true
         }
     }
+    
+    func saveTemp(name: String) {
+        do {
+            try BoardStore.save(board: board, name: name)
+        } catch {
+            return
+        }
+    }
 
     func closeAlert() {
         hasAlert = false
@@ -218,9 +226,10 @@ class PaletteViewModel: ObservableObject {
         let samplePeg2 = Peg(pegType: .blue, centre: CGPoint(x: gameAreaQuarterWidth, y: gameAreaMidHeight))
         let samplePeg3 = Peg(pegType: .orange, centre: CGPoint(x: gameAreaThreeQuarterWidth, y: gameAreaQuarterHeight))
         let samplePeg4 = Peg(pegType: .orange, centre: CGPoint(x: gameAreaThreeQuarterWidth, y: gameAreaMidHeight))
-
-        let easyBoard = Board(gameArea: gameArea, pegs: [samplePeg1, samplePeg2, samplePeg3, samplePeg4])
-
+        
+        let easyBoard = Board(gameArea: gameArea, pegs: [samplePeg1, samplePeg2, samplePeg3, samplePeg4], blocks: [RectangleBlock.sampleBlock])
+        
+        print("in easy \(easyBoard.blocks)")
         return easyBoard
     }
 

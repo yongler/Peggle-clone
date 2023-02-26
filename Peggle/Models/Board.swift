@@ -204,7 +204,9 @@ struct Board: Identifiable {
     }
 
     mutating func moveBallToTop() {
+        print("in baord \(ball)")
         ball?.moveToTop()
+        print("in baord after \(ball)")
     }
 
     mutating func removeBall() {

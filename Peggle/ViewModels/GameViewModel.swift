@@ -149,6 +149,8 @@ class GameViewModel: ObservableObject {
         createDisplayLink()
         createTimer()
         timeLeftInSeconds = board.timeInSeconds
+        
+        hasNotSelectedGameMode = true
         print("setup")
     }
 
@@ -187,9 +189,9 @@ class GameViewModel: ObservableObject {
 
     func endGame() {
 //        displayLink.remove(from: .current, forMode: RunLoop.Mode.default)
-        displayLink.isPaused = true
-//        displayLink.invalidate()
-//        displayLink = nil
+        displayLink?.isPaused = true
+        displayLink?.invalidate()
+        displayLink = nil
 
         timerObject.invalidate()
 //        timerObject = nil

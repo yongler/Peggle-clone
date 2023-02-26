@@ -24,5 +24,5 @@ class RectangleBlock: RectangleTransformableObject, Identifiable {
 }
 
 extension RectangleBlock {
-    static let sampleBlock = RectangleBlock(centre: CGPoint(x: 300, y: 300))
+    static let sampleBlock = RectangleBlock(centre: CGPoint(x: 500, y: 500))
 }

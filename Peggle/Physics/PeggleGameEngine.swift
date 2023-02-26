@@ -77,9 +77,6 @@ class PeggleGameEngine: ObservableObject {
                                     board: board, gameMode: gameModeSelected)
     }
 
-    func luckyGetBalls() {
-
-    }
 
     func update(frameDuration: Double) -> Board {
         isLucky = false
@@ -199,7 +196,7 @@ class PeggleGameEngine: ObservableObject {
 
         updateScore(collidedObjects: collidedObjects)
 
-        print("hello---- collided \(collidedObjects)")
+//        print("hello---- collided \(collidedObjects)")
 
         for object in gameEngine.objects {
             if let obj = object as? PegPhysicsObject {
@@ -207,14 +204,10 @@ class PeggleGameEngine: ObservableObject {
                 if collidedObjects.contains(object) {
                     if [PegTypeEnum.confusement, PegTypeEnum.zombie].contains(peg.pegType) {
                         spicyPegs.insert(peg.pegType)
-                        print("confusement hitt")
                     }
 
                     peg.lightUp()
                     pegPowerUpsObtained.insert(peg.power)
-
-                    print("yes \(peg)")
-                    print("yes \(peg.pegType)")
 
                     if peg.power == .spookyball {
                         ballPowerUpsObtained.insert(.spookyball)
@@ -235,6 +228,7 @@ class PeggleGameEngine: ObservableObject {
                 newBoard.addPeg(peg)
                 newBoard.pegsHitCount += 1
             }
+            
             if let obj = object as? BallPhysicsObject {
                 var oldBall = obj.getBall()
                 oldBall.addPowerUps(powerUps: ballPowerUpsObtained)
@@ -244,12 +238,6 @@ class PeggleGameEngine: ObservableObject {
                     print("update board, obtains = \(ballPowerUpsObtained)")
                 }
 
-                if !oldBall.powerUps.isEmpty {
-                    print("update board, ball = \(oldBall.powerUps)")
-                    print("update board, ball has spooky = \(oldBall.powerUps.contains(.spookyball))")
-                    hasSpooky = oldBall.powerUps.contains(.spookyball)
-                    print("has spooky \(hasSpooky)")
-                }
 
                 if currentTime - timeAtLastBallPosition > timeForPrematureRemoval &&
                     abs(lastBallPosition.x - obj.centre.x + lastBallPosition.y - obj.centre.y) < 1 {
@@ -261,21 +249,41 @@ class PeggleGameEngine: ObservableObject {
                 }
 
                 lastBallPosition = obj.centre
+                
+                if !oldBall.powerUps.isEmpty {
+                    print("update board, ball = \(oldBall.powerUps)")
+                    print("update board, ball has spooky = \(oldBall.powerUps.contains(.spookyball))")
+                    hasSpooky = oldBall.powerUps.contains(.spookyball)
+                    print("has spooky \(hasSpooky)")
+                    
+                    newBoard.moveBallToTop()
+                    print("-----spooky-----AKSDHFAHKFB")
+                    print("in engine \(newBoard.ball)")
+                    print("in engine \(newBoard.ball?.centre)")
+                    print("in engine board height \(newBoard.gameArea.height)")
+                }
 
-                if newBoard.ballIsOutOfBounds {
-
-                    print("ball \(oldBall.powerUps)")
-                    if hasSpooky {
-                        newBoard.moveBallToTop()
-                        print("-----spooky-----")
-                    } else {
+                if (newBoard.ball?.centre.y ?? 0) > newBoard.gameArea.height {
+//                    if !oldBall.powerUps.isEmpty {
+//                        print("update board, ball = \(oldBall.powerUps)")
+//                        print("update board, ball has spooky = \(oldBall.powerUps.contains(.spookyball))")
+//                        hasSpooky = oldBall.powerUps.contains(.spookyball)
+//                        print("has spooky \(hasSpooky)")
+//                    }
+//
+//                    print("ball \(oldBall.powerUps)")
+//                    if hasSpooky {
+//                        newBoard.moveBallToTop()
+//                        print("-----spooky-----")
+//                    } else {
+                        print("in hell \(newBoard.ball)")
                         print("in here \(!(oldBall.powerUps.contains(.spookyball)))")
 //                        newBoard.moveBallToTop()
                         newBoard.resetBall()
                         newBoard.clearAllLitPegs()
                         launchedBall = false
 
-                    }
+//                    }
 
                     if isBallInBucket {
                         newBoard.ballsLeftCount += 1

@@ -22,6 +22,7 @@ struct GameMenuView: View {
             Spacer()
 
             VStack {
+                Text("Please select your game mode")
                 Button("Normal Game") { gameViewModel.selectGameMode(.normalGame) }
                 Button("Beat The Score") { gameViewModel.selectGameMode(.beatTheScore) }
                 Button("Siam Left Siam Right") { gameViewModel.selectGameMode(.siamLeftSiamRight) }

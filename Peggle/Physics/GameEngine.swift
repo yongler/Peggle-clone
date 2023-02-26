@@ -36,9 +36,13 @@ class GameEngine {
 //                print("bang \(object1) \(object2)")
             }
         }
-//        if object2 is BucketPhysicsObject {
-//            object1.velocity.directionY *= -1 * normalForceCoefficient
-//        }
+        if object2 is BlockPhysicsObject {
+            if object1.centre.y > object2.centre.y {
+                object1.velocity.directionY *= -1 * normalForceCoefficient
+            } else {
+                object1.velocity.directionX *= -1 * normalForceCoefficient
+            }
+        }
         return object1
     }
 
