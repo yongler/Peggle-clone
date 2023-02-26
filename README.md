@@ -172,6 +172,34 @@ tests in code, please delete this section.
 
 ### Integration testing 
 
+- Test palette
+    - Blue button 
+        - When button is tapped, it should indicate that it is selected 
+        - When button is tapped and game area is tapped and there are no colliding pegs and it is within game area, it should add a blue peg 
+        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a blue peg 
+    - Orange button 
+        - When button is tapped, it should indicate that it is selected 
+        - When button is tapped and game area is tapped and there are no colliding pegs  and it is within game area, it should add a orange peg 
+        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a orange peg 
+    - Clear button 
+        - When button is tapped, it should indicate that it is selected
+        - When button is tapped and a peg is tapped, peg should be removed
+    - Pegs 
+        - When long pressed, peg should be removed
+        - When dragged, peg should move to new location unless it collides with other pegs or it is not within game area, if so it should be removed 
+        
+- Test storage 
+    - Level name field 
+        - When field is tapped, it should allow user to type 
+    - Load button
+        - When load button is tapped with level name indicated, it should load the associated level 
+        - When load button is tapped with level name not indicated, it should load the default "peggle.data"
+    - Save button
+        - When save button is tapped with level name ("levelname") indicated, it should save the level with the level name as "levelname.data"
+        - When save button is tapped with level name not indicated, it should save with the default name "peggle.data"
+    - Reset button 
+        - When reset button is tapped, game area is cleared. 
+
 - Game 
     - When game is tested on potrait screen, it should work as below sections 
     - When game is tested on different ipad screen sizes, it should work as below sections
