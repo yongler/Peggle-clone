@@ -39,7 +39,7 @@ your guide.
 ### Class diagrams
 Code now follows MVVM structure for better seperation of code as compared to previous MV pattern. 
 
-Models
+### Models
 ![image](https://user-images.githubusercontent.com/68801331/218320230-46683487-d5a6-420a-b7f7-118e69d29075.png)
 
 
@@ -50,7 +50,7 @@ Models are split into 3 main category, game engine, board and board store.
 2. CirclePHysicsObject and RectanglePhysicsObject inherit from PhsyicsObject. 
 3. Board object have their own associated PhysicsObject acting as a wrapper to be process in the GameEngine. i.e. Peg is wrapped with PegPhysicsObject by PeggleGameEngine before passing into GameEngine for processing. 
 
-ViewModels 
+### ViewModels 
 
 
 GameViewModel acts as the entry point of view to model for game related mechanics. It also acts as the view model for game related tasks that correspond to UI actions from game related views. i.e. 
@@ -69,7 +69,7 @@ PaletteViewModel acts as the view model for palette related tasks that correspon
 
 
 
-Views 
+### Views 
 
 
 Views are seperated into smaller views responsible for rendering 1 component. Main view then overlays all the smaller views. i.e. PaletteView overlays PaletteBoardView, PaletteActionButtonsView, PaletteDesignBUttonsViews.
@@ -125,8 +125,7 @@ If you decide to write how you are going to do your tests instead of writing
 actual tests, please write in this section. If you decide to write all of your
 tests in code, please delete this section.
 
-- PS2 tests are omitted 
-- Unit tests for models are written in code. 
+- Unit tests for some models are written in code. 
 
 ### Unit Testing 
 
@@ -137,6 +136,7 @@ tests in code, please delete this section.
    - Should be able to initialise with `centre: CGPoint, velocity: Vector,
                   acceleration: Acceleration, radius: CGFloat` without fail 
    - Should be able to call `moveCentre(by: CGSize)` and mutates own centre 
+   - Shou
 - Board 
    - Should be able to call lightUp(peg: Peg) and set peg.isLit to true if it is false. if already true, ignore and return 
    - `clearAllLitPegs()` should remove all pegs in self.pegs that has isLit = true
@@ -237,9 +237,6 @@ more headings to explain the rules of your game in a structured manner.
 Alternatively, you can rewrite this section in your own style. You may also
 write this section in a new file entirely, if you wish.
 
-bucket 
-Please write this effect in the rules of the game as well.
-
 ### Cannon Direction
 Player can drag cannon around, on release the ball is launched. 
 
@@ -261,14 +258,22 @@ Confusement peg flips the board upside down
 ## Level Designer Additional Features
 
 ### Peg Rotation
-Please explain how the player rotates the triangular pegs.
+1. Player can tap on a peg or block to select it. 
+2. Player can slide the rotate slider to rotate the peg or block. 
+3. Peg or block rotates clockwise accordingly. 
 
 ### Peg Resizing
-Please explain how the player resizes the pegs.
+1. Player can tap on a peg or block to select it. 
+2. Player can slide the rotate slider to resize the peg or block. The slider resizes the peg or block by 2 at the maximum in each dimensions (radius for peg and width and height for block) 
+3. Peg or block resize accordingly. 
 
 ## Bells and Whistles
-Please write all of the additional features that you have implemented so that
-your grader can award you credit.
+1. A score system that is calculated based on how many pegs the players hit, shown during game play at the top of the board
+2. Displaying orange pegs remaining during game play at the top of the board
+3. Displaying orange pegs placed in the Level Designer, shown at the top of the board
+4. A timer that results in a game over when it ends, shown during game play at the top of the board
+5. Engineering luck. Player gets additional ball once in a while (dependent on RNG behind the scenes)
+
 
 ## Tests
 If you decide to write how you are going to do your tests instead of writing
@@ -282,10 +287,11 @@ tests in code, please delete this section.
 > in problem sets 2 and 3. Here are some guiding questions:
 > - do you think you have designed your code in the previous problem sets well
 >   enough?
+>     
 > - is there any technical debt that you need to clean in this problem set?
 > - if you were to redo the entire application, is there anything you would
 >   have done differently?
 
-Your answer here
+
 
 
