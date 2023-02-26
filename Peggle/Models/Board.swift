@@ -16,7 +16,7 @@ struct Board: Identifiable {
     var bucket = Bucket()
     var blocks: [RectangleBlock] = []
     var ballsCount: Int = 10
-    var ballsLeftCount: Int = 1
+    var ballsLeftCount: Int = 10
     var siamLeftSiamRightBallsCount: Int = 5
     var beatTheScore: Int = 10000
     
@@ -38,7 +38,7 @@ struct Board: Identifiable {
     var orangePegsCount: Int {
         var count = 0
         for peg in pegs {
-            if peg.color == .orange {
+            if peg.pegType == .orange {
                 count += 1
             }
         }
@@ -48,7 +48,7 @@ struct Board: Identifiable {
     var orangePegsLeftCount: Int {
         var count = 0
         for peg in pegs {
-            if peg.color == .orange && !peg.isLit {
+            if peg.pegType == .orange && !peg.isLit {
                 count += 1
             }
         }
@@ -64,7 +64,7 @@ struct Board: Identifiable {
 //        blocks
 //    }
 
-    init(gameArea: CGSize, pegs: [Peg] = [], ballsCount: Int, ballsLeftCount: Int, blocks: [RectangleBlock] = []) {
+    init(gameArea: CGSize, pegs: [Peg] = [], ballsCount: Int = 10, ballsLeftCount: Int = 10, blocks: [RectangleBlock] = []) {
         self.pegs = pegs
         self.gameArea = gameArea
         self.ballsCount = ballsCount
@@ -98,8 +98,8 @@ struct Board: Identifiable {
     }
 
     /// Check if peg to add is a valid position, if yes add to board.
-    mutating func addPeg(color: PegTypeEnum, centre: CGPoint, radius: CGFloat = Peg.defaultPegRadius, power: PegPowerEnum) {
-        let peg = Peg(color: color, centre: centre, radius: radius, power: power)
+    mutating func addPeg(pegType: PegTypeEnum, centre: CGPoint, radius: CGFloat = Peg.defaultPegRadius, power: PegPowerEnum) {
+        let peg = Peg(pegType: pegType, centre: centre, radius: radius, power: power)
         addPeg(peg)
     }
 
@@ -198,7 +198,7 @@ struct Board: Identifiable {
         self.ball = nil
     }
 
-    private var ballIsOutOfBounds: Bool {
+    var ballIsOutOfBounds: Bool {
         guard let ball = ball else {
             return false
         }
@@ -206,9 +206,6 @@ struct Board: Identifiable {
     }
 
     mutating func removeBallIfOutOfBounds() -> Bool {
-        guard let ball = ball else {
-            return false
-        }
         if ballIsOutOfBounds {
             removeBall()
             return true

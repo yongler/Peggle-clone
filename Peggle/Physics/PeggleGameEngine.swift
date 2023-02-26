@@ -163,20 +163,28 @@ class PeggleGameEngine: ObservableObject {
         var newBoard = Board(gameArea: board.gameArea, ballsCount: board.ballsCount, ballsLeftCount: board.ballsLeftCount)
         var pegPowerUpsObtained = Set<PegPowerEnum>()
         var ballPowerUpsObtained = Set<BallPowerEnum>()
+        var spicyPegs = Set<PegTypeEnum>()
         
+        print("in update")
         for object in gameEngine.objects {
             if let obj = object as? PegPhysicsObject {
                 var peg = obj.getPeg()
                 if collidedObjects.contains(object) {
+                    
                     peg.lightUp()
+                    pegPowerUpsObtained.insert(peg.power)
+                    
+                    if peg.power == .spookyball {
+                        ballPowerUpsObtained.insert(.spookyball)
+                        print("spooky peg hit")
+                    }
+                    if [PegTypeEnum.confusement, PegTypeEnum.zombie].contains(peg.pegType) {
+                        spicyPegs.insert(peg.pegType)
+                        print("spicy peg hit")
+                    }
                 }
                 newBoard.addPeg(peg)
                 newBoard.pegsHitCount += 1
-                
-                pegPowerUpsObtained.insert(peg.power)
-                if peg.power == .spookyball {
-                    ballPowerUpsObtained.insert(.spookyball)
-                }
             }
             if let obj = object as? BallPhysicsObject {
                 
@@ -197,38 +205,48 @@ class PeggleGameEngine: ObservableObject {
                 lastBallPosition = obj.centre
                 
                 
-                if (newBoard.removeBallIfOutOfBounds() || isBallInBucket) && !ballPowerUpsObtained.contains(.spookyball)  {
+                if (newBoard.removeBallIfOutOfBounds()) && !ballPowerUpsObtained.contains(.spookyball)  {
 //                    print("removed")
+                    print("in here")
                     newBoard.resetBall()
                     newBoard.clearAllLitPegs()
                     launchedBall = false
-                    if isBallInBucket {
-                        newBoard.ballsLeftCount += 1
-                    }
+//                    if isBallInBucket {
+//                        newBoard.ballsLeftCount += 1
+//                    }
                 }
                 
-                if board.ball?.powerUps.contains(.spookyball) ?? false {
+         
+                
+                if (board.ball?.powerUps.contains(.spookyball) ?? false) && newBoard.ballIsOutOfBounds {
                     newBoard.moveBallToTop()
                     print("spokkky")
                 }
                 
             }
+            
             if let obj = object as? BucketPhysicsObject {
                 newBoard.bucket = obj.getBucket()
-//                print("new board bucket \(obj.getBucket())")
             }
             if let obj = object as? BlockPhysicsObject {
                 newBoard.addBlock(block: obj.getBlock())
-//                print("new board bucket \(obj.getBucket())")
             }
+            
+     
         }
         
-        if pegPowerUpsObtained.contains(.confusement) {
+        if spicyPegs.contains(.confusement) {
+            print("confuseeee")
             newBoard.flipBoard()
         }
         if !launchedBall {
             gameEngine.objects.removeAll(where: {$0 is BallPhysicsObject})
         }
+        
+        print("whatt \(board.ball?.powerUps)")
+        print("whatt \(ballPowerUpsObtained)")
+        print("whatt \(pegPowerUpsObtained)")
+        
         self.board = newBoard
         
     }
@@ -245,8 +263,8 @@ class PeggleGameEngine: ObservableObject {
         board.removePeg(at: at)
     }
 
-//    func addPeg(color: PegTypeEnum, centre: CGPoint, radius: CGFloat = Peg.defaultPegRadius) {
-//        board.addPeg(color: color, centre: centre, radius: radius)
+//    func addPeg(pegType: PegTypeEnum, centre: CGPoint, radius: CGFloat = Peg.defaultPegRadius) {
+//        board.addPeg(pegType: pegType, centre: centre, radius: radius)
 //    }
 
     func moveBall(to: CGPoint) {
@@ -262,7 +280,8 @@ class PeggleGameEngine: ObservableObject {
         gameEngine.addPhysicsObject(object: BucketPhysicsObject(bucket: board.bucket))
     }
 
-    func setup(_ gameArea: CGSize) {
+    func setup(_ gameArea: CGSize, boardToAssign: Board) {
+        board = boardToAssign
         board.updateGameArea(gameArea)
         board.setBucket(gameArea: gameArea)
         board.resetBall()

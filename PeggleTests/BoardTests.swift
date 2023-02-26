@@ -13,10 +13,10 @@
 //    func testConstruct() {
 //        let board = Board()
 //
-//        let peg1 = Peg(color: "peg-blue", x: 300, y: 300, radius: 50)
-//        let peg2 = Peg(color: "peg-blue", x: 600, y: 600, radius: 50)
-//        let peg3 = Peg(color: "peg-orange", x: 700, y: 700, radius: 50)
-//        let peg4 = Peg(color: "peg-orange", x: 800, y: 800, radius: 50)
+//        let peg1 = Peg(pegType: "peg-blue", x: 300, y: 300, radius: 50)
+//        let peg2 = Peg(pegType: "peg-blue", x: 600, y: 600, radius: 50)
+//        let peg3 = Peg(pegType: "peg-orange", x: 700, y: 700, radius: 50)
+//        let peg4 = Peg(pegType: "peg-orange", x: 800, y: 800, radius: 50)
 //
 //        let board1 = Board(pegs: [peg1, peg2, peg3, peg4])
 //    }
@@ -27,7 +27,7 @@
 //
 //        XCTAssert(board.pegCount == 1)
 //
-//        let peg1 = Peg(color: "peg-blue", x: 290, y: 290, radius: 50)
+//        let peg1 = Peg(pegType: "peg-blue", x: 290, y: 290, radius: 50)
 //        board.addPeg(peg1)
 //        XCTAssert(board.pegCount == 1)
 //    }
@@ -69,10 +69,10 @@
 //    }
 //
 //    func testClearBoard() {
-//        let peg1 = Peg(color: "peg-blue", x: 300, y: 300, radius: 50)
-//        let peg2 = Peg(color: "peg-blue", x: 600, y: 600, radius: 50)
-//        let peg3 = Peg(color: "peg-orange", x: 700, y: 700, radius: 50)
-//        let peg4 = Peg(color: "peg-orange", x: 800, y: 800, radius: 50)
+//        let peg1 = Peg(pegType: "peg-blue", x: 300, y: 300, radius: 50)
+//        let peg2 = Peg(pegType: "peg-blue", x: 600, y: 600, radius: 50)
+//        let peg3 = Peg(pegType: "peg-orange", x: 700, y: 700, radius: 50)
+//        let peg4 = Peg(pegType: "peg-orange", x: 800, y: 800, radius: 50)
 //
 //        let board = Board()
 //        board.addPeg(peg1)

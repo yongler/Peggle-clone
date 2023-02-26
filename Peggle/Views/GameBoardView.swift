@@ -8,7 +8,8 @@ import SwiftUI
 
 struct GameBoardView: View {
     @ObservedObject var gameViewModel: GameViewModel
-
+    @State var boardName: String
+    
     var body: some View {
         
         GeometryReader { geometry in
@@ -17,6 +18,7 @@ struct GameBoardView: View {
 //                    GameMenuView(gameViewModel: gameViewModel)
                 } else {
                     HStack {
+                        Spacer()
                         Text("Score: \(gameViewModel.score)")
                         Spacer()
                         Text("Ball left: \(gameViewModel.ballsLeftCount)")
@@ -24,15 +26,15 @@ struct GameBoardView: View {
                         Text("Orange Peg left: \(gameViewModel.orangePegsLeftCount)")
                         Spacer()
                         Text("\(gameViewModel.timer)")
+                        Spacer()
                     }
+                    
                     ZStack {
                         Image("background")
                             .resizable()
                             .background()
                         
                         Spacer()
-                        
-                        
                         
                         CannonView(gameViewModel: gameViewModel)
                         GameBallView(gameViewModel: gameViewModel)
@@ -50,10 +52,20 @@ struct GameBoardView: View {
                             //                        gameViewModel.endGame()
                         }
                     }
-                    .task {
-                        gameViewModel.setupGame(gameArea: geometry.size)
+                    .alert(gameViewModel.alertMessage, isPresented: $gameViewModel.hasAlert) {
+                        Button("OK", role: .cancel) {
+                            gameViewModel.closeAlert()
+                        }
                     }
+//                    .task {
+//                        gameViewModel.setupGame(gameArea: geometry.size)
+//                    }
                 }
+            }
+            .task {
+                gameViewModel.loadLevel(name: boardName)
+                gameViewModel.setupGame(gameArea: geometry.size)
+                print("loading from board \(gameViewModel.boardPegs)")
             }
         }
     }
@@ -61,6 +73,6 @@ struct GameBoardView: View {
 
 struct GameBoardView_Previews: PreviewProvider {
     static var previews: some View {
-        GameBoardView(gameViewModel: GameViewModel())
+        GameBoardView(gameViewModel: GameViewModel(), boardName: "hello")
     }
 }

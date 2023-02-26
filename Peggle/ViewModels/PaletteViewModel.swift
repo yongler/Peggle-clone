@@ -23,9 +23,16 @@ class PaletteViewModel: ObservableObject {
     let saveBoardFail = "Failed to save"
     let levelDoesNotExist = "Level does not exist"
     let overwriteWarning = "Saving will overwrite the existing level"
+    let overwriteSampleBoardWarning = "Overwriting sample boards are not allowed, try with another name"
     
     var defaultBallPosition: CGPoint = CGPoint()
     
+    var sampleBoardNames: [String] = []
+    var gameArea: CGSize =  CGSize()
+    var gameAreaQuarterWidth: CGFloat { gameArea.width / 4 }
+    var gameAreaThreeQuarterWidth: CGFloat { gameArea.width * 3 / 4 }
+    var gameAreaQuarterHeight: CGFloat { gameArea.height / 4 }
+    var gameAreaMidHeight: CGFloat { gameArea.height / 2 }
     
     enum PaletteButtonEnum: String {
         case bluePeg = "peg-blue"
@@ -103,6 +110,12 @@ class PaletteViewModel: ObservableObject {
         }
         
         do {
+            if sampleBoardNames.contains(levelName) {
+                print("is sample board but can save")
+                alertMessage = overwriteSampleBoardWarning
+                hasAlert = true
+                return
+            }
             if boardNames.contains(levelName) {
                 alertMessage = overwriteWarning
                 hasAlert = true
@@ -133,9 +146,9 @@ class PaletteViewModel: ObservableObject {
         
         switch selectedButton {
         case .bluePeg:
-            board.addPeg(color: .blue, centre: location, power: .nopower)
+            board.addPeg(pegType: .blue, centre: location, power: .nopower)
         case .orangePeg:
-            board.addPeg(color: .orange, centre: location, power: .nopower)
+            board.addPeg(pegType: .orange, centre: location, power: .nopower)
         case .block:
             let block = RectangleBlock(centre: location)
             print("add block")
@@ -145,6 +158,71 @@ class PaletteViewModel: ObservableObject {
         }
     }
     
+    private func addSampleBoard(board: Board, name: String) {
+        do {
+            guard !boardNames.contains(name) && !sampleBoardNames.contains(name) else {
+                return
+            }
+            
+            boardNames.append(name)
+            sampleBoardNames.append(name)
+            try BoardStore.saveLevels(boardNames: boardNames)
+            try BoardStore.save(board: board, name: name)
+        } catch {
+            alertMessage = saveBoardFail
+            hasAlert = true
+        }
+    }
+    
+    private func createEasyBoard(gameArea: CGSize) -> Board {
+        let samplePeg1 = Peg(pegType: .blue, centre: CGPoint(x: gameAreaQuarterWidth, y: gameAreaQuarterHeight))
+        let samplePeg2 = Peg(pegType: .blue, centre: CGPoint(x: gameAreaQuarterWidth, y: gameAreaMidHeight))
+        let samplePeg3 = Peg(pegType: .orange, centre: CGPoint(x: gameAreaThreeQuarterWidth, y: gameAreaQuarterHeight))
+        let samplePeg4 = Peg(pegType: .orange, centre: CGPoint(x: gameAreaThreeQuarterWidth, y: gameAreaMidHeight))
+        
+        let easyBoard = Board(gameArea: gameArea, pegs: [samplePeg1, samplePeg2, samplePeg3, samplePeg4])
+        
+        return easyBoard
+    }
+    
+    private func createPowerUpBoard(gameArea: CGSize) -> Board {
+        let samplePeg1 = Peg(pegType: .blue, centre: CGPoint(x: gameAreaQuarterWidth, y: gameAreaQuarterHeight))
+        let samplePeg2 = Peg(pegType: .spooky, centre: CGPoint(x: gameAreaQuarterWidth, y: gameAreaMidHeight), power: .spookyball)
+        let samplePeg3 = Peg(pegType: .orange, centre: CGPoint(x: gameAreaThreeQuarterWidth, y: gameAreaQuarterHeight))
+        
+        let samplePeg4 = Peg(pegType: .kaboom, centre: CGPoint(x: gameAreaThreeQuarterWidth, y: gameAreaMidHeight), power: .kaboom)
+        let samplePeg5 = Peg(pegType: .orange, centre: CGPoint(x: gameAreaThreeQuarterWidth + 50 , y: gameAreaMidHeight + 50))
+        let samplePeg6 = Peg(pegType: .orange, centre: CGPoint(x: gameAreaThreeQuarterWidth - 50, y: gameAreaMidHeight - 50))
+        
+        let powerUpBoard = Board(gameArea: gameArea, pegs: [samplePeg1, samplePeg2, samplePeg3, samplePeg4, samplePeg5, samplePeg6])
+        
+        return powerUpBoard
+    }
+    
+    private func createSpicyPegsBoard(gameArea: CGSize) -> Board {
+        let samplePeg1 = Peg(pegType: .zombie, centre: CGPoint(x: gameAreaQuarterWidth, y: gameAreaQuarterHeight))
+        let samplePeg2 = Peg(pegType: .confusement, centre: CGPoint(x: gameAreaQuarterWidth, y: gameAreaMidHeight))
+        let samplePeg3 = Peg(pegType: .orange, centre: CGPoint(x: gameAreaThreeQuarterWidth, y: gameAreaQuarterHeight))
+        let samplePeg4 = Peg(pegType: .orange, centre: CGPoint(x: gameAreaThreeQuarterWidth, y: gameAreaMidHeight))
+        
+        let spicyPegsBoard = Board(gameArea: gameArea, pegs: [samplePeg1, samplePeg2, samplePeg3, samplePeg4])
+        
+        return spicyPegsBoard
+    }
+    
+    func addSampleBoards(gameArea: CGSize) {
+        let easyBoard = createEasyBoard(gameArea: gameArea)
+        let easyBoardName = "Easy Board"
+        addSampleBoard(board: easyBoard, name: easyBoardName)
+        
+        let powerUpBoard = createPowerUpBoard(gameArea: gameArea)
+        let powerUpBoardName = "Power Up Board"
+        addSampleBoard(board: powerUpBoard, name: powerUpBoardName)
+        
+        let spicyPegsBoard = createSpicyPegsBoard(gameArea: gameArea)
+        let spicyPegsBoardName = "Spicy Pegs Board"
+        addSampleBoard(board: spicyPegsBoard, name: spicyPegsBoardName)
+    }
     
     func pegOnLongPress(_ peg: Peg) {
         board.removePeg(peg)
@@ -172,8 +250,10 @@ class PaletteViewModel: ObservableObject {
     }
     
     func updateGameArea(_ size: CGSize) {
+        gameArea = size
         board.updateGameArea(size)
         defaultBallPosition = CGPoint(x: board.gameArea.width / 2, y: 100)
     }
     
 }
+

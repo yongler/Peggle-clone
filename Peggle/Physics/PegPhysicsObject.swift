@@ -22,6 +22,6 @@ class PegPhysicsObject: CirclePhysicsObject {
 
 extension PegPhysicsObject: CustomStringConvertible {
     var description: String {
-        "peg \(centre) \(peg.color)"
+        "peg \(centre) \(peg.pegType)"
     }
 }

@@ -25,6 +25,40 @@ class GameViewModel: ObservableObject {
         peggle.setGameMode(gameMode)
     }
     
+    @Published var boardNames: [String] = []
+    @Published var alertMessage: String = ""
+    @Published var hasAlert = false
+    let loadBoardFail = "Fail to load board"
+    let loadLevelsFail = "Fail to load levels"
+    let levelDoesNotExist = "Level does not exist"
+    
+    func loadLevel(name: String) {
+        print("loading level \(name)")
+        if !boardNames.contains(name) {
+            alertMessage = levelDoesNotExist
+            hasAlert = true
+            return
+        }
+        do {
+            board = try BoardStore.load(name: name)
+        } catch {
+            alertMessage = loadBoardFail
+            hasAlert = true
+        }
+        
+        print("done loading \(board.pegs)")
+    }
+    
+    func loadLevelsName() {
+        do {
+            boardNames = try BoardStore.loadLevels()
+        } catch {
+            alertMessage = loadLevelsFail
+            hasAlert = true
+        }
+    }
+    
+    
     
     static let blockImage = "block"
     var boardBlocks: [RectangleBlock] {
@@ -94,7 +128,9 @@ class GameViewModel: ObservableObject {
     @Published var angle: Angle = .zero
     
     
-    
+    func closeAlert() {
+        hasAlert = false
+    }
     
     var boardPegs: [Peg] {
         get { return board.pegs }
@@ -116,7 +152,7 @@ class GameViewModel: ObservableObject {
             return
         }
         board.setBucket(gameArea: gameArea)
-        peggle.setup(gameArea)
+        peggle.setup(gameArea, boardToAssign: board)
         createDisplayLink()
         createTimer()
         timeLeftInSeconds = board.timeInSeconds
@@ -152,8 +188,7 @@ class GameViewModel: ObservableObject {
     }
     
     func endGame() {
-        displayLink.remove(from: RunLoop.current, forMode: RunLoop.Mode.common)
-        displayLink.remove(from: .current, forMode: RunLoop.Mode.default)
+//        displayLink.remove(from: .current, forMode: RunLoop.Mode.default)
         displayLink.isPaused = true
         displayLink.invalidate()
         displayLink = nil

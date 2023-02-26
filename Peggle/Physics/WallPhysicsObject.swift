@@ -22,6 +22,6 @@
 //
 //extension WallPhysicsObject: CustomStringConvertible {
 //    var description: String {
-//        "peg \(centre) \(peg.color)"
+//        "peg \(centre) \(peg.pegType)"
 //    }
 //}

@@ -12,10 +12,10 @@ struct GameMenuView: View {
     
     var body: some View {
         ZStack {
-            GeometryReader { geo in
+            GeometryReader { geometry in
                 Image("background")
                     .resizable()
-                    .frame(width: geo.size.width, height: geo.size.height)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
                     .scaledToFill()
             }
             

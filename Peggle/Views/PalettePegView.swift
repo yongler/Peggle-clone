@@ -12,7 +12,7 @@ struct PalettePegView: View {
     @Binding var peg: Peg
 
     var body: some View {
-        Image(peg.color.rawValue)
+        Image(peg.pegType.rawValue)
             .resizable()
             .frame(width: peg.radius * 2, height: peg.radius * 2)
             .position(peg.centre)
