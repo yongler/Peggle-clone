@@ -287,10 +287,24 @@ tests in code, please delete this section.
 > in problem sets 2 and 3. Here are some guiding questions:
 > - do you think you have designed your code in the previous problem sets well
 >   enough?
->     
+1. Can do better, in terms of thinking ahead and have a better code structure by practising SOC for each model and ensuring that they are reusable. 
+2. Architecture for PS2 was MV pattern, which I do not understand the purpose of MVVM as seconded by a lot of official apple documentation. I did understand after doing PS3, when setting up caddisplaylink was needed and it was both not the model or views job. Also, having a view model makes the code for the view alot cleaner. 
+3. For PS3, can do better in terms of having another model / view model (which i did for ps4) as the entrypoint instead of `PeggleGameEngine` as it should only be in charge of game engine related tasks for peggle and not about other things such as setting up board for the view. 
+
+
 > - is there any technical debt that you need to clean in this problem set?
+1. MVVM pattern instead of MV pattern as mentioned, had to move code around and restructure the sequence of calls better
+2. Removing magic literals and placing them into variables 
+3. Refactoring code such that models do not have non model tasks and put them in the view models if relevant
+4. Creating the list of levels menu since it was not a requirement for ps2 and i planned to do it in ps4. 
+
+
 > - if you were to redo the entire application, is there anything you would
 >   have done differently?
+1. Use SpriteKit. (Or reimplement The Collision related tasks such as detection, resolution and maybe adding some protocols to handle before and after collision.)
+2. Better SOC.
+3. Try using ECS instead of OOP for the game to learn more about it.
+4. Try using UIKit instead of SwiftUI for the game to learn more about it. 
 
 
 
