@@ -15,12 +15,10 @@ class PeggleGameEngine: ObservableObject {
     let collision = Collision()
     
     var score: Int = 0
-    var isWin: Bool {
-        board.orangePegsLeftCount == 0 && !launchedBall
-    }
-    var isLose: Bool {
-        board.orangePegsLeftCount != 0 && board.ballsLeftCount == 0 && !launchedBall
-    }
+    var isWin: Bool = false
+    var isLose: Bool = false
+    var gameModeSelected: GameMode = .normalGame
+    var timeLeftInSeconds: Int = 0
     
     let timeForPrematureRemoval: Double = 1
     var launchedBall = false
@@ -29,6 +27,10 @@ class PeggleGameEngine: ObservableObject {
 
     var currentTime: Double {
         Double(Calendar.current.component(.second, from: Date()))
+    }
+    
+    func setGameMode(_ gameMode: GameMode) {
+        gameModeSelected = gameMode
     }
     
    
@@ -40,6 +42,7 @@ class PeggleGameEngine: ObservableObject {
         lastBallPosition = CGPoint(x: 0, y: 0)
         timeAtLastBallPosition = Double(Calendar.current.component(.second, from: Date()))
 //        boardObjectToPhysicsObjectMapping[Peg]
+        timeLeftInSeconds = board.timeInSeconds
     }
 
     /// Adds walls
@@ -60,11 +63,21 @@ class PeggleGameEngine: ObservableObject {
         gameEngine.addPhysicsObject(object: rightWall)
         gameEngine.addPhysicsObject(object: topWall)
     }
-
+    
+    func setTimeLeftInSeconds(_ timeInSeconds: Int) {
+        self.timeLeftInSeconds = timeInSeconds
+    }
+    
+    func checkWinLose() {
+        isWin = GameMode.getIsWin(score: score, timeLeftInSeconds: timeLeftInSeconds, board: board, gameMode: gameModeSelected)
+        isLose = GameMode.getIsLose(score: score, timeLeftInSeconds: timeLeftInSeconds, board: board, gameMode: gameModeSelected)
+    }
+    
     func update(frameDuration: Double) -> Board {
         let collidedObjects = gameEngine.moveAll(time: frameDuration)
         updateBoardWithGameEngine(collidedObjects: collidedObjects)
-//        print("bucket \(board.bucket.centre)")
+        setBoardToGameEngine()
+        checkWinLose()
 //        print("in engine \(board.orangePegsCount )")
 //        print("in engine left \(board.orangePegsLeftCount )")
         return board
@@ -141,13 +154,13 @@ class PeggleGameEngine: ObservableObject {
             return false
         }
         let xWithin: Bool = ball.centre.x <= board.bucket.rightX && ball.centre.x >= board.bucket.leftX
-        let yWithin: Bool = ball.centre.y > board.bucket.topY
+        let yWithin: Bool = ball.centre.y >= board.bucket.topY && ball.centre.y <= board.bucket.bottomY
         
         return xWithin && yWithin
     }
 
     func updateBoardWithGameEngine(collidedObjects: [PhysicsObject]) {
-        var newBoard = Board(gameArea: board.gameArea, ballsLeftCount: board.ballsLeftCount)
+        var newBoard = Board(gameArea: board.gameArea, ballsCount: board.ballsCount, ballsLeftCount: board.ballsLeftCount)
         var pegPowerUpsObtained = Set<PegPowerEnum>()
         var ballPowerUpsObtained = Set<BallPowerEnum>()
         
@@ -158,6 +171,7 @@ class PeggleGameEngine: ObservableObject {
                     peg.lightUp()
                 }
                 newBoard.addPeg(peg)
+                newBoard.pegsHitCount += 1
                 
                 pegPowerUpsObtained.insert(peg.power)
                 if peg.power == .spookyball {
@@ -169,6 +183,7 @@ class PeggleGameEngine: ObservableObject {
 //                print("update board, ball = \(obj)")
                 var oldBall = obj.getBall()
                 oldBall.addPowerUps(powerUps: ballPowerUpsObtained)
+                newBoard.setBall(oldBall)
                 
                 if currentTime - timeAtLastBallPosition > timeForPrematureRemoval &&
                     abs(lastBallPosition.x - obj.centre.x + lastBallPosition.y - obj.centre.y) < 1 {
@@ -182,21 +197,21 @@ class PeggleGameEngine: ObservableObject {
                 lastBallPosition = obj.centre
                 
                 
-                if newBoard.removeBallIfOutOfBounds() || isBallInBucket {
+                if (newBoard.removeBallIfOutOfBounds() || isBallInBucket) && !ballPowerUpsObtained.contains(.spookyball)  {
 //                    print("removed")
                     newBoard.resetBall()
                     newBoard.clearAllLitPegs()
                     launchedBall = false
                     if isBallInBucket {
                         newBoard.ballsLeftCount += 1
-                        print("innnnnnnnnn")
                     }
                 }
                 
                 if board.ball?.powerUps.contains(.spookyball) ?? false {
-                    oldBall.moveToTop()
+                    newBoard.moveBallToTop()
+                    print("spokkky")
                 }
-                newBoard.setBall(oldBall)
+                
             }
             if let obj = object as? BucketPhysicsObject {
                 newBoard.bucket = obj.getBucket()
@@ -215,7 +230,7 @@ class PeggleGameEngine: ObservableObject {
             gameEngine.objects.removeAll(where: {$0 is BallPhysicsObject})
         }
         self.board = newBoard
-        setBoardToGameEngine()
+        
     }
 
     
@@ -254,6 +269,7 @@ class PeggleGameEngine: ObservableObject {
         setupWalls()
         setupBucket()
         setBoardToGameEngine()
+
 //        print("setup in peggle")
 //        print("board \(board)")
 //        print("ball \(board.ball)")

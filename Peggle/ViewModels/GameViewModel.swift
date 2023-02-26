@@ -12,6 +12,18 @@ class GameViewModel: ObservableObject {
     var peggle: PeggleGameEngine = PeggleGameEngine()
     @Published var board: Board = Board.sampleGameBoard
     var displayLink: CADisplayLink!
+    var timerObject: Timer!
+    
+    var timeLeftInSeconds: Int = 0
+    @Published var score: Int = 0
+    @Published var timer: String = ""
+    
+    @Published var hasNotSelectedGameMode: Bool = true
+    
+    func selectGameMode(_ gameMode: GameMode) {
+        hasNotSelectedGameMode = false
+        peggle.setGameMode(gameMode)
+    }
     
     
     static let blockImage = "block"
@@ -23,6 +35,9 @@ class GameViewModel: ObservableObject {
     
     var ballsLeftCount: Int {
         board.ballsLeftCount
+    }
+    var orangePegsLeftCount: Int {
+        board.orangePegsLeftCount
     }
     
     
@@ -89,11 +104,9 @@ class GameViewModel: ObservableObject {
     init(peggle: PeggleGameEngine, board: Board) {
         self.peggle = peggle
         self.board = board
-        
     }
     
     init() {
-        
     }
     
     
@@ -105,18 +118,33 @@ class GameViewModel: ObservableObject {
         board.setBucket(gameArea: gameArea)
         peggle.setup(gameArea)
         createDisplayLink()
+        createTimer()
+        timeLeftInSeconds = board.timeInSeconds
         print("setup")
     }
     
     func createDisplayLink() {
         displayLink = CADisplayLink(target: self, selector: #selector(update))
         displayLink.add(to: .current, forMode: RunLoop.Mode.default)
+      
+    }
+    
+    func createTimer() {
+        timerObject = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTimer() {
+        timeLeftInSeconds -= 1
+        peggle.setTimeLeftInSeconds(timeLeftInSeconds)
+        timer = "\(timeLeftInSeconds / 60): \(timeLeftInSeconds % 60)"
     }
 
     @objc func update(displaylink: CADisplayLink) {
         let frameDuration = Double(displaylink.targetTimestamp - displaylink.timestamp)
         board = peggle.update(frameDuration: frameDuration)
         getBucketPosition()
+        score = peggle.score
+        
         hasGameEndMessage = peggle.isWin || peggle.isLose
         if hasGameEndMessage {
             endGame()
@@ -129,6 +157,9 @@ class GameViewModel: ObservableObject {
         displayLink.isPaused = true
         displayLink.invalidate()
         displayLink = nil
+        
+        timerObject.invalidate()
+        timerObject = nil
     }
     
     

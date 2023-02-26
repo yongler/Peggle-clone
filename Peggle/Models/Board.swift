@@ -8,6 +8,8 @@
 import Foundation
 
 struct Board: Identifiable {
+    static let defaultTime = 90
+    
     let id = UUID()
     var pegs: [Peg] = []
     var ball: Ball?
@@ -15,12 +17,14 @@ struct Board: Identifiable {
     var blocks: [RectangleBlock] = []
     var ballsCount: Int = 10
     var ballsLeftCount: Int = 1
+    var siamLeftSiamRightBallsCount: Int = 5
+    var beatTheScore: Int = 10000
     
     var gameArea = CGSize(width: 1_000, height: 1_000)
     var pegCount: Int {
         pegs.count
     }
-    
+    var pegsHitCount: Int = 0
     var remainingPegsCount: Int {
         var count = 0
         for peg in pegs {
@@ -51,13 +55,19 @@ struct Board: Identifiable {
         return count
     }
     
+    var ballsShotCount: Int {
+        ballsCount - ballsLeftCount
+    }
+    
+    var timeInSeconds: Int = Board.defaultTime
 //    var boardBlocks: [RectangleBlock] {
 //        blocks
 //    }
 
-    init(gameArea: CGSize, pegs: [Peg] = [], ballsLeftCount: Int, blocks: [RectangleBlock] = []) {
+    init(gameArea: CGSize, pegs: [Peg] = [], ballsCount: Int, ballsLeftCount: Int, blocks: [RectangleBlock] = []) {
         self.pegs = pegs
         self.gameArea = gameArea
+        self.ballsCount = ballsCount
         self.ballsLeftCount = ballsLeftCount
         self.blocks = blocks
     }
@@ -177,6 +187,11 @@ struct Board: Identifiable {
     /// Convenience function to reset ball to top
     mutating func resetBall() {
         setBall(Ball(centre: CGPoint(x: gameArea.width / 2, y: 100)))
+//        print("\(board.ball)")
+    }
+    
+    mutating func moveBallToTop() {
+        ball?.moveToTop()
     }
 
     mutating func removeBall() {
@@ -194,7 +209,7 @@ struct Board: Identifiable {
         guard let ball = ball else {
             return false
         }
-        if ballIsOutOfBounds && ball.powerUps.contains(.spookyball) {
+        if ballIsOutOfBounds {
             removeBall()
             return true
         }
@@ -259,7 +274,7 @@ struct Board: Identifiable {
     
     mutating func addBlock(block: RectangleBlock) {
         blocks.append(block)
-        print("in board \(blocks)")
+//        print("in board \(blocks)")
     }
 
 }
@@ -273,16 +288,16 @@ extension Board {
 
     static var sampleGameBoard =
         Board(pegs: [
-            Peg.sampleBluePeg1,
-            Peg.sampleBluePeg2,
-            Peg.sampleBluePeg3,
-            Peg.sampleBluePeg4,
-            Peg.sampleBluePeg5,
+//            Peg.sampleBluePeg1,
+//            Peg.sampleBluePeg2,
+//            Peg.sampleBluePeg3,
+//            Peg.sampleBluePeg4,
+//            Peg.sampleBluePeg5,
             Peg.sampleOrangePeg1,
             Peg.sampleOrangePeg2,
             Peg.sampleOrangePeg3,
             Peg.sampleOrangePeg4,
-            Peg.sampleOrangePeg5
+//            Peg.sampleOrangePeg5
         ], ball: Ball.sampleBall, blocks: [RectangleBlock.sampleBlock])
         
 }
