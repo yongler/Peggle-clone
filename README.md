@@ -50,6 +50,8 @@ Models are split into 3 main category, game engine, board and board store.
 2. CirclePHysicsObject and RectanglePhysicsObject inherit from PhsyicsObject. 
 3. Board object have their own associated PhysicsObject acting as a wrapper to be process in the GameEngine. i.e. Peg is wrapped with PegPhysicsObject by PeggleGameEngine before passing into GameEngine for processing. 
 
+Persistence is done by `BoardStore` where it encodes and decodes the Board components that conform to `Codable`. The BoardStore encodes and saves the list of level names in a file, while saving the board into a file with name specified by user. Boardstore also decodes and loads the list of level names, or load a board from file with name specified by user. 
+
 ### ViewModels 
 ![image](https://user-images.githubusercontent.com/68801331/221420889-eb894a38-ad49-40b9-ae7d-299a6f1338e9.png)
 
@@ -74,7 +76,7 @@ PaletteViewModel acts as the view model for palette related tasks that correspon
 ![image](https://user-images.githubusercontent.com/68801331/221420907-3a19599c-b00a-4259-bebc-193cf1303b0f.png)
 
 
-Views are seperated into smaller views responsible for rendering 1 component. Main view then overlays all the smaller views. i.e. PaletteView overlays PaletteBoardView, PaletteActionButtonsView, PaletteDesignBUttonsViews.
+Views are responsible for just showing the UI and also calling associated actions when UI actions are done by user. Views are seperated into smaller views responsible for rendering 1 component. Main view then overlays all the smaller views. i.e. PaletteView overlays PaletteBoardView, PaletteActionButtonsView, PaletteDesignBUttonsViews.
 1. PaletteBoardView overlays the smaller views, resulting in rendering the background, board pegs, board blocks
 2. PaletteActionButtonsView have the load, save, reset, save buttons. 
 3. PaletteDesignBUttonsViews have the game assets related buttons for user to add or edit the game area assets. 
@@ -222,7 +224,9 @@ tests in code, please delete this section.
         - When button is tapped and a place with no peg or block is tapped, nothing should happen. 
     - Pegs 
         - When long pressed, peg should be removed
-        - When dragged, peg should move to new location unless it collides with other pegs or it is not within game area, if so it should be removed 
+        - When dragged, peg should move to new location unless it collides with other pegs or it is not within game area, if so it should stay at previous location.  
+     - Game area
+         - When tapped or long pressed or dragged with no design buttons tapped beforehand and no pegs or blocks at the location, nothing should happen
         
 - Test storage 
     - Level name field 
@@ -230,9 +234,15 @@ tests in code, please delete this section.
     - Load button
         - When load button is tapped with level name indicated, it should load the associated level 
         - When load button is tapped with level name not indicated, it should load the default "peggle.data"
+        - When board is failed to load, alert should be given to user 
+        - when loading board that is saved from another device, it is not guaranteed to work 
     - Save button
         - When save button is tapped with level name ("levelname") indicated, it should save the level with the level name as "levelname.data"
         - When save button is tapped with level name not indicated, it should save with the default name "peggle.data"
+        - Warning should be given to user if saving a level with a name that exists 
+        - User should not be able to overwrite default sample boards
+        - When saving same board with different name, it should be saved with different name (2 board exists)
+        - when saving with very long names or non ascii characters, it should save
     - Reset button 
         - When reset button is tapped, game area is cleared. 
         
