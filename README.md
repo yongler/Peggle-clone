@@ -36,10 +36,8 @@ You may put your dev guide either in this section, or in a new file entirely.
 You are encouraged to include diagrams where appropriate in order to enhance
 your guide.
 
-sepreated into vm 
-
 ### Class diagrams
-Code follows MVVM structure. 
+Code now follows MVVM structure for better seperation of code as compared to previous MV pattern. 
 
 Models
 ![image](https://user-images.githubusercontent.com/68801331/218320230-46683487-d5a6-420a-b7f7-118e69d29075.png)
@@ -55,17 +53,33 @@ Models are split into 3 main category, game engine, board and board store.
 ViewModels 
 
 
-GameViewModel acts as the entry point of view to model for game related mechanics. It also acts as the view model for game related tasks that correspond to UI actions from game related views. i.e. launching ball, choosing game mode. 
+GameViewModel acts as the entry point of view to model for game related mechanics. It also acts as the view model for game related tasks that correspond to UI actions from game related views. i.e. 
 
-PaletteViewModel acts as the view model for palette related tasks that correspond to UI actions from palette related views. i.e. Saving board when clicking save button. 
+1. launching ball, 
+2. choosing game mode. 
+3. initailizing `PeggleGameEngine`, `CADisplayLink` and call the update function from `PeggleGameEngine` every frame. on every update, update the board with the new one from `PeggleGameEngine`. 
+5. initializing and maintaing timer 
+6. stopping the game when user win or lose
+7. telling the views what images to show, the size, appeareance and also location. i.e. GamePegView, BlockView, BucketView
+
+PaletteViewModel acts as the view model for palette related tasks that correspond to UI actions from palette related views. i.e. 
+1. load, save, reset board actions
+2. adding, removing, rotating, resizing actions 
+3. telling the views what images to show, the size, appeareance and also location. i.e. PalettePegView, BlockView
+
 
 
 Views 
 
 
+Views are seperated into smaller views responsible for rendering 1 component. Main view then overlays all the smaller views. i.e. PaletteView overlays PaletteBoardView, PaletteActionButtonsView, PaletteDesignBUttonsViews.
+1. PaletteBoardView overlays the smaller views, resulting in rendering the background, board pegs, board blocks
+2. PaletteActionButtonsView have the load, save, reset, save buttons. 
+3. PaletteDesignBUttonsViews have the game assets related buttons for user to add or edit the game area assets. 
 
-
-
+GameBoardVIew overlays GamePegView, BlockView, GameBallView,GameHeaderView, GameMenuView, BucketView, CannonView.
+1. GameHeaderView renders the top most game details such as score, timer and orange pegs left. It also shows the score for the beat the score game mode. 
+2. GameMenuView shows the game modes available for user to choose before starting to play. 
 
 
 
@@ -92,12 +106,11 @@ Observer pattern is used. Whenever the board model instance changes, views that 
 5. user can launch ball again when ball exits game area
 6. user wins or lose depending on game mode
 
-
 - Game loop
-1. When a board is rendered, it autmotically calls `PeggleGameEngine.updateGameArea` which updates gameArea of the board, set ball to initial position, set board objects into phsyics objects into game engine and also calls `createDisplayLink()`
-2. `createDisplayLink()` then sets up a CADisplayLink that is tied to device screen and calls `update` every frame. 
-3. `update` gets the frame duration and calls `gameEngine.moveAll(time: frameDuration)` to simulate kinematics of all game objects. 
-4. The returned list of collided physics objects is taken as input for `updateBoardWithGameEngine(collidedObjects: collidedObjects)`, which updates the board instance with the latest positions of all physics objects. 
+1. When a board is rendered, it autmotically calls `PeggleGameEngine.updateGameArea` which updates gameArea of the board, set ball to initial position, set board objects into phsyics objects into game engine
+2. In `GameViewModel`, `createDisplayLink()` then sets up a CADisplayLink that is tied to device screen and calls `update` every frame. 
+3. `update` gets the frame duration and calls `PeggleGameEngine.update` which calls `gameEngine.moveAll(time: frameDuration)` to simulate kinematics of all game objects. 
+4. The returned list of collided physics objects is taken as input for `PeggleGameEngine.updateBoardWithGameEngine(collidedObjects: collidedObjects)`, which updates the board instance with the latest positions of all physics objects. 
 
 - Launch ball 
 1. When the ball is tapped, `PeggleGameEngine.launchBall()` is called which sets the ball with velocity and acceleration. 
@@ -105,9 +118,6 @@ Observer pattern is used. Whenever the board model instance changes, views that 
 3. The returned collided physicsObjects are then processed by `PeggleGameEngine`. If it is a `PegPhysicsObject`, the peg is lighted up. 
 4. If the ball is stuck in place for too long (`timeForPrematureRemoval`), `board.clearAllLitPegs()` is called to do premature removal. 
 5. If the ball falls out of gameArea, it is removed in `removeBallIfOutOfBounds()`
-
-## Design tradeoffs (extra marks for effort? :p)
-loading levels vs names 
 
 
 ## Tests
