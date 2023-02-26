@@ -24,11 +24,15 @@ struct PaletteDesignButtonsView: View {
             VStack {
                 HStack {
                     Text("Resize")
-//                    Slider(value: $paletteViewModel.resize, in: 0...360,  onEditingChanged: paletteViewModel.resize())
+                    Slider(value: $paletteViewModel.resize, in: 1...2,  onEditingChanged: { _ in
+                        paletteViewModel.onResize()
+                    } )
                 }
                 HStack {
                     Text("Rotate")
-                    Slider(value: $paletteViewModel.rotation, in: 0...360)
+                    Slider(value: $paletteViewModel.rotation, in: 0...360,  onEditingChanged: { _ in
+                        paletteViewModel.onRotate()
+                    } )
                 }
             }
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BlockView: View {
-    @State var paletteViewModel = PaletteViewModel()
+    @ObservedObject var paletteViewModel = PaletteViewModel()
     @Binding var block: RectangleBlock
 
     var body: some View {

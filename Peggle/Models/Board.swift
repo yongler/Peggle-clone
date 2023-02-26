@@ -286,10 +286,11 @@ struct Board: Identifiable {
 
     mutating func addBlock(block: RectangleBlock) {
         blocks.append(block)
-//        print("in board \(blocks)")
     }
 
 }
+
+
 
 extension Board {
     static var sampleBoard = Board(pegs: [Peg.sampleBluePeg1, Peg.sampleBluePeg2,

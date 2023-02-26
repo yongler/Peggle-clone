@@ -51,3 +51,7 @@ extension RectangleTransformableObject: CustomStringConvertible {
 //        "wall \(centre) \(width) \(height) \(vertices)"
     }
 }
+
+//extension RectangleTransformableObject: Codable {
+//    
+//}

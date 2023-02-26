@@ -15,6 +15,7 @@ struct Peg: TransformableObject, Equatable, Identifiable {
     var pegType: PegTypeEnum
     var centre: CGPoint
     var radius: CGFloat
+    var originalRadius: CGFloat
     var isLit = false
     var power: PegPowerEnum
     var rotationInRadians: CGFloat = 0
@@ -51,6 +52,7 @@ struct Peg: TransformableObject, Equatable, Identifiable {
         self.radius = radius
         self.isLit = isLit
         self.power = power
+        self.originalRadius = radius
     }
 
     mutating func setRadius(radius: CGFloat) {
@@ -79,6 +81,10 @@ struct Peg: TransformableObject, Equatable, Identifiable {
 
     func distanceTo(peg: Peg) -> CGFloat {
         sqrt(pow((centre.x - peg.centre.x), 2) + pow((centre.y - peg.centre.y), 2))
+    }
+    
+    mutating func scale(by: Float) {
+        radius = originalRadius * CGFloat(by)
     }
 }
 

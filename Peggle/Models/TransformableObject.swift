@@ -19,7 +19,7 @@ protocol TransformableObject {
 extension TransformableObject {
 //    var axes: [Vector] {
 //        var axes = [Vector]()
-//        
+//
 //        for i in 0..<vertices.count {
 //            let point1 = Vector(origin: vertices[i])
 //            let point2 = Vector(origin: vertices[i + 1 == vertices.count ? 0 : i + 1])
@@ -29,7 +29,7 @@ extension TransformableObject {
 //        }
 //        return axes
 //    }
-//    
+//
 //    /// Project this shape onto an axis
 //    func project(onto axis: Vector) -> Projection {
 //        var start: CGFloat = axis.dotProduct(point: vertices[0])
@@ -46,3 +46,9 @@ extension TransformableObject {
 //        return Projection(start: start, end: end)
 //    }
 }
+
+//
+//extension TransformableObject: Codable {
+//    
+//}
+

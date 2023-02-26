@@ -32,7 +32,7 @@ struct PaletteBoardView: View {
                         PalettePegView(paletteViewModel: paletteViewModel, peg: peg)
                     }
                     ForEach($paletteViewModel.boardBlocks) { block in
-                        BlockView(block: block)
+                        BlockView(paletteViewModel: paletteViewModel, block: block)
                     }
                 }
 

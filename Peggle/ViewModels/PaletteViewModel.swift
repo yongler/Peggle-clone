@@ -22,13 +22,27 @@ class PaletteViewModel: ObservableObject {
 
     @Published var orangePegsPlacedCount: Int = 0
 
-//    func resize() {
-//        for peg in board.pegs {
-//            if peg == selectedObject {
-//
-//            }
-//        }
-//    }
+    func onResize() {
+        if var obj = selectedObject as? RectangleBlock {
+            for i in 0..<board.blocks.count where board.blocks[i].centre == obj.centre {
+                board.blocks[i].scale(by: resize)
+            }
+        } else if var obj = selectedObject as? Peg {
+            for i in 0..<board.pegs.count where board.pegs[i].centre == obj.centre {
+                board.pegs[i].scale(by: resize)
+            }
+        }
+    }
+    
+    func onRotate() {
+        guard var obj = selectedObject as? RectangleBlock else {
+            return
+        }
+        for i in 0..<board.blocks.count where board.blocks[i].centre == obj.centre {
+            board.blocks[i].rotationInRadians = CGFloat(rotation * .pi / 180)
+        }
+//        print("in rotate \(obj.rotationInRadians)")
+    }
 
     var selectedObject: TransformableObject?
 
@@ -95,6 +109,7 @@ class PaletteViewModel: ObservableObject {
 
         do {
             board = try BoardStore.load(name: levelName)
+            print("in load \(board.blocks)")
         } catch {
             alertMessage = loadBoardFail
             hasAlert = true
@@ -174,14 +189,13 @@ class PaletteViewModel: ObservableObject {
         for block in board.blocks {
             if block.containsPoint(at) {
                 selectedObject = block
+                print("location \(at)")
+                print("selected block \(selectedObject)")
                 return
             }
          }
     }
 
-    func onResize() {
-
-    }
 
     func onTapBackground(location: CGPoint) {
         guard selectedButton != .delete else {
@@ -194,10 +208,20 @@ class PaletteViewModel: ObservableObject {
         case .orangePeg:
             board.addPeg(pegType: .orange, centre: location, power: .nopower)
             orangePegsPlacedCount += 1
+        case .confusement:
+            board.addPeg(pegType: .confusement, centre: location, power: .nopower)
+        case .spooky:
+            board.addPeg(pegType: .spooky, centre: location, power: .nopower)
+        case .kaboom:
+            board.addPeg(pegType: .kaboom, centre: location, power: .kaboom)
+        case .zombie:
+            board.addPeg(pegType: .zombie, centre: location, power: .nopower)
+
         case .block:
             let block = RectangleBlock(centre: location)
             print("add block")
             board.addBlock(block: block)
+            print("board blocks \(board.blocks)")
         default:
             return
         }
@@ -300,6 +324,7 @@ class PaletteViewModel: ObservableObject {
 
         for peg in board.pegs where peg.containsPoint(at) {
             selectedObject = peg
+            print("selected peg \(selectedObject)")
             return
          }
     }
