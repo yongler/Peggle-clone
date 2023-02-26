@@ -274,7 +274,7 @@ Alternatively, you can rewrite this section in your own style. You may also
 write this section in a new file entirely, if you wish.
 
 ### Cannon Direction
-Player can drag cannon around, on release the ball is launched. 
+Player can drag cannon around, cannon points to the location, on release the ball is launched in the same direction
 
 ### Bucket effect 
 Player gets 1 extra ball if ball enters bucket. 
