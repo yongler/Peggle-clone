@@ -207,12 +207,12 @@
 		12540EF029A634C6006A2764 /* Physics */ = {
 			isa = PBXGroup;
 			children = (
-				129A1FFC298FA17800C32F57 /* PhysicsObject.swift */,
-				129A2006298FA3FF00C32F57 /* CirclePhysicsObject.swift */,
-				129A2013298FA68700C32F57 /* RectanglePhysicsObject.swift */,
 				129A2000298FA25200C32F57 /* Acceleration.swift */,
 				129A2002298FA28300C32F57 /* Vector.swift */,
 				1283E4932998CA7D00F1EBE0 /* Projection.swift */,
+				129A1FFC298FA17800C32F57 /* PhysicsObject.swift */,
+				129A2006298FA3FF00C32F57 /* CirclePhysicsObject.swift */,
+				129A2013298FA68700C32F57 /* RectanglePhysicsObject.swift */,
 				12540F0B29A90534006A2764 /* BallPhysicsObject.swift */,
 				12540F2529AA4BE7006A2764 /* BlockPhysicsObject.swift */,
 				12540F1929A9EA72006A2764 /* BucketPhysicsObject.swift */,
