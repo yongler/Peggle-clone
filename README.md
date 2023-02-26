@@ -104,7 +104,7 @@ Observer pattern is used. Whenever the board model instance changes, views that 
 3. user select game mode
 4. user play by dragging the cannon to the direction to launch and on released, ball is launched
 5. user can launch ball again when ball exits game area
-6. user wins or lose depending on game mode
+6. user wins or lose depending on game mode when `PeggleGameEngine` pass the current score, timeleft and board. 
 
 - Game loop
 1. When a board is rendered, it autmotically calls `PeggleGameEngine.updateGameArea` which updates gameArea of the board, set ball to initial position, set board objects into phsyics objects into game engine
@@ -129,6 +129,8 @@ tests in code, please delete this section.
 
 ### Unit Testing 
 
+- Peg 
+   - Should return nil when initialized with negative radius 
 - Acceleration 
    - Instance should be initialised with x and y inputs without fail
    - Should be able to call `update(velocity: Vector, time: Double)` and returns the new velocity that is acted upon acceleration self instance
@@ -136,7 +138,6 @@ tests in code, please delete this section.
    - Should be able to initialise with `centre: CGPoint, velocity: Vector,
                   acceleration: Acceleration, radius: CGFloat` without fail 
    - Should be able to call `moveCentre(by: CGSize)` and mutates own centre 
-   - Shou
 - Board 
    - Should be able to call lightUp(peg: Peg) and set peg.isLit to true if it is false. if already true, ignore and return 
    - `clearAllLitPegs()` should remove all pegs in self.pegs that has isLit = true
@@ -182,7 +183,7 @@ tests in code, please delete this section.
 
 ### Integration testing 
 
-- Test palette
+- Test palette 
     - Blue button 
         - When button is tapped, it should indicate that it is selected 
         - When button is tapped and game area is tapped and there are no colliding pegs and it is within game area, it should add a blue peg 
@@ -191,9 +192,32 @@ tests in code, please delete this section.
         - When button is tapped, it should indicate that it is selected 
         - When button is tapped and game area is tapped and there are no colliding pegs  and it is within game area, it should add a orange peg 
         - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a orange peg 
+   - Purple button 
+        - When button is tapped, it should indicate that it is selected 
+        - When button is tapped and game area is tapped and there are no colliding pegs  and it is within game area, it should add a orange peg 
+        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a orange peg  
+   - Green button 
+        - When button is tapped, it should indicate that it is selected 
+        - When button is tapped and game area is tapped and there are no colliding pegs  and it is within game area, it should add a orange peg 
+        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a orange peg  
+   - Red button 
+        - When button is tapped, it should indicate that it is selected 
+        - When button is tapped and game area is tapped and there are no colliding pegs  and it is within game area, it should add a orange peg 
+        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a orange peg  
+   - Yellow button 
+        - When button is tapped, it should indicate that it is selected 
+        - When button is tapped and game area is tapped and there are no colliding pegs  and it is within game area, it should add a orange peg 
+        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a orange peg  
+   - Resize slider
+         - When peg or block is tapped, and slider is slided to the right, peg or block should increase in size
+         - Slider should stop sliding when the peg or block has increased 2 times as compared to original dimension
+   - Rotate slider
+         - When peg or block is tapped, and slider is slided to the right, peg or block should rotate clockwise accordingly 
+         - Slider should stop sliding when slider is at the rightmost point
     - Clear button 
         - When button is tapped, it should indicate that it is selected
-        - When button is tapped and a peg is tapped, peg should be removed
+        - When button is tapped and a peg or block is tapped, peg or block should be removed
+        - When button is tapped and a place with no peg or block is tapped, nothing should happen. 
     - Pegs 
         - When long pressed, peg should be removed
         - When dragged, peg should move to new location unless it collides with other pegs or it is not within game area, if so it should be removed 
@@ -209,13 +233,23 @@ tests in code, please delete this section.
         - When save button is tapped with level name not indicated, it should save with the default name "peggle.data"
     - Reset button 
         - When reset button is tapped, game area is cleared. 
-
+        
+        
+- Winning or losing 
+   - When game mode is normalgame, it should win when all orange pegs are hit and there is still time left. 
+   - When game mode is beatthescore, it should win when the score obtained is higher than the beatthescore indicated at the top and there is still time left. 
+   - When game mode is siamleftsiamright, it should win when n balls is shot and no pegs are hit and there is still time left. 
+   
+   - When game mode is normalgame, it should lose when (there are stil orange pegs not hit and no balls are left) or there is no time left. 
+   - When game mode is beatthescore, it should lose when (the score obtained is lower than the beatthescore indicated at the top and no balls are left) or there is no time left. 
+   - When game mode is siamleftsiamright, it should lose when lesser than n balls is shot and (pegs are hit or there is no time left). 
 - Game 
     - When game is tested on potrait screen, it should work as below sections 
     - When game is tested on different ipad screen sizes, it should work as below sections
+ - Cannon 
+   - When cannon is dragged, it points to that direction
+   - When cannon is released from dragging, it should launch ball if there is any. 
 - Ball 
-    - When ball is dragged, ball should move to new location 
-    - When ball is tapped, ball should be launched from top center of screen (downwards, never upwards), ball should be launched in the direction from top center of screen to its position before tapped 
     - When ball collides with a peg, it should bounce away 
     - When ball collids with wall, it should bounce away 
     - When ball exits the stage, lit pegs will be removed with animation. New ball will appear at top center of screen
@@ -223,8 +257,10 @@ tests in code, please delete this section.
     - When ball does not collide with any objects, it should move normally (like how balls move in real life)
 - Peg 
     - When peg is hit by ball, it should light up 
-    - When a peg is light up, it should remain lit 
+    - When a peg is light up, it should remain lit when hit multiple times. 
+    - No ghost pegs, when pegs disappear, ball should not thit anything at these positions in the next round. 
     - When lit pegs are removed and ball exits the stage, new ball should be provided at the top
+    
 
 
 - Saving 
@@ -266,6 +302,7 @@ Confusement peg flips the board upside down
 1. Player can tap on a peg or block to select it. 
 2. Player can slide the rotate slider to resize the peg or block. The slider resizes the peg or block by 2 at the maximum in each dimensions (radius for peg and width and height for block) 
 3. Peg or block resize accordingly. 
+4. All peg and block start of at the minimum size. 
 
 ## Bells and Whistles
 1. A score system that is calculated based on how many pegs the players hit, shown during game play at the top of the board
