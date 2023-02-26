@@ -39,19 +39,58 @@ your guide.
 sepreated into vm 
 
 ### Class diagrams
+Code follows MVVM structure. 
+
+Models
 ![image](https://user-images.githubusercontent.com/68801331/218320230-46683487-d5a6-420a-b7f7-118e69d29075.png)
+
 
 Model objects and physics objects that represent them are seperated to provide an abstraction and seperation of code. i.e. the model does not need to know about the physics object representation. Example would be peg object in board has a corresponding pegphysics object belonging in gameengine. This introduces loose coupling. 
 
-Models basically represent what the objects are and what they can do, while views handle the rendering to the screen. Models are split into 3 main category, game engine, board and board store. Game engine category consists of `GameEngine` and `PeggleGameEngine`, which is in charge of all the kinematics. 
+Models are split into 3 main category, game engine, board and board store. 
+1. Game engine category consists of `GameEngine` and `PeggleGameEngine`, which is in charge of all the kinematics and dynamics.  GameEngine moves PhysicsObjects based on their Acceleration and Velocity. PeggleGameEngine then adds adiditional peggle specify behaviours such as lighting up pegs that are hit, triggering power ups, keeping the score and determining win lose. 
+2. CirclePHysicsObject and RectanglePhysicsObject inherit from PhsyicsObject. 
+3. Board object have their own associated PhysicsObject acting as a wrapper to be process in the GameEngine. i.e. Peg is wrapped with PegPhysicsObject by PeggleGameEngine before passing into GameEngine for processing. 
 
-The design is of a facade, where `PeggleGameEngine` acts as the facade of the models and communicates with the views. 
+ViewModels 
 
-Util or constant class is omitted to show high level design. 
+
+GameViewModel acts as the entry point of view to model for game related mechanics. It also acts as the view model for game related tasks that correspond to UI actions from game related views. i.e. launching ball, choosing game mode. 
+
+PaletteViewModel acts as the view model for palette related tasks that correspond to UI actions from palette related views. i.e. Saving board when clicking save button. 
+
+
+Views 
+
+
+
+
+
+
 
 
 ### Sequence diagrams
 Observer pattern is used. Whenever the board model instance changes, views that observes it will be automatically rerendered to update. (functionality of `@Published` and `ObservedObject` in SwiftUI) 
+
+- Entering the app 
+1. In the menu, user can choose to play or design 
+2. Play shows all levels that are playable
+3. design shows all levels and a createnew level button
+
+- Designing and save level
+1. User can click on any existing level to edit or click on create new level to create new level. 
+2. In palette, user can click on the assets related buttons and tap on the game area to add the game asset at the tapped location if it is valid. 
+3. user can tap on existing asset on game area and slide the resize or rotate slider to adjust the asset 
+4. user tap save to save level
+5. user sees level in levels menu 
+
+- Playing a game
+1. User click on 'play' in main menu
+2. user selects level to play
+3. user select game mode
+4. user play by dragging the cannon to the direction to launch and on released, ball is launched
+5. user can launch ball again when ball exits game area
+6. user wins or lose depending on game mode
 
 
 - Game loop
