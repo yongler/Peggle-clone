@@ -40,7 +40,7 @@ your guide.
 Code now follows MVVM structure for better seperation of code as compared to previous MV pattern. 
 
 ### Models
-![image](https://user-images.githubusercontent.com/68801331/218320230-46683487-d5a6-420a-b7f7-118e69d29075.png)
+![image](https://user-images.githubusercontent.com/68801331/221420855-71742a40-23bf-493f-8014-9b30a01d28fb.png)
 
 
 Model objects and physics objects that represent them are seperated to provide an abstraction and seperation of code. i.e. the model does not need to know about the physics object representation. Example would be peg object in board has a corresponding pegphysics object belonging in gameengine. This introduces loose coupling. 
@@ -51,6 +51,7 @@ Models are split into 3 main category, game engine, board and board store.
 3. Board object have their own associated PhysicsObject acting as a wrapper to be process in the GameEngine. i.e. Peg is wrapped with PegPhysicsObject by PeggleGameEngine before passing into GameEngine for processing. 
 
 ### ViewModels 
+![image](https://user-images.githubusercontent.com/68801331/221420889-eb894a38-ad49-40b9-ae7d-299a6f1338e9.png)
 
 
 GameViewModel acts as the entry point of view to model for game related mechanics. It also acts as the view model for game related tasks that correspond to UI actions from game related views. i.e. 
@@ -70,6 +71,7 @@ PaletteViewModel acts as the view model for palette related tasks that correspon
 
 
 ### Views 
+![image](https://user-images.githubusercontent.com/68801331/221420907-3a19599c-b00a-4259-bebc-193cf1303b0f.png)
 
 
 Views are seperated into smaller views responsible for rendering 1 component. Main view then overlays all the smaller views. i.e. PaletteView overlays PaletteBoardView, PaletteActionButtonsView, PaletteDesignBUttonsViews.
