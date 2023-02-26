@@ -13,6 +13,7 @@ struct PaletteView: View {
 
     var body: some View {
         VStack {
+            Text("Orange Peg Placed: \(paletteViewModel.orangePegsPlacedCount)")
             PaletteBoardView(paletteViewModel: paletteViewModel)
             PaletteDesignButtonsView(paletteViewModel: paletteViewModel)
             PaletteActionButtonsView(paletteViewModel: paletteViewModel)

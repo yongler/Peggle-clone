@@ -9,15 +9,17 @@ import SwiftUI
 
 struct PaletteLevelsView: View {
     @ObservedObject var paletteViewModel: PaletteViewModel
-    
+
     var body: some View {
         NavigationView {
             List {
-                NavigationLink("Create a new level", destination: PaletteView(paletteViewModel: paletteViewModel, boardName: nil))
-                
+                NavigationLink("Create a new level",
+                               destination: PaletteView(paletteViewModel: paletteViewModel, boardName: nil))
+
                 ForEach(0..<paletteViewModel.boardNames.count, id: \.self) {
                     let boardName = paletteViewModel.boardNames[$0]
-                    NavigationLink(boardName, destination: PaletteView(paletteViewModel: paletteViewModel, boardName: boardName))
+                    NavigationLink(boardName,
+                                   destination: PaletteView(paletteViewModel: paletteViewModel, boardName: boardName))
                 }
             }
         }

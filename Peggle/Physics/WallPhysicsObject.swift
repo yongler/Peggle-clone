@@ -5,9 +5,9 @@
 ////  Created by Lee Yong Ler on 9/2/23.
 ////
 //
-//import Foundation
+// import Foundation
 //
-//class WallPhysicsObject: RectanglePhysicsObject {
+// class WallPhysicsObject: RectanglePhysicsObject {
 //    var peg = Peg.sampleBluePeg1
 //
 //    convenience init(peg: Peg) {
@@ -18,10 +18,10 @@
 //    func getPeg() -> Peg {
 //        peg
 //    }
-//}
+// }
 //
-//extension WallPhysicsObject: CustomStringConvertible {
+// extension WallPhysicsObject: CustomStringConvertible {
 //    var description: String {
 //        "peg \(centre) \(peg.pegType)"
 //    }
-//}
+// }

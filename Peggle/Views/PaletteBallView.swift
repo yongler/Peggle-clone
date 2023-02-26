@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PaletteBallView: View {
     @ObservedObject var paletteViewModel: PaletteViewModel
-    
+
     var body: some View {
         Image(Ball.image)
             .resizable()

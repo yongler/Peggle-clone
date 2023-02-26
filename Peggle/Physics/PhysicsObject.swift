@@ -66,7 +66,6 @@ class PhysicsObject: Equatable {
         return Projection(start: start, end: end)
     }
 
-
 }
 
 //
@@ -79,9 +78,9 @@ class PhysicsObject: Equatable {
 ////  Created by Lee Yong Ler on 5/2/23.
 ////
 //
-//import Foundation
+// import Foundation
 //
-//class PhysicsObject: Equatable {
+// class PhysicsObject: Equatable {
 ////    var centre: CGPoint
 //    var velocity: Vector
 //    var acceleration: Acceleration
@@ -128,4 +127,4 @@ class PhysicsObject: Equatable {
 //        && lhs.acceleration == rhs.acceleration
 //    }
 //
-//}
+// }

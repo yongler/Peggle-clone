@@ -9,58 +9,40 @@ import SwiftUI
 struct GameBoardView: View {
     @ObservedObject var gameViewModel: GameViewModel
     @State var boardName: String
-    
+
     var body: some View {
-        
+
         GeometryReader { geometry in
             VStack {
-                if false {
-//                    GameMenuView(gameViewModel: gameViewModel)
-                } else {
-                    HStack {
-                        Spacer()
-                        Text("Score: \(gameViewModel.score)")
-                        Spacer()
-                        Text("Ball left: \(gameViewModel.ballsLeftCount)")
-                        Spacer()
-                        Text("Orange Peg left: \(gameViewModel.orangePegsLeftCount)")
-                        Spacer()
-                        Text("\(gameViewModel.timer)")
-                        Spacer()
+                GameHeaderView(gameViewModel: gameViewModel)
+
+                ZStack {
+                    BackgroundView()
+
+                    CannonView(gameViewModel: gameViewModel)
+                    GameBallView(gameViewModel: gameViewModel)
+                    BucketView(gameViewModel: gameViewModel)
+
+                    ForEach($gameViewModel.boardPegs) { peg in GamePegView(gameViewModel: gameViewModel, peg: peg) }
+                    ForEach($gameViewModel.boardBlocks) { block in BlockView(block: block) }
+                }
+                .alert(gameViewModel.gameEndMessage, isPresented: $gameViewModel.hasGameEndMessage) {
+                    Button("OK", role: .cancel) {
                     }
-                    
-                    ZStack {
-                        Image("background")
-                            .resizable()
-                            .background()
-                        
-                        Spacer()
-                        
-                        CannonView(gameViewModel: gameViewModel)
-                        GameBallView(gameViewModel: gameViewModel)
-                        BucketView(gameViewModel: gameViewModel)
-                        
-                        ForEach($gameViewModel.boardPegs) { peg in
-                            GamePegView(gameViewModel: gameViewModel, peg: peg)
-                        }
-                        ForEach($gameViewModel.boardBlocks) { block in
-                            BlockView(block: block)
-                        }
+                }
+                .alert(gameViewModel.alertMessage, isPresented: $gameViewModel.hasAlert) {
+                    Button("OK", role: .cancel) {
+                        gameViewModel.closeAlert()
                     }
-                    .alert(gameViewModel.gameEndMessage, isPresented: $gameViewModel.hasGameEndMessage) {
-                        Button("OK", role: .cancel) {
-                            //                        gameViewModel.endGame()
-                        }
-                    }
-                    .alert(gameViewModel.alertMessage, isPresented: $gameViewModel.hasAlert) {
-                        Button("OK", role: .cancel) {
-                            gameViewModel.closeAlert()
-                        }
-                    }
+                }
+//                    .alert(gameViewModel.isLuckyMessage, isPresented: $gameViewModel.isLucky) {
+//                        Button("YAYY", role: .cancel) {
+//                            gameViewModel.closePopup()
+//                        }
+//                    }
 //                    .task {
 //                        gameViewModel.setupGame(gameArea: geometry.size)
 //                    }
-                }
             }
             .task {
                 gameViewModel.loadLevel(name: boardName)

@@ -13,11 +13,26 @@ struct PaletteDesignButtonsView: View {
     var body: some View {
         // 2 peg buttons and 1 delete button.
         HStack {
-            PaletteDesignButton(paletteViewModel: paletteViewModel, selectedButton: .bluePeg)
-            PaletteDesignButton(paletteViewModel: paletteViewModel, selectedButton: .orangePeg)
-            PaletteDesignButton(paletteViewModel: paletteViewModel, selectedButton: .block)
-            Spacer()
-            PaletteDesignButton(paletteViewModel: paletteViewModel, selectedButton: .delete)
+            PaletteDesignButtonView(paletteViewModel: paletteViewModel, selectedButton: .bluePeg)
+            PaletteDesignButtonView(paletteViewModel: paletteViewModel, selectedButton: .orangePeg)
+            PaletteDesignButtonView(paletteViewModel: paletteViewModel, selectedButton: .kaboom)
+            PaletteDesignButtonView(paletteViewModel: paletteViewModel, selectedButton: .spooky)
+            PaletteDesignButtonView(paletteViewModel: paletteViewModel, selectedButton: .zombie)
+            PaletteDesignButtonView(paletteViewModel: paletteViewModel, selectedButton: .confusement)
+            PaletteDesignButtonView(paletteViewModel: paletteViewModel, selectedButton: .block)
+
+            VStack {
+                HStack {
+                    Text("Resize")
+//                    Slider(value: $paletteViewModel.resize, in: 0...360,  onEditingChanged: paletteViewModel.resize())
+                }
+                HStack {
+                    Text("Rotate")
+                    Slider(value: $paletteViewModel.rotation, in: 0...360)
+                }
+            }
+
+            PaletteDesignButtonView(paletteViewModel: paletteViewModel, selectedButton: .delete)
         }
     }
 }

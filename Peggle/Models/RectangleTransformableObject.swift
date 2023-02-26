@@ -27,9 +27,9 @@ class RectangleTransformableObject: TransformableObject {
 
         return [topLeftCorner, topRightCorner, bottomLeftCorner, bottomRightCorner]
     }
-    
-    var verticesAfterRotation: [CGPoint]  {
-        return []
+
+    var verticesAfterRotation: [CGPoint] {
+        []
     }
 
     init(centre: CGPoint, width: CGFloat, height: CGFloat, rotationInRadians: CGFloat = 0) {
@@ -38,13 +38,12 @@ class RectangleTransformableObject: TransformableObject {
         self.centre = centre
         self.rotationInRadians = rotationInRadians
     }
-    
-    func applyTransform() {
-        
-    }
- 
-}
 
+    func applyTransform() {
+
+    }
+
+}
 
 extension RectangleTransformableObject: CustomStringConvertible {
     var description: String {

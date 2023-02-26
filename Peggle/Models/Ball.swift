@@ -11,34 +11,37 @@ struct Ball {
     var centre: CGPoint
     var radius: CGFloat
     var powerUps: Set<BallPowerEnum>
-    
+
     static let defaultBallRadius = CGFloat(25)
-    
+
     init(centre: CGPoint, radius: CGFloat = defaultBallRadius, powerUps: Set<BallPowerEnum> = []) {
         self.centre = centre
         self.radius = radius
         self.powerUps = powerUps
     }
-    
+
     mutating func moveCentre(by: CGSize) {
         centre.x += by.width
         centre.y += by.height
     }
-    
+
     mutating func moveCentre(to: CGPoint) {
         centre = to
     }
-    
+
     mutating func moveToTop() {
-        centre = CGPoint(x: centre.x, y: 0)
+        centre = CGPoint(x: centre.x, y: 100)
     }
-    
+
     mutating func addPowerUp(power: BallPowerEnum) {
         powerUps.insert(power)
     }
-    
+
     mutating func addPowerUps(powerUps: Set<BallPowerEnum>) {
-        self.powerUps = self.powerUps.union(powerUps)
+        for power in powerUps {
+            self.powerUps.insert(power)
+        }
+//        self.powerUps = self.powerUps.union(powerUps)
     }
 }
 

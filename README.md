@@ -178,6 +178,9 @@ Green balls give ka-boom power
 Purple balls give spooky ball power. 
 Bucket is not shut at any point of time.  
 
+### Spicy pegs
+Confusement peg flips the board upside down 
+
 ## Level Designer Additional Features
 
 ### Peg Rotation

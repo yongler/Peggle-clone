@@ -31,7 +31,7 @@ struct Vector: Equatable {
         self.directionX = origin.x
         self.directionY = origin.y
     }
-    
+
     init(directionX: CGFloat, directionY: CGFloat) {
         self.origin = CGPoint()
         self.directionX = directionX

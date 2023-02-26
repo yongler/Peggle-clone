@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BucketView: View {
     @ObservedObject var gameViewModel: GameViewModel
-    
+
     var body: some View {
         Image(gameViewModel.bucketImage)
             .resizable()

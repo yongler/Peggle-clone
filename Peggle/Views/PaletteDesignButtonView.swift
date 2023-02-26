@@ -1,5 +1,5 @@
 //
-//  PaletteDesignButton.swift
+//  PaletteDesignButtonView.swift
 //  Peggle
 //
 //  Created by Lee Yong Ler on 22/2/23.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct PaletteDesignButton: View {
+struct PaletteDesignButtonView: View {
     @ObservedObject var paletteViewModel: PaletteViewModel
     @State var selectedButton: PaletteViewModel.PaletteButtonEnum
-    var buttonRadius: CGFloat = 80
-    
+    var buttonRadius: CGFloat = 60
+
     var body: some View {
         Button(action: {
             paletteViewModel.select(selectedButton)
@@ -25,8 +25,8 @@ struct PaletteDesignButton: View {
     }
 }
 
-struct PaletteDesignButton_Previews: PreviewProvider {
+struct PaletteDesignButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        PaletteDesignButton(paletteViewModel: PaletteViewModel(), selectedButton: .bluePeg)
+        PaletteDesignButtonView(paletteViewModel: PaletteViewModel(), selectedButton: .bluePeg)
     }
 }

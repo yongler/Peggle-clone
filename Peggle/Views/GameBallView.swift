@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GameBallView: View {
     @ObservedObject var gameViewModel: GameViewModel
-    
+
     var body: some View {
         if let ball = gameViewModel.board.ball {
             Image(Ball.image)

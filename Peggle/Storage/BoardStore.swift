@@ -24,7 +24,7 @@ class BoardStore: ObservableObject {
 //        let allBoards = try JSONDecoder().decode([Board].self, from: file.availableData)
 //        return allBoards
 //    }
-    
+
     static func loadLevels() throws -> [String] {
         let fileURL = try getFileURL(from: allLevelsFileName)
         guard let file = try? FileHandle(forReadingFrom: fileURL) else {
@@ -48,13 +48,13 @@ class BoardStore: ObservableObject {
         let outfile = try getFileURL(from: allLevelsFileName)
         try data.write(to: outfile)
     }
-    
+
     static func save(board: Board, name: String) throws {
         let data = try JSONEncoder().encode(board)
         let outfile = try getFileURL(from: name)
         try data.write(to: outfile)
     }
-    
+
 //    static func save(board: Board) throws {
 //        let data = try JSONEncoder().encode(board)
 //        let outfile = try getFileURL(from: board.name)

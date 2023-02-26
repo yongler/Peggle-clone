@@ -9,14 +9,14 @@ import Foundation
 
 class BallPhysicsObject: CirclePhysicsObject {
     var ball = Ball.sampleBall
-    
+
     convenience init(ball: Ball) {
         self.init(centre: ball.centre, velocity: Vector.zero, acceleration: Acceleration.zero, radius: ball.radius)
         self.ball = ball
     }
-    
+
     convenience init(ball: Ball, centre: CGPoint,
-         velocity: Vector, acceleration: Acceleration, radius: CGFloat = defaultBallRadius) {
+                     velocity: Vector, acceleration: Acceleration, radius: CGFloat = defaultBallRadius) {
         self.init(centre: ball.centre, velocity: velocity, acceleration: acceleration, radius: ball.radius)
         self.ball = ball
     }

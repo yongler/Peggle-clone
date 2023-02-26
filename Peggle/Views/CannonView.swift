@@ -9,10 +9,10 @@ import SwiftUI
 
 struct CannonView: View {
     @ObservedObject var gameViewModel: GameViewModel
-    
+
     var body: some View {
         ZStack {
-            
+
         Image(gameViewModel.cannonImage)
             .resizable()
             .frame(width: gameViewModel.cannonWidth, height: gameViewModel.cannonHeight)
@@ -27,14 +27,14 @@ struct CannonView: View {
                         gameViewModel.onStopDragCannon()
                     }
             )
-        
+
 //            .onTapGesture {
 //                gameViewModel.onTapCannon()
 //            }
 //                    .onEnded { _ in
 //                    }
 //            )
-        
+
         }
     }
 }

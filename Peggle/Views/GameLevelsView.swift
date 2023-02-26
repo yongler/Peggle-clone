@@ -9,13 +9,14 @@ import SwiftUI
 
 struct GameLevelsView: View {
     @ObservedObject var gameViewModel: GameViewModel
-    
+
     var body: some View {
         NavigationView {
             List {
                 ForEach(0..<gameViewModel.boardNames.count, id: \.self) {
                     let boardName = gameViewModel.boardNames[$0]
-                    NavigationLink(boardName, destination: GameBoardView(gameViewModel: gameViewModel, boardName: boardName))
+                    NavigationLink(boardName,
+                                   destination: GameBoardView(gameViewModel: gameViewModel, boardName: boardName))
                 }
             }
         }

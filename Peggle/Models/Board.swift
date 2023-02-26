@@ -9,7 +9,7 @@ import Foundation
 
 struct Board: Identifiable {
     static let defaultTime = 90
-    
+
     let id = UUID()
     var pegs: [Peg] = []
     var ball: Ball?
@@ -18,8 +18,8 @@ struct Board: Identifiable {
     var ballsCount: Int = 10
     var ballsLeftCount: Int = 10
     var siamLeftSiamRightBallsCount: Int = 5
-    var beatTheScore: Int = 10000
-    
+    var beatTheScore: Int = 10_000
+
     var gameArea = CGSize(width: 1_000, height: 1_000)
     var pegCount: Int {
         pegs.count
@@ -27,24 +27,20 @@ struct Board: Identifiable {
     var pegsHitCount: Int = 0
     var remainingPegsCount: Int {
         var count = 0
-        for peg in pegs {
-            if !peg.isLit {
-                count += 1
-            }
+        for peg in pegs where !peg.isLit {
+            count += 1
         }
         return count
     }
-    
+
     var orangePegsCount: Int {
         var count = 0
-        for peg in pegs {
-            if peg.pegType == .orange {
-                count += 1
-            }
+        for peg in pegs where peg.pegType == .orange {
+            count += 1
         }
         return count
     }
-    
+
     var orangePegsLeftCount: Int {
         var count = 0
         for peg in pegs {
@@ -54,17 +50,24 @@ struct Board: Identifiable {
         }
         return count
     }
-    
+
     var ballsShotCount: Int {
         ballsCount - ballsLeftCount
     }
-    
+
     var timeInSeconds: Int = Board.defaultTime
 //    var boardBlocks: [RectangleBlock] {
 //        blocks
 //    }
 
-    init(gameArea: CGSize, pegs: [Peg] = [], ballsCount: Int = 10, ballsLeftCount: Int = 10, blocks: [RectangleBlock] = []) {
+    mutating func kaboom(from: Peg) {
+        for i in 0..<pegs.count where from.distanceTo(peg: pegs[i]) <= Peg.kaboomRadius {
+            pegs[i].lightUp()
+        }
+    }
+
+    init(gameArea: CGSize, pegs: [Peg] = [], ballsCount: Int = 10,
+         ballsLeftCount: Int = 10, blocks: [RectangleBlock] = []) {
         self.pegs = pegs
         self.gameArea = gameArea
         self.ballsCount = ballsCount
@@ -78,13 +81,16 @@ struct Board: Identifiable {
         self.ballsLeftCount = ballsCount
         self.blocks = blocks
     }
-    
+
     mutating func flipBoard() {
+        print("flipp \(gameArea.height / 2) ")
         for i in 0..<pegs.count {
-            pegs[i].flip(centreAxisXValue: gameArea.height/2)
+            print("before \(pegs[i])")
+            pegs[i].flip(centreAxisXValue: gameArea.height / 2)
+            print("after \(pegs[i])")
         }
     }
-    
+
     mutating func setBucket(gameArea: CGSize) {
         bucket.centre = CGPoint(x: gameArea.width / 2, y: gameArea.height - bucket.height / 2)
     }
@@ -98,7 +104,8 @@ struct Board: Identifiable {
     }
 
     /// Check if peg to add is a valid position, if yes add to board.
-    mutating func addPeg(pegType: PegTypeEnum, centre: CGPoint, radius: CGFloat = Peg.defaultPegRadius, power: PegPowerEnum) {
+    mutating func addPeg(pegType: PegTypeEnum, centre: CGPoint,
+                         power: PegPowerEnum, radius: CGFloat = Peg.defaultPegRadius) {
         let peg = Peg(pegType: pegType, centre: centre, radius: radius, power: power)
         addPeg(peg)
     }
@@ -118,10 +125,16 @@ struct Board: Identifiable {
         })
     }
 
+    mutating func removeBlock(at: CGPoint) {
+        self.blocks.removeAll(where: {
+            $0.containsPoint(at)
+        })
+    }
+
     /// Move peg by the specifiied size
     mutating func movePeg(_ peg: Peg, to: CGPoint) {
         let oldCentre = peg.centre
-        
+
         for i in 0..<pegs.count {
             if pegs[i] != peg {
                 continue
@@ -134,11 +147,11 @@ struct Board: Identifiable {
             }
         }
     }
-    
+
     /// Move peg by the specifiied size
     mutating func movePeg(_ peg: Peg, by: CGSize) {
         let oldCentre = peg.centre
-        
+
         for i in 0..<pegs.count {
             if pegs[i] != peg {
                 continue
@@ -189,7 +202,7 @@ struct Board: Identifiable {
         setBall(Ball(centre: CGPoint(x: gameArea.width / 2, y: 100)))
 //        print("\(board.ball)")
     }
-    
+
     mutating func moveBallToTop() {
         ball?.moveToTop()
     }
@@ -212,11 +225,11 @@ struct Board: Identifiable {
         }
         return false
     }
-    
+
     mutating func moveBall(to: CGPoint) {
         ball?.moveCentre(to: to)
     }
-    
+
     mutating func moveBall(by: CGSize) {
 //        guard var ball = ball else {
 //            return
@@ -268,16 +281,13 @@ struct Board: Identifiable {
         }
         return true
     }
-    
+
     mutating func addBlock(block: RectangleBlock) {
         blocks.append(block)
 //        print("in board \(blocks)")
     }
 
 }
-
-
-
 
 extension Board {
     static var sampleBoard = Board(pegs: [Peg.sampleBluePeg1, Peg.sampleBluePeg2,
@@ -293,8 +303,8 @@ extension Board {
             Peg.sampleOrangePeg1,
             Peg.sampleOrangePeg2,
             Peg.sampleOrangePeg3,
-            Peg.sampleOrangePeg4,
+            Peg.sampleOrangePeg4
 //            Peg.sampleOrangePeg5
         ], ball: Ball.sampleBall, blocks: [RectangleBlock.sampleBlock])
-        
+
 }

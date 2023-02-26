@@ -23,7 +23,7 @@ struct PaletteBoardView: View {
                                     paletteViewModel.onTapBackground(location: value.location)
                                 }
                         )
-                    
+
                     Spacer()
 
 //                    BallView(peggleGame: peggleGame, ball: $board.ball)

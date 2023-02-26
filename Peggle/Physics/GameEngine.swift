@@ -49,7 +49,7 @@ class GameEngine {
             if object == obj {
                 continue
             }
-            if collision.detectCollision(for: object, with: obj){
+            if collision.detectCollision(for: object, with: obj) {
                 collidedObjects.append(obj)
             }
         }

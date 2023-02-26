@@ -27,12 +27,11 @@ struct PaletteActionButtonsView: View {
             Button("RESET") {
                 paletteViewModel.clearBoard()
             }
-            
+
             TextField("Level name", text: $paletteViewModel.levelName).border(.secondary)
 
             Button("START") {
-                
-                
+
             }
         }
         .ignoresSafeArea(.keyboard)

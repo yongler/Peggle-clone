@@ -21,7 +21,7 @@ class Collision {
         }
         return true
     }
-    
+
     func detectCollision(for obj1: PhysicsObject, with obj2: PhysicsObject) -> Bool {
         let axes1: [Vector] = obj1.axes
         let axes2: [Vector] = obj2.axes
@@ -31,7 +31,7 @@ class Collision {
         }
         return detectCollisionHelper(for: obj1, with: obj2, axes: axes2)
     }
-    
+
 //    func detectAndResolveCollision(for obj1: PhysicsObject, with obj2: PhysicsObject) {
 //
 //    }

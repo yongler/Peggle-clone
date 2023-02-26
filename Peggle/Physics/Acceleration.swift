@@ -11,7 +11,7 @@ struct Acceleration: Equatable {
     static let zero = Acceleration(x: 0, y: 0)
     static let gravity = Acceleration(x: 0, y: 9.8 * 20)
 
-    var x: CGFloat  
+    var x: CGFloat
     var y: CGFloat
 
     private func updateVelocityHelper(initial: CGFloat, acceleration: CGFloat, time: Double) -> CGFloat {

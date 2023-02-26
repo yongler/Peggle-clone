@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Peg: Equatable, Identifiable {
+struct Peg: TransformableObject, Equatable, Identifiable {
     static let defaultPegRadius: CGFloat = 25
+    static let kaboomRadius: CGFloat = 200
 
     var id = UUID()
     var pegType: PegTypeEnum
@@ -16,6 +17,7 @@ struct Peg: Equatable, Identifiable {
     var radius: CGFloat
     var isLit = false
     var power: PegPowerEnum
+    var rotationInRadians: CGFloat = 0
 
     mutating func lightUp() {
         guard !isLit else {
@@ -40,8 +42,9 @@ struct Peg: Equatable, Identifiable {
             return
         }
     }
-    
-    init(id: UUID = UUID(), pegType: PegTypeEnum, centre: CGPoint, radius: CGFloat = Peg.defaultPegRadius, isLit: Bool = false, power: PegPowerEnum = .nopower) {
+
+    init(pegType: PegTypeEnum, centre: CGPoint, id: UUID = UUID(),
+         radius: CGFloat = Peg.defaultPegRadius, isLit: Bool = false, power: PegPowerEnum = .nopower) {
         self.id = id
         self.pegType = pegType
         self.centre = centre
@@ -49,14 +52,14 @@ struct Peg: Equatable, Identifiable {
         self.isLit = isLit
         self.power = power
     }
-    
+
     mutating func setRadius(radius: CGFloat) {
         self.radius = radius
     }
-    
+
     mutating func flip(centreAxisXValue: CGFloat) {
         let yDistanceToCentreAxis = centreAxisXValue - centre.y
-        let newY = centre.y + yDistanceToCentreAxis
+        let newY = centreAxisXValue + yDistanceToCentreAxis
         let newCentre = CGPoint(x: centre.x, y: newY)
         moveCentre(to: newCentre)
     }
@@ -64,10 +67,18 @@ struct Peg: Equatable, Identifiable {
     mutating func moveCentre(to: CGPoint) {
         centre = to
     }
-    
+
     mutating func moveCentre(by: CGSize) {
         centre.x += by.width
         centre.y += by.height
+    }
+
+    func containsPoint(_ location: CGPoint) -> Bool {
+        sqrt(pow((centre.x - location.x), 2) + pow((centre.y - location.y), 2)) <= radius
+    }
+
+    func distanceTo(peg: Peg) -> CGFloat {
+        sqrt(pow((centre.x - peg.centre.x), 2) + pow((centre.y - peg.centre.y), 2))
     }
 }
 

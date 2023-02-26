@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GameMenuView: View {
     @ObservedObject var gameViewModel: GameViewModel
-    
+
     var body: some View {
         ZStack {
             GeometryReader { geometry in
@@ -18,13 +18,13 @@ struct GameMenuView: View {
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .scaledToFill()
             }
-            
+
             Spacer()
-                
+
             VStack {
-                Button("Normal Game") {gameViewModel.selectGameMode(.normalGame)}
-                Button("Beat The Score") {gameViewModel.selectGameMode(.beatTheScore)}
-                Button("Siam Left Siam Right") {gameViewModel.selectGameMode(.siamLeftSiamRight)}
+                Button("Normal Game") { gameViewModel.selectGameMode(.normalGame) }
+                Button("Beat The Score") { gameViewModel.selectGameMode(.beatTheScore) }
+                Button("Siam Left Siam Right") { gameViewModel.selectGameMode(.siamLeftSiamRight) }
             }
         }
         .ignoresSafeArea(.all)

@@ -10,12 +10,12 @@ import SwiftUI
 struct PeggleView: View {
     @ObservedObject var paletteViewModel: PaletteViewModel
     @ObservedObject var gameViewModel: GameViewModel
-    
+
     var body: some View {
         GeometryReader { geometry in
             NavigationView {
                 List {
-                    
+
                     NavigationLink("Play", destination: GameLevelsView(gameViewModel: gameViewModel))
                     NavigationLink("Design", destination: PaletteLevelsView(paletteViewModel: paletteViewModel))
                 }
