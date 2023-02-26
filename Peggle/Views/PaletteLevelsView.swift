@@ -14,7 +14,7 @@ struct PaletteLevelsView: View {
         NavigationView {
             List {
                 NavigationLink("Create a new level",
-                               destination: PaletteView(paletteViewModel: PaletteViewModel(), boardName: nil))
+                               destination: PaletteView(paletteViewModel: paletteViewModel, boardName: nil))
 
                 ForEach(0..<paletteViewModel.boardNames.count, id: \.self) {
                     let boardName = paletteViewModel.boardNames[$0]

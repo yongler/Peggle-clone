@@ -1,12 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "peg-yellow@1x.png",
+      "filename" : "peg-yellow.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "peg-yellow@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

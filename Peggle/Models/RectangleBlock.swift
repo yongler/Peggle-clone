@@ -10,13 +10,13 @@ import Foundation
 struct RectangleBlock: TransformableObject, Identifiable, Equatable {
     static let defaultWidth: CGFloat = 100
     static let defaultHeight: CGFloat = 80
-    
+
     var id = UUID()
     var centre: CGPoint
     var rotationInRadians: CGFloat
     var width: CGFloat
     var height: CGFloat
-    
+
     var originalWidth: CGFloat
     var originalHeight: CGFloat
 
@@ -52,7 +52,10 @@ struct RectangleBlock: TransformableObject, Identifiable, Equatable {
     func applyTransform() {
 
     }
-    
+    mutating func moveCentre(to: CGPoint) {
+        centre = to
+    }
+
     init(centre: CGPoint) {
         self.init(centre: centre, width: RectangleBlock.defaultWidth,
                   height: RectangleBlock.defaultHeight, rotationInRadians: 0)
@@ -63,7 +66,7 @@ struct RectangleBlock: TransformableObject, Identifiable, Equatable {
         let yWithin = at.y <= centre.y + height / 2 && at.y >= centre.y - height / 2
         return xWithin && yWithin
     }
-    
+
     mutating func scale(by: Float) {
         width = originalWidth * CGFloat(by)
         height = originalHeight * CGFloat(by)
@@ -71,9 +74,9 @@ struct RectangleBlock: TransformableObject, Identifiable, Equatable {
 }
 
 extension RectangleBlock {
-    static let sampleBlock = RectangleBlock(centre: CGPoint(x: 500, y: 500))
+    static let sampleBlock = RectangleBlock(centre: CGPoint(x: 400, y: 400))
 }
 
 extension RectangleBlock: Codable {
-    
+
 }

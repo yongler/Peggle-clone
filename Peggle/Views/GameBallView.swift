@@ -12,11 +12,10 @@ struct GameBallView: View {
 
     var body: some View {
         if let ball = gameViewModel.board.ball {
-            Image(Ball.image)
+            Image(ImageViewModel.ballImage)
                 .resizable()
                 .frame(width: ball.radius * 2, height: ball.radius * 2)
                 .position(ball.centre)
-//
         }
     }
 }

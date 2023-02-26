@@ -82,7 +82,7 @@ struct Peg: TransformableObject, Equatable, Identifiable {
     func distanceTo(peg: Peg) -> CGFloat {
         sqrt(pow((centre.x - peg.centre.x), 2) + pow((centre.y - peg.centre.y), 2))
     }
-    
+
     mutating func scale(by: Float) {
         radius = originalRadius * CGFloat(by)
     }

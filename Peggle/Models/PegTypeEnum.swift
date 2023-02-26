@@ -8,20 +8,20 @@
 import Foundation
 
 enum PegTypeEnum: String {
-    case blue = "peg-blue"
-    case blueGlow = "peg-blue-glow"
-    case orange = "peg-orange"
-    case orangeGlow = "peg-orange-glow"
+    case blue
+    case blueGlow
+    case orange
+    case orangeGlow
 
-    case spooky = "peg-purple"
-    case spookyGlow = "peg-purple-glow"
-    case kaboom = "peg-green"
-    case kaboomGlow = "peg-green-glow"
+    case spooky
+    case spookyGlow
+    case kaboom
+    case kaboomGlow
 
-    case confusement = "peg-yellow"
-    case confusementGlow = "peg-yellow-glow"
-    case zombie = "peg-red"
-    case zombieGlow = "peg-red-glow"
+    case confusement
+    case confusementGlow
+    case zombie
+    case zombieGlow
 }
 
 extension PegTypeEnum: Codable {

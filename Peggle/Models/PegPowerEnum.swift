@@ -12,9 +12,6 @@ enum PegPowerEnum: Equatable {
     case spookyball
     case nopower
 
-    var kaboomRadius: CGFloat {
-        200
-    }
 }
 
 extension PegPowerEnum: Codable {

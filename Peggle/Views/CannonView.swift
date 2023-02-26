@@ -13,7 +13,7 @@ struct CannonView: View {
     var body: some View {
         ZStack {
 
-        Image(gameViewModel.cannonImage)
+        Image(ImageViewModel.cannonImage)
             .resizable()
             .frame(width: gameViewModel.cannonWidth, height: gameViewModel.cannonHeight)
             .rotationEffect(gameViewModel.angle, anchor: .center)
@@ -27,14 +27,6 @@ struct CannonView: View {
                         gameViewModel.onStopDragCannon()
                     }
             )
-
-//            .onTapGesture {
-//                gameViewModel.onTapCannon()
-//            }
-//                    .onEnded { _ in
-//                    }
-//            )
-
         }
     }
 }

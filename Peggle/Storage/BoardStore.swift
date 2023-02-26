@@ -16,15 +16,6 @@ class BoardStore: ObservableObject {
         return directory.appendingPathComponent(name).appendingPathExtension(".data")
     }
 
-//    static func loadLevels() throws -> [Board] {
-//        let fileURL = try getFileURL(from: allLevelsFileName)
-//        guard let file = try? FileHandle(forReadingFrom: fileURL) else {
-//            return [Board]()
-//        }
-//        let allBoards = try JSONDecoder().decode([Board].self, from: file.availableData)
-//        return allBoards
-//    }
-
     static func loadLevels() throws -> [String] {
         let fileURL = try getFileURL(from: allLevelsFileName)
         guard let file = try? FileHandle(forReadingFrom: fileURL) else {
@@ -54,11 +45,5 @@ class BoardStore: ObservableObject {
         let outfile = try getFileURL(from: name)
         try data.write(to: outfile)
     }
-
-//    static func save(board: Board) throws {
-//        let data = try JSONEncoder().encode(board)
-//        let outfile = try getFileURL(from: board.name)
-//        try data.write(to: outfile)
-//    }
 
 }

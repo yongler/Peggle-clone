@@ -31,8 +31,4 @@ class Collision {
         }
         return detectCollisionHelper(for: obj1, with: obj2, axes: axes2)
     }
-
-//    func detectAndResolveCollision(for obj1: PhysicsObject, with obj2: PhysicsObject) {
-//
-//    }
 }

@@ -48,10 +48,5 @@ class RectangleTransformableObject: TransformableObject {
 extension RectangleTransformableObject: CustomStringConvertible {
     var description: String {
         "RectangleTransformableObject \(centre)"
-//        "wall \(centre) \(width) \(height) \(vertices)"
     }
 }
-
-//extension RectangleTransformableObject: Codable {
-//    
-//}

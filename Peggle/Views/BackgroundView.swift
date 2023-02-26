@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BackgroundView: View {
     var body: some View {
-        Image("background")
+        Image(ImageViewModel.backgroundImage)
             .resizable()
             .background()
     }

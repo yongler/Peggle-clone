@@ -11,7 +11,6 @@ struct PaletteDesignButtonsView: View {
     @ObservedObject var paletteViewModel: PaletteViewModel
 
     var body: some View {
-        // 2 peg buttons and 1 delete button.
         HStack {
             PaletteDesignButtonView(paletteViewModel: paletteViewModel, selectedButton: .bluePeg)
             PaletteDesignButtonView(paletteViewModel: paletteViewModel, selectedButton: .orangePeg)
@@ -24,15 +23,15 @@ struct PaletteDesignButtonsView: View {
             VStack {
                 HStack {
                     Text("Resize")
-                    Slider(value: $paletteViewModel.resize, in: 1...2,  onEditingChanged: { _ in
+                    Slider(value: $paletteViewModel.resize, in: 1...2, onEditingChanged: { _ in
                         paletteViewModel.onResize()
-                    } )
+                    })
                 }
                 HStack {
                     Text("Rotate")
-                    Slider(value: $paletteViewModel.rotation, in: 0...360,  onEditingChanged: { _ in
+                    Slider(value: $paletteViewModel.rotation, in: 0...360, onEditingChanged: { _ in
                         paletteViewModel.onRotate()
-                    } )
+                    })
                 }
             }
 

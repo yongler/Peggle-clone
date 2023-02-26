@@ -34,8 +34,4 @@ struct Bucket {
     var bottomY: CGFloat {
         centre.y + height / 2
     }
-
-//    func specialEffect() {
-//
-//    }
 }

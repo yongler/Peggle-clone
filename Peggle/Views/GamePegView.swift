@@ -12,7 +12,7 @@ struct GamePegView: View {
     @Binding var peg: Peg
 
     var body: some View {
-        Image(peg.pegType.rawValue)
+        Image(ImageViewModel.getPegImage(peg))
             .resizable()
             .frame(width: peg.radius * 2, height: peg.radius * 2)
             .position(peg.centre)

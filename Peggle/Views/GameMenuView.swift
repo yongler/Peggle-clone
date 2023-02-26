@@ -13,20 +13,23 @@ struct GameMenuView: View {
     var body: some View {
         ZStack {
             GeometryReader { geometry in
-                Image("background")
-                    .resizable()
+                BackgroundView()
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .scaledToFill()
+
+                Spacer()
+
+                VStack {
+                    Text("Please select your game mode")
+                    Button("Normal Game") { gameViewModel.selectGameMode(.normalGame, gameArea: geometry.size) }
+                    Button("Beat The Score") { gameViewModel.selectGameMode(.beatTheScore, gameArea: geometry.size) }
+                    Button("Siam Left Siam Right") {
+                        gameViewModel.selectGameMode(.siamLeftSiamRight, gameArea: geometry.size)
+
+                    }
+                }
             }
 
-            Spacer()
-
-            VStack {
-                Text("Please select your game mode")
-                Button("Normal Game") { gameViewModel.selectGameMode(.normalGame) }
-                Button("Beat The Score") { gameViewModel.selectGameMode(.beatTheScore) }
-                Button("Siam Left Siam Right") { gameViewModel.selectGameMode(.siamLeftSiamRight) }
-            }
         }
         .ignoresSafeArea(.all)
     }

@@ -11,7 +11,7 @@ struct BucketView: View {
     @ObservedObject var gameViewModel: GameViewModel
 
     var body: some View {
-        Image(gameViewModel.bucketImage)
+        Image(ImageViewModel.bucketImage)
             .resizable()
             .frame(width: gameViewModel.bucketWidth, height: gameViewModel.bucketHeight)
             .position(gameViewModel.bucketPosition)

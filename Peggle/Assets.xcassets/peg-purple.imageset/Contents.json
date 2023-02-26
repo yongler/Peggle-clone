@@ -1,12 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "peg-purple@1x.png",
+      "filename" : "peg-purple.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "peg-purple@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

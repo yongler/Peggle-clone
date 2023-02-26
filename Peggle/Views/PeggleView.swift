@@ -10,21 +10,30 @@ import SwiftUI
 struct PeggleView: View {
     @ObservedObject var paletteViewModel: PaletteViewModel
     @ObservedObject var gameViewModel: GameViewModel
+    let welcomeMessage = "Welcome to Blue Lock Peggle!"
 
     var body: some View {
         GeometryReader { geometry in
-            NavigationView {
-                List {
+                VStack {
+                    Spacer()
+                    Spacer()
+                    NavigationView {
+                        List {
+                            Text(welcomeMessage).font(.largeTitle).padding(.all)
+                            NavigationLink("Play", destination: GameLevelsView(gameViewModel: gameViewModel))
+                            NavigationLink("Design", destination: PaletteLevelsView(paletteViewModel: paletteViewModel))
+                        }
+                    }
+                    .navigationViewStyle(StackNavigationViewStyle())
+                    .padding(.all)
 
-                    NavigationLink("Play", destination: GameLevelsView(gameViewModel: gameViewModel))
-                    NavigationLink("Design", destination: PaletteLevelsView(paletteViewModel: paletteViewModel))
+                    Spacer()
                 }
-            }
-            .navigationViewStyle(StackNavigationViewStyle())
-            .task {
-                paletteViewModel.updateGameArea(geometry.size)
-                paletteViewModel.addSampleBoards(gameArea: geometry.size)
-            }
+                .task {
+                    paletteViewModel.updateGameArea(geometry.size)
+                    paletteViewModel.loadLevelsName()
+                    paletteViewModel.addSampleBoards(gameArea: geometry.size)
+                }
         }
     }
 }

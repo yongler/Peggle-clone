@@ -14,9 +14,7 @@ struct PaletteBoardView: View {
         GeometryReader { geometry in
             VStack {
                 ZStack {
-                    Image("background")
-                        .resizable()
-                        .background()
+                    BackgroundView()
                         .gesture(
                             DragGesture(minimumDistance: 0)
                                 .onEnded { value in
@@ -25,8 +23,6 @@ struct PaletteBoardView: View {
                         )
 
                     Spacer()
-
-//                    BallView(peggleGame: peggleGame, ball: $board.ball)
 
                     ForEach($paletteViewModel.boardPegs) { peg in
                         PalettePegView(paletteViewModel: paletteViewModel, peg: peg)

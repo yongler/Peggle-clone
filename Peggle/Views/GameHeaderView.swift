@@ -12,7 +12,6 @@ struct GameHeaderView: View {
 
     var body: some View {
         HStack {
-//            Spacer()
             Text("Score: \(gameViewModel.score)")
             Spacer()
             Text("Beat The Score: \(gameViewModel.beatTheScore)")
@@ -22,7 +21,6 @@ struct GameHeaderView: View {
             Text("Orange Peg left: \(gameViewModel.orangePegsLeftCount)")
             Spacer()
             Text("\(gameViewModel.timer)")
-//            Spacer()
         }.padding()
     }
 }

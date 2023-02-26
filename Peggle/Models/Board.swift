@@ -18,7 +18,7 @@ struct Board: Identifiable {
     var ballsCount: Int = 10
     var ballsLeftCount: Int = 10
     var siamLeftSiamRightBallsCount: Int = 5
-    var beatTheScore: Int = 5000
+    var beatTheScore: Int = 5_000
 
     var gameArea = CGSize(width: 1_000, height: 1_000)
     var pegCount: Int {
@@ -51,14 +51,7 @@ struct Board: Identifiable {
         return count
     }
 
-    var ballsShotCount: Int {
-        ballsCount - ballsLeftCount
-    }
-
     var timeInSeconds: Int = Board.defaultTime
-//    var boardBlocks: [RectangleBlock] {
-//        blocks
-//    }
 
     mutating func kaboom(from: Peg) {
         for i in 0..<pegs.count where from.distanceTo(peg: pegs[i]) <= Peg.kaboomRadius {
@@ -66,11 +59,11 @@ struct Board: Identifiable {
         }
     }
 
-    init(gameArea: CGSize, pegs: [Peg] = [], ballsCount: Int = 10,
+    init(gameArea: CGSize, pegs: [Peg] = [], balls: Int = 10,
          ballsLeftCount: Int = 10, blocks: [RectangleBlock] = []) {
         self.pegs = pegs
         self.gameArea = gameArea
-        self.ballsCount = ballsCount
+        self.ballsCount = balls
         self.ballsLeftCount = ballsLeftCount
         self.blocks = blocks
     }
@@ -83,16 +76,13 @@ struct Board: Identifiable {
     }
 
     mutating func flipBoard() {
-        print("flipp \(gameArea.height / 2) ")
         for i in 0..<pegs.count {
-            print("before \(pegs[i])")
             pegs[i].flip(centreAxisXValue: gameArea.height / 2)
-            print("after \(pegs[i])")
         }
     }
 
     mutating func setBucket(gameArea: CGSize) {
-        bucket.centre = CGPoint(x: gameArea.width / 2, y: gameArea.height - bucket.height / 2)
+        bucket.centre = CGPoint(x: gameArea.width / 2, y: gameArea.height - bucket.height / 2 - 100)
     }
 
     /// Check if peg to add is a valid position, if yes add to board.
@@ -129,6 +119,29 @@ struct Board: Identifiable {
         self.blocks.removeAll(where: {
             $0.containsPoint(at)
         })
+    }
+
+    mutating func removeBlock(block: RectangleBlock) {
+        self.blocks.removeAll(where: {
+            $0 == block
+        })
+    }
+
+    /// Move peg by the specifiied size
+    mutating func moveBlock(_ block: RectangleBlock, to: CGPoint) {
+        let oldCentre = block.centre
+
+        for i in 0..<blocks.count {
+            if blocks[i] != block {
+                continue
+            }
+            blocks[i].moveCentre(to: to)
+
+            guard checkValidPosition(block: blocks[i]) else {
+                blocks[i].centre = oldCentre
+                return
+            }
+        }
     }
 
     /// Move peg by the specifiied size
@@ -179,6 +192,7 @@ struct Board: Identifiable {
 
     mutating func clearBoard() {
         self.pegs = []
+        self.blocks = []
     }
 
     mutating func clearAllLitPegs() {
@@ -200,13 +214,10 @@ struct Board: Identifiable {
     /// Convenience function to reset ball to top
     mutating func resetBall() {
         setBall(Ball(centre: CGPoint(x: gameArea.width / 2, y: 100)))
-//        print("\(board.ball)")
     }
 
     mutating func moveBallToTop() {
-        print("in baord \(ball)")
-        ball?.moveToTop()
-        print("in baord after \(ball)")
+        ball?.moveToTop(gameArea: gameArea)
     }
 
     mutating func removeBall() {
@@ -233,15 +244,6 @@ struct Board: Identifiable {
     }
 
     mutating func moveBall(by: CGSize) {
-//        guard var ball = ball else {
-//            return
-//        }
-////        guard self.ball != nil else {
-//            return
-//        }
-//        guard ball.velocity == Vector.zero && ball.acceleration == Acceleration.zero else {
-//            return
-//        }
         ball?.moveCentre(by: by)
     }
 
@@ -273,6 +275,10 @@ struct Board: Identifiable {
         checkNotOverlappingPeg(peg: peg) && checkInArea(peg: peg)
     }
 
+    func checkValidPosition(block: RectangleBlock) -> Bool {
+        checkInArea(block: block)
+    }
+
     /// Compares peg location with area boundary
     func checkInArea(peg: Peg) -> Bool {
         guard peg.centre.x - peg.radius > 0 && peg.centre.x + peg.radius < gameArea.width else {
@@ -284,13 +290,21 @@ struct Board: Identifiable {
         return true
     }
 
+    func checkInArea(block: RectangleBlock) -> Bool {
+        guard block.centre.x - block.width / 2 > 0 && block.centre.x + block.width / 2 < gameArea.width else {
+            return false
+        }
+        guard block.centre.y - block.height / 2 > 0 && block.centre.y + block.height / 2 < gameArea.height else {
+            return false
+        }
+        return true
+    }
+
     mutating func addBlock(block: RectangleBlock) {
         blocks.append(block)
     }
 
 }
-
-
 
 extension Board {
     static var sampleBoard = Board(pegs: [Peg.sampleBluePeg1, Peg.sampleBluePeg2,
@@ -298,16 +312,16 @@ extension Board {
 
     static var sampleGameBoard =
         Board(pegs: [
-//            Peg.sampleBluePeg1,
-//            Peg.sampleBluePeg2,
-//            Peg.sampleBluePeg3,
-//            Peg.sampleBluePeg4,
-//            Peg.sampleBluePeg5,
+            Peg.sampleBluePeg1,
+            Peg.sampleBluePeg2,
+            Peg.sampleBluePeg3,
+            Peg.sampleBluePeg4,
+            Peg.sampleBluePeg5,
             Peg.sampleOrangePeg1,
             Peg.sampleOrangePeg2,
             Peg.sampleOrangePeg3,
-            Peg.sampleOrangePeg4
-//            Peg.sampleOrangePeg5
+            Peg.sampleOrangePeg4,
+            Peg.sampleOrangePeg5
         ], ball: Ball.sampleBall, blocks: [RectangleBlock.sampleBlock])
 
 }

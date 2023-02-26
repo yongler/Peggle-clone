@@ -25,6 +25,12 @@ class BallPhysicsObject: CirclePhysicsObject {
         ball.moveCentre(to: self.centre)
         return ball
     }
+
+    func setBall(ball: Ball) {
+        self.ball = ball
+        self.centre = ball.centre
+    }
+
 }
 
 extension BallPhysicsObject: CustomStringConvertible {

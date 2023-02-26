@@ -12,11 +12,20 @@ struct BlockView: View {
     @Binding var block: RectangleBlock
 
     var body: some View {
-        Image(GameViewModel.blockImage)
+        Image(ImageViewModel.blockImage)
             .resizable()
             .frame(width: block.width, height: block.height)
             .rotationEffect(Angle(radians: block.rotationInRadians), anchor: .center)
             .position(block.centre)
+            .onLongPressGesture(perform: {
+                paletteViewModel.onLongPressBlock(block)
+            })
+            .gesture(
+                DragGesture()
+                    .onChanged { gesture in
+                        paletteViewModel.onDragBlock(block, to: gesture.location)
+                    }
+            )
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onEnded { value in

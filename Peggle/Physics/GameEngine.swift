@@ -33,11 +33,10 @@ class GameEngine {
                 object1.velocity.directionY *= -1
             } else {
                 object1.velocity.directionX *= -1
-//                print("bang \(object1) \(object2)")
             }
         }
-        if object2 is BlockPhysicsObject {
-            if object1.centre.y > object2.centre.y {
+        if let obj = object2 as? BlockPhysicsObject {
+            if object1.centre.y < (obj.centre.y - obj.block.height / 2) {
                 object1.velocity.directionY *= -1 * normalForceCoefficient
             } else {
                 object1.velocity.directionX *= -1 * normalForceCoefficient

@@ -11,7 +11,7 @@ struct PaletteBallView: View {
     @ObservedObject var paletteViewModel: PaletteViewModel
 
     var body: some View {
-        Image(Ball.image)
+        Image(ImageViewModel.ballImage)
             .resizable()
             .frame(width: Ball.defaultBallRadius * 2, height: Ball.defaultBallRadius * 2)
             .position(paletteViewModel.defaultBallPosition)

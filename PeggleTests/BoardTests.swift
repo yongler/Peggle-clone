@@ -1,89 +1,75 @@
-////
-////  BoardTests.swift
-////  PeggleTests
-////
-////  Created by Lee Yong Ler on 28/1/23.
-////
 //
-// import XCTest
-// @testable import Peggle
+//  BoardTests.swift
+//  PeggleTests
 //
-// final class BoardTests: XCTestCase {
+//  Created by Lee Yong Ler on 28/1/23.
 //
-//    func testConstruct() {
-//        let board = Board()
-//
-//        let peg1 = Peg(pegType: "peg-blue", x: 300, y: 300, radius: 50)
-//        let peg2 = Peg(pegType: "peg-blue", x: 600, y: 600, radius: 50)
-//        let peg3 = Peg(pegType: "peg-orange", x: 700, y: 700, radius: 50)
-//        let peg4 = Peg(pegType: "peg-orange", x: 800, y: 800, radius: 50)
-//
-//        let board1 = Board(pegs: [peg1, peg2, peg3, peg4])
-//    }
-//
-//    func testAddPeg_colliding_pegNotAdded() {
-//        let board = Board()
-//        board.addPeg(Peg.samplePeg)
-//
-//        XCTAssert(board.pegCount == 1)
-//
-//        let peg1 = Peg(pegType: "peg-blue", x: 290, y: 290, radius: 50)
-//        board.addPeg(peg1)
-//        XCTAssert(board.pegCount == 1)
-//    }
-//
-//    func testAddPeg() {
-//        let board = Board()
-//        board.addPeg(Peg.samplePeg)
-//
-//        XCTAssert(board.pegCount == 1)
-//    }
-//
-//    func testAddPegGivenCoordinates() {
-//        let board = Board()
-//        board.addPeg(Peg.samplePeg)
-//
-//        XCTAssert(board.pegCount == 1)
-//    }
-//
-//    func testRemovePeg() {
-//        let board = Board()
-//        let peg = Peg.samplePeg
-//        board.addPeg(peg)
-//
-//        XCTAssert(board.pegCount == 1)
-//
-//        board.removePeg(peg)
-//        XCTAssert(board.pegCount == 0)
-//    }
-//
-//    func testRemovePegGivenCoordinates() {
-//        let board = Board()
-//        let peg = Peg.samplePeg
-//        board.addPeg(peg)
-//
-//        XCTAssert(board.pegCount == 1)
-//
-//        board.removePeg(x: 300, y: 300)
-//        XCTAssert(board.pegCount == 0)
-//    }
-//
-//    func testClearBoard() {
-//        let peg1 = Peg(pegType: "peg-blue", x: 300, y: 300, radius: 50)
-//        let peg2 = Peg(pegType: "peg-blue", x: 600, y: 600, radius: 50)
-//        let peg3 = Peg(pegType: "peg-orange", x: 700, y: 700, radius: 50)
-//        let peg4 = Peg(pegType: "peg-orange", x: 800, y: 800, radius: 50)
-//
-//        let board = Board()
-//        board.addPeg(peg1)
-//        board.addPeg(peg2)
-//        board.addPeg(peg3)
-//        board.addPeg(peg4)
-//
-//        XCTAssert(board.pegCount == 4)
-//
-//        board.clearBoard()
-//        XCTAssert(board.pegCount == 0)
-//    }
-//
-// }
+
+ import XCTest
+ @testable import Peggle
+
+ final class BoardTests: XCTestCase {
+    func testConstruct() {
+        let board = Board()
+
+        let board1 = Board(pegs: [Peg.sampleBluePeg1, Peg.sampleBluePeg2,
+                                  Peg.sampleOrangePeg1, Peg.sampleOrangePeg2])
+    }
+
+    func testAddPeg_colliding_pegNotAdded() {
+        var board = Board()
+        board.addPeg(Peg.sampleBluePeg1)
+
+        XCTAssert(board.pegCount == 1)
+
+        let peg1 = Peg.sampleBluePeg1
+        board.addPeg(peg1)
+        XCTAssert(board.pegCount == 1)
+    }
+
+    func testAddPeg() {
+        var board = Board()
+        board.addPeg(Peg.sampleBluePeg1)
+
+        XCTAssert(board.pegCount == 1)
+    }
+
+    func testAddPegGivenCoordinates() {
+        var board = Board()
+        board.addPeg(Peg.sampleBluePeg1)
+
+        XCTAssert(board.pegCount == 1)
+    }
+
+    func testRemovePeg() {
+        var board = Board()
+        let peg = Peg.sampleBluePeg1
+        board.addPeg(peg)
+
+        XCTAssert(board.pegCount == 1)
+
+        board.removePeg(peg)
+        XCTAssert(board.pegCount == 0)
+    }
+
+    func testRemovePegGivenCoordinates() {
+        var board = Board()
+        let peg = Peg.sampleBluePeg1
+        board.addPeg(peg)
+
+        XCTAssert(board.pegCount == 1)
+
+        board.removePeg(at: CGPoint(x: 250, y: 500))
+        XCTAssert(board.pegCount == 0)
+    }
+
+    func testClearBoard() {
+        var board = Board.sampleBoard
+
+        XCTAssert(board.pegCount == 4)
+
+        board.clearBoard()
+        XCTAssert(board.pegCount == 0)
+    }
+
+ }

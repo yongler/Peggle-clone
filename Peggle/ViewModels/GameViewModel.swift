@@ -20,22 +20,20 @@ class GameViewModel: ObservableObject {
 
     @Published var hasNotSelectedGameMode = true
 
-    func selectGameMode(_ gameMode: GameMode) {
+    func selectGameMode(_ gameMode: GameMode, gameArea: CGSize) {
         hasNotSelectedGameMode = false
+        createDisplayLink()
+        createTimer()
         peggle.setGameMode(gameMode)
     }
 
     @Published var isLucky = true
     let isLuckyMessage = "Lucky! 1 free ball"
 
-//    func closePopup() {
-//        displayLink.isPaused = false
-//    }
-
     var beatTheScore: Int {
         board.beatTheScore
     }
-    
+
     @Published var boardNames: [String] = []
     @Published var alertMessage: String = ""
     @Published var hasAlert = false
@@ -66,7 +64,6 @@ class GameViewModel: ObservableObject {
         }
     }
 
-    static let blockImage = "block"
     var boardBlocks: [RectangleBlock] {
         get { board.blocks }
         set { self.boardBlocks = newValue }
@@ -84,17 +81,15 @@ class GameViewModel: ObservableObject {
     let loseMessage = "Try harder ok"
 
     var gameEndMessage: String {
-//        ret   urn winMessage
         if peggle.isWin {
             return winMessage
         }
         if peggle.isLose {
             return loseMessage
         }
-        return "What"
+        return ""
     }
 
-    let bucketImage = "bucket"
     var bucketWidth: CGFloat {
         board.bucket.width
     }
@@ -107,7 +102,6 @@ class GameViewModel: ObservableObject {
         bucketPosition = board.bucket.centre
     }
 
-    let cannonImage = "cannon"
     var cannonWidth: CGFloat {
         board.gameArea.width / 3
     }
@@ -115,7 +109,7 @@ class GameViewModel: ObservableObject {
         board.gameArea.height / 6
     }
     var cannonPosition: CGPoint {
-        CGPoint(x: board.gameArea.width / 2, y: max(cannonHeight / 2, cannonWidth / 2))
+        CGPoint(x: board.gameArea.width / 2, y: max(cannonHeight / 2, cannonWidth / 2) )
     }
     func onDragCannon(to: CGPoint) {
         angle = Angle(radians: -atan((to.x - board.gameArea.width / 2) / to.y))
@@ -147,15 +141,15 @@ class GameViewModel: ObservableObject {
         if hasGameEndMessage {
             return
         }
+
+        board.gameArea = gameArea
         board.setBucket(gameArea: gameArea)
         peggle = PeggleGameEngine()
         peggle.setup(gameArea, boardToAssign: board)
-        createDisplayLink()
-        createTimer()
+
         timeLeftInSeconds = board.timeInSeconds
-        
+
         hasNotSelectedGameMode = true
-        print("setup")
     }
 
     func createDisplayLink() {
@@ -186,9 +180,6 @@ class GameViewModel: ObservableObject {
         if hasGameEndMessage {
             endGame()
         }
-//        if isLucky {
-//            displayLink.isPaused = true
-//        }
     }
 
     func endGame() {
@@ -197,14 +188,8 @@ class GameViewModel: ObservableObject {
         displayLink?.invalidate()
         displayLink = nil
 
-        timerObject.invalidate()
+        timerObject?.invalidate()
         timerObject = nil
     }
-
-//    func onDragBall(to: CGPoint) {
-//        board.moveBall(to: to)
-//        peggle.updateBall(to: to)
-//    }
-//
 
 }

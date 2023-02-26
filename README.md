@@ -22,14 +22,19 @@
 If you have changed the specifications in any way, please write your
 justification here. Otherwise, you may discard this section.
 
-how one aims the cannon in the rules of the game.
+Limatations: 
+1. Game starts to lag when there are more than ~20 pegs on the board
 
-exact rules of the game modes that you end up implementing and how a player chooses them, always document them with the greatest detail in your Developer Guide
-
-You are free to decide how they look, the resulting animations or transitions, or any extensions you would like to implement. Remember to document them with the greatest detail in your Developer Guide.
-
-Own behaviours added: 
-1. Player can drag the ball around and tap it to launch the ball. Magnitude and direction is controlled by relative position of ball to top center of screen. 
+Blue lock themed peggle 
+- background is now a football field 
+- ball is now a football 
+- bucket is now a goal 
+- blue pegs are shown with 
+- orange pegs are shown with 
+- kaboom pegs are shown with 
+- spooky pegs are shown with 
+- zombie pegs are shown with 
+- confusement pegs are shown with 
 
 ## Dev Guide
 You may put your dev guide either in this section, or in a new file entirely.
@@ -70,6 +75,7 @@ PaletteViewModel acts as the view model for palette related tasks that correspon
 2. adding, removing, rotating, resizing actions 
 3. telling the views what images to show, the size, appeareance and also location. i.e. PalettePegView, BlockView
 
+There is also an additional `ImageViewModel` which stores the images name with the associated game assets such as peg, block, cannon etc. This enables better abstraction and 1 point of source. 
 
 
 ### Views 
@@ -187,31 +193,21 @@ tests in code, please delete this section.
 
 ### Integration testing 
 
+- App 
+    - User can see play and design, on click should move to respective levels 
+    - at levels screen, user can click level name to play or design it depending on previous chosen 'play' or 'design'
+
+
 - Test palette 
-    - Blue button 
+    - Peg buttons 
         - When button is tapped, it should indicate that it is selected 
-        - When button is tapped and game area is tapped and there are no colliding pegs and it is within game area, it should add a blue peg 
-        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a blue peg 
-    - Orange button 
+        - When button is tapped and game area is tapped and there are no colliding pegs and it is within game area, it should add selected peg 
+        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add elected peg 
+    - Block Button 
         - When button is tapped, it should indicate that it is selected 
-        - When button is tapped and game area is tapped and there are no colliding pegs  and it is within game area, it should add a orange peg 
-        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a orange peg 
-   - Purple button 
-        - When button is tapped, it should indicate that it is selected 
-        - When button is tapped and game area is tapped and there are no colliding pegs  and it is within game area, it should add a orange peg 
-        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a orange peg  
-   - Green button 
-        - When button is tapped, it should indicate that it is selected 
-        - When button is tapped and game area is tapped and there are no colliding pegs  and it is within game area, it should add a orange peg 
-        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a orange peg  
-   - Red button 
-        - When button is tapped, it should indicate that it is selected 
-        - When button is tapped and game area is tapped and there are no colliding pegs  and it is within game area, it should add a orange peg 
-        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a orange peg  
-   - Yellow button 
-        - When button is tapped, it should indicate that it is selected 
-        - When button is tapped and game area is tapped and there are no colliding pegs  and it is within game area, it should add a orange peg 
-        - When button is tapped and game area is tapped and there are colliding pegs or it is not within game area, it should not add a orange peg  
+        - When button is tapped and game area is tapped and it is within game area, it should add block 
+        - When button is tapped and game area is tapped and it is not within game area, it should not add block
+
    - Resize slider
          - When peg or block is tapped, and slider is slided to the right, peg or block should increase in size
          - Slider should stop sliding when the peg or block has increased 2 times as compared to original dimension
@@ -222,9 +218,15 @@ tests in code, please delete this section.
         - When button is tapped, it should indicate that it is selected
         - When button is tapped and a peg or block is tapped, peg or block should be removed
         - When button is tapped and a place with no peg or block is tapped, nothing should happen. 
+        
+    
     - Pegs 
         - When long pressed, peg should be removed
-        - When dragged, peg should move to new location unless it collides with other pegs or it is not within game area, if so it should stay at previous location.  
+        - When dragged, peg should move to new location unless it collides with other pegs or it is not within game area, if so it should stay at previous location.      
+        
+    - blocks 
+        - When long pressed, block should be removed
+        - When dragged, block should move to new location unless it is not within game area, if so it should stay at previous location.  
      - Game area
          - When tapped or long pressed or dragged with no design buttons tapped beforehand and no pegs or blocks at the location, nothing should happen
         
@@ -249,12 +251,12 @@ tests in code, please delete this section.
         
 - Winning or losing 
    - When game mode is normalgame, it should win when all orange pegs are hit and there is still time left. 
-   - When game mode is beatthescore, it should win when the score obtained is higher than the beatthescore indicated at the top and there is still time left. 
-   - When game mode is siamleftsiamright, it should win when n balls is shot and no pegs are hit and there is still time left. 
+   - When game mode is beatthescore, it should win when the score obtained is higher than the beatthescore(5000) indicated at the top and there is still time left. 
+   - When game mode is siamleftsiamright, it should win when 5 balls is shot and no pegs are hit and there is still time left. 
    
    - When game mode is normalgame, it should lose when (there are stil orange pegs not hit and no balls are left) or there is no time left. 
-   - When game mode is beatthescore, it should lose when (the score obtained is lower than the beatthescore indicated at the top and no balls are left) or there is no time left. 
-   - When game mode is siamleftsiamright, it should lose when lesser than n balls is shot and (pegs are hit or there is no time left). 
+   - When game mode is beatthescore, it should lose when (the score obtained is lower than the beatthescore(5000) indicated at the top and no balls are left) or there is no time left. 
+   - When game mode is siamleftsiamright, it should lose when lesser than 5 balls is shot and (pegs are hit or there is no time left). 
 - Game 
     - When game is tested on potrait screen, it should work as below sections 
     - When game is tested on different ipad screen sizes, it should work as below sections
@@ -267,12 +269,16 @@ tests in code, please delete this section.
     - When ball exits the stage, lit pegs will be removed with animation. New ball will appear at top center of screen
     - When ball is stuck with no way of reaching bottom of screen, lit pegs will be prematurely removed (pegs will not be prematurely removed in any other case)
     - When ball does not collide with any objects, it should move normally (like how balls move in real life)
+    - When ball falls into bucket, extra ball is given
 - Peg 
     - When peg is hit by ball, it should light up 
     - When a peg is light up, it should remain lit when hit multiple times. 
     - No ghost pegs, when pegs disappear, ball should not thit anything at these positions in the next round. 
     - When lit pegs are removed and ball exits the stage, new ball should be provided at the top
-    
+- Bucket (goal)
+    - The bucket should be at the bottom of the screen.
+    - The bucket should move left and right in a deterministic way.
+    - There should be a special effect in the game once the ball enters the bucket. (extra ball given)
 
 
 - Saving 
@@ -296,32 +302,42 @@ To win, clear all orange pegs.
 You start with 10 balls. Every time you shoot a ball, the number of balls get subtracted. You lose if you run out of balls and there are still orange pegs remaining in the game.
 
 ### Power up 
-Green balls give ka-boom power
-Purple balls give spooky ball power. 
-Bucket is not shut at any point of time.  
+Spooky ball comes back from the top at the middle section instead of at the same x axis, as this is football themed and kicking from the middle is cooler.
+Bucket is not shut at any point of time.
+power up pegs images are shown in the notes section   
 
 ### Spicy pegs
 Confusement peg flips the board upside down 
+confusement pegs images are shown in the notes section  
 
 ## Level Designer Additional Features
 
-### Peg Rotation
+### 3 default boards
+1.  Easy board - contains just "blue" and "orange" pegs 
+2.  Power Up board - contains just power up pegs for kaboom and spooky
+3. Spicy peg board - contains spicy pegs such as zombie and confusment
+
+### Peg or block Rotation
 1. Player can tap on a peg or block to select it. 
 2. Player can slide the rotate slider to rotate the peg or block. 
 3. Peg or block rotates clockwise accordingly. 
 
-### Peg Resizing
+### Peg or block Resizing
 1. Player can tap on a peg or block to select it. 
 2. Player can slide the rotate slider to resize the peg or block. The slider resizes the peg or block by 2 at the maximum in each dimensions (radius for peg and width and height for block) 
 3. Peg or block resize accordingly. 
 4. All peg and block start of at the minimum size. 
 
 ## Bells and Whistles
-1. A score system that is calculated based on how many pegs the players hit, shown during game play at the top of the board
+1. A score system that is calculated based on how many pegs the players hit, shown during game play at the top of the board 
+    - score is calculated as such, orange peg worth 1000, others worth 500. each peg hit increases score by its score multiplied by number of bounces
 2. Displaying orange pegs remaining during game play at the top of the board
-3. Displaying orange pegs placed in the Level Designer, shown at the top of the board
+3. Displaying orange pegs placed in the Level Designer, shown at tIhe top of the board
 4. A timer that results in a game over when it ends, shown during game play at the top of the board
 5. Engineering luck. Player gets additional ball once in a while (dependent on RNG behind the scenes)
+6. Game changed to blue lock (anime) theme
+7. Bucket(goal) will move not move from left to right of screen, instead will move left right around the goal area only (blue lock themed bucket)
+
 
 ## Written Answers
 

@@ -29,8 +29,8 @@ struct Ball {
         centre = to
     }
 
-    mutating func moveToTop() {
-        centre = CGPoint(x: centre.x, y: 100)
+    mutating func moveToTop(gameArea: CGSize) {
+        centre = CGPoint(x: gameArea.width / 2, y: 100)
     }
 
     mutating func addPowerUp(power: BallPowerEnum) {
@@ -41,17 +41,15 @@ struct Ball {
         for power in powerUps {
             self.powerUps.insert(power)
         }
-//        self.powerUps = self.powerUps.union(powerUps)
     }
 }
 
 extension Ball {
     static let sampleBall = Ball(centre: CGPoint(x: 400, y: 100), radius: Ball.defaultBallRadius)
-    static let image = "ball"
 }
 
 extension Ball: CustomStringConvertible {
     var description: String {
-        "ball \(centre)"
+        "ball \(centre) \(powerUps)"
     }
 }
