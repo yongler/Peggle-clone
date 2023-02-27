@@ -49,6 +49,7 @@ Blue lock themed peggle
 - confusement pegs are shown with 
 ![peg-yellow](https://user-images.githubusercontent.com/68801331/221580911-4c2c68ca-fe01-4598-bee5-1ba971dbaa6b.png)
 
+Also, all games (no matter the game mode) have time limit of 90 seconds. When the timer becomes 0, player loses. (bells and whistles)
 
 ## Dev Guide
 You may put your dev guide either in this section, or in a new file entirely.
