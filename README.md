@@ -29,17 +29,25 @@ Blue lock themed peggle
 - background is now a football field 
 - ball is now a football 
 - bucket is now a goal 
-- blue pegs are shown with  ![peg-blue](https://user-images.githubusercontent.com/68801331/221580800-0d17214e-2738-4b70-be3c-325a5ccb769d.png)
+- blue pegs are shown with  
+  ![peg-blue](https://user-images.githubusercontent.com/68801331/221580800-0d17214e-2738-4b70-be3c-325a5ccb769d.png)
   
-- orange pegs are shown with ![peg-orange](https://user-images.githubusercontent.com/68801331/221580861-dd3ca490-3977-4371-9e4f-6ef78c923ddb.png)
+  
+- orange pegs are shown with 
+![peg-orange](https://user-images.githubusercontent.com/68801331/221580861-dd3ca490-3977-4371-9e4f-6ef78c923ddb.png) 
 
-- kaboom pegs are shown with ![peg-green](https://user-images.githubusercontent.com/68801331/221580838-7f2e3e72-e2f5-44bb-b1da-6adfccd94d60.png)
+- kaboom pegs are shown with 
+![peg-green](https://user-images.githubusercontent.com/68801331/221580838-7f2e3e72-e2f5-44bb-b1da-6adfccd94d60.png)
 
-- spooky pegs are shown with ![peg-purple](https://user-images.githubusercontent.com/68801331/221580871-b7d15305-eba8-4b53-b0fa-645472e69c89.png)
 
-- zombie pegs are shown with ![peg-red](https://user-images.githubusercontent.com/68801331/221580887-f166ec62-6ba1-4e85-b87e-f08a348aa4be.png)
+- spooky pegs are shown with 
+![peg-purple](https://user-images.githubusercontent.com/68801331/221580871-b7d15305-eba8-4b53-b0fa-645472e69c89.png)
 
-- confusement pegs are shown with ![peg-yellow](https://user-images.githubusercontent.com/68801331/221580911-4c2c68ca-fe01-4598-bee5-1ba971dbaa6b.png)
+- zombie pegs are shown with 
+![peg-red](https://user-images.githubusercontent.com/68801331/221580887-f166ec62-6ba1-4e85-b87e-f08a348aa4be.png)
+
+- confusement pegs are shown with 
+![peg-yellow](https://user-images.githubusercontent.com/68801331/221580911-4c2c68ca-fe01-4598-bee5-1ba971dbaa6b.png)
 
 
 ## Dev Guide
